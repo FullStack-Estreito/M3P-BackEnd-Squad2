@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "eMwGAhMuPocv8k22V/hc5CwnNzTsUBGrhxwOG3iB174BP1avkpn9eYjlUMDhZam82/LpLCrZslFcIVZ0+MBmBA==",
+  "success": true,
+  "projectFilePath": "/Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/Backend.csproj",
+  "expectedPackageFiles": [
+    "/Users/mariacarolinaboabaid/.nuget/packages/microsoft.aspnetcore.openapi/7.0.4/microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
+    "/Users/mariacarolinaboabaid/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/mariacarolinaboabaid/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/mariacarolinaboabaid/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/Users/mariacarolinaboabaid/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/Users/mariacarolinaboabaid/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/Users/mariacarolinaboabaid/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -4,28 +4,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-	public class AtendimentoModel
+	public class Log
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
-        [Column(TypeName = "VARCHAR")]
-        public string Data { get; set; }
+        public int Usuario_Id { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required]
         public string Descricao { get; set; }
 
-        [Required]
-        public int Aluno_Id { get; set; }
+        [Column(TypeName = "VARCHAR")]
+        public string Detalhes { get; set; }
 
-        [Required]
-        public int Pedagogo_Id { get; set; }
+        // public virtual Administrador Admin { get; set; }
 
-        // Relacionamentos
-        public virtual AlunoModel Aluno { get; set; }
-        public virtual PedagogoModel Pedagogo { get; set; }
     }
 }
 

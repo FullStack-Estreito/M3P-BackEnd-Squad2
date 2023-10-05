@@ -1,4 +1,5 @@
 ﻿using Backend.Context;
+using Backend.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,13 +12,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/Senai/LabSchoolContext.db;";
+// string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/Senai/LabSchoolContext.db;";
 
 // Injeção de dependência LabSchoolContext
-builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
+// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
+builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
+
+
+//Repositories
+builder.Services.AddScoped<UsuarioRepository>();
 
 var app = builder.Build();
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

@@ -1,27 +1,31 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Backend.Base;
 
 namespace Backend.Models
 {
-	public class LogModel
+	public class Atendimento
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
-        public int Usuario_Id { get; set; }
+        [Column(TypeName = "VARCHAR")]
+        public string Data { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required]
         public string Descricao { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
-        public string Detalhes { get; set; }
+        [Required]
+        public int Aluno_Id { get; set; }
 
-        // Relacionamento com BaseUsuarioModel
-        public virtual BaseUsuarioModel Usuario { get; set; }
+        [Required]
+        public int Pedagogo_Id { get; set; }
+
+        // Relacionamentos
+        public virtual Aluno Aluno { get; set; }
+        public virtual Pedagogo Pedagogo { get; set; }
     }
 }
 

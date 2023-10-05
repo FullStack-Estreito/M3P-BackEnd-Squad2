@@ -1,13 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Backend.Models;
 
-namespace Backend.Base
+namespace Backend.Models
 {
-    public class BaseUsuarioModel
+	public class Pedagogo
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -36,12 +35,12 @@ namespace Backend.Base
         [Required]
         public bool Status_Sistema { get; set; } = true;
 
-        [Required]
+        // [Required]
         public int Endereco_Id { get; set; }
 
-        // Relacionamentos
-        public virtual EnderecoModel Endereco { get; set; }
-        public virtual IList<LogModel> Logs { get; set; }
+
+        // Relacionamento com AtendimentoModel
+        public virtual IList<Atendimento> Atendimentos { get; set; }
     }
 }
 

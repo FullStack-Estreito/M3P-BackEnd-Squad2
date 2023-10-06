@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-	public class Atendimento
+	public class AtendimentoModel
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,9 +23,12 @@ namespace Backend.Models
         [Required]
         public int Pedagogo_Id { get; set; }
 
-        // Relacionamentos
-        public virtual Aluno Aluno { get; set; }
-        public virtual Pedagogo Pedagogo { get; set; }
+         // Relacionamentos
+        public virtual UsuarioModel Usuario {get ; set; }
+
+
+
+     
     }
 }
 

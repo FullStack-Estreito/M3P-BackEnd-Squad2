@@ -1,40 +1,43 @@
-
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Backend.Models;
 
 namespace Backend.Models
 {
-    public class Endereco
-    {
-
+	public class Endereco
+	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        //teste		
-        [Column(TypeName = "VARCHAR"), Required, StringLength(15)]
-        public string CEP { get; set; }
+        [Column(TypeName = "VARCHAR"), Required]
+		public string CEP { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, StringLength(64)]
+        [Column(TypeName = "VARCHAR"), Required]
         public string Cidade { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, StringLength(2)]
-        public string Uf { get; set; }
+        [Column(TypeName = "VARCHAR"), Required]
+        public string Estado { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, StringLength(64)]
+        [Column(TypeName = "VARCHAR"), Required]
         public string Logradouro { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, StringLength(7)]
+        [Column(TypeName = "VARCHAR"), Required]
         public string Numero { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, StringLength(64)]
+        [Column(TypeName = "VARCHAR")]
+        public string Complemento { get; set; }
+
+        [Column(TypeName = "VARCHAR"), Required]
         public string Bairro { get; set; }
-        [Column(TypeName = "VARCHAR"), StringLength(64)]
-        public string? Complemento { get; set; }
+
+        [Column(TypeName = "VARCHAR")]
+        public string Ponto_Referencia { get; set; }
 
 
+        // Relacionamento com UsuarioModel
+        public virtual Usuario Usuario { get; set; }
 
     }
 }
+

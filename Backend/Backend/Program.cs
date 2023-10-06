@@ -1,5 +1,4 @@
 ﻿using Backend.Context;
-using Backend.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +19,7 @@ builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(
 
 
 //Repositories
-builder.Services.AddScoped<UsuarioRepository>();
+// builder.Services.AddScoped<UsuarioRepository>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

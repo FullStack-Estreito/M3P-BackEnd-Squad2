@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-	public class EmpresaModel
+	public class Empresa
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -27,7 +27,7 @@ namespace Backend.Models
 
 
         // Relacionamento com UsuarioModel
-        public virtual IList<UsuarioModel> Usuarios { get; set; }
+        public virtual IList<Usuario> Usuarios { get; set; }
        
     }
 }

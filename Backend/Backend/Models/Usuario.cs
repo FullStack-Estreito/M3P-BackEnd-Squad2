@@ -4,13 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-<<<<<<<< HEAD:Backend/Backend/Models/UsuarioModel.cs
-    public class UsuarioModel
-========
-	public class Pedagogo
->>>>>>>> origin/develop:Backend/Backend/Models/Pedagogo.cs
+    public class Usuario
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -39,7 +34,6 @@ namespace Backend.Models
         [Required]
         public bool Status_Sistema { get; set; } = true;
 
-<<<<<<<< HEAD:Backend/Backend/Models/UsuarioModel.cs
         [Column(TypeName = "VARCHAR")]
         public string Matricula_Aluno { get; set; }
 
@@ -53,22 +47,13 @@ namespace Backend.Models
         public int Endereco_Id { get; set; }
 
         // Relacionamentos
-        public virtual EnderecoModel Endereco { get; set; }
-        public virtual IList<LogModel> Logs { get; set; }
-        public virtual EmpresaModel Empresa { get; set; }
-        public virtual IList<AvaliacaoModel> Avaliacoes { get; set; }
-        public virtual IList<ExercicioModel> Exercicios { get; set; }
-        public virtual IList<AtendimentoModel> Atendimentos { get; set; }
-
-
-========
-        // [Required]
-        public int Endereco_Id { get; set; }
-
-
-        // Relacionamento com AtendimentoModel
+        public virtual Endereco Endereco { get; set; }
+        public virtual IList<Log> Logs { get; set; }
+        public virtual Empresa Empresa { get; set; }
+        public virtual IList<Avaliacao> Avaliacoes { get; set; }
+        public virtual IList<Exercicio> Exercicios { get; set; }
         public virtual IList<Atendimento> Atendimentos { get; set; }
->>>>>>>> origin/develop:Backend/Backend/Models/Pedagogo.cs
+
     }
 }
 

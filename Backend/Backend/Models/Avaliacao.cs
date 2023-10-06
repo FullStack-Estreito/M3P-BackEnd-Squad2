@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace Backend.Models
 {
-    public class AvaliacaoModel
+    public class Avaliacao
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, StringLength(15, MinimumLength = 255)]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(8, MinimumLength = 64)]
         public string Nome { get; set; }
+
+        [Column(TypeName = "VARCHAR"), Required, StringLength(15, MinimumLength = 255)]
+        public string Descricao { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required]
         public string Materia { get; set; }
@@ -23,16 +26,16 @@ namespace Backend.Models
         public string Data { get; set; }
 
         [Required]
-        public int Pontuacao_Maxima { get; set; }
+        public double Pontuacao_Maxima { get; set; }
 
         [Required]
-        public int Nota { get; set; }
+        public double Nota { get; set; }
 
         [Required]
-        public int Codigo_Professor_Id { get; set; }
+        public int Professor_Id { get; set; }
 
         // Relacionamento com UsuarioModel
-        public virtual UsuarioModel Professor { get; set; }
+        public virtual Usuario Professor { get; set; }
 
 
     }

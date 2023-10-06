@@ -31,7 +31,7 @@ namespace Backend.Models
 
 
         // Relacionamentos
-        public virtual UsuarioModel Usuario {get ; set; }
+        public virtual Usuario Usuario {get ; set; }
 
      
 

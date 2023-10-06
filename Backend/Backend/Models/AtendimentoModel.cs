@@ -23,9 +23,12 @@ namespace Backend.Models
         [Required]
         public int Pedagogo_Id { get; set; }
 
-        // Relacionamentos
-        public virtual AlunoModel Aluno { get; set; }
-        public virtual PedagogoModel Pedagogo { get; set; }
+         // Relacionamentos
+        public virtual UsuarioModel Usuario {get ; set; }
+
+
+
+     
     }
 }
 

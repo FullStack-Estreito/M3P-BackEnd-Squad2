@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Backend.Base;
 
 namespace Backend.Models
 {
@@ -35,8 +34,9 @@ namespace Backend.Models
         [Column(TypeName = "VARCHAR")]
         public string Ponto_Referencia { get; set; }
 
-        // Relacionamento
-        public virtual BaseUsuarioModel Usuario { get; set; }
+
+        // Relacionamento com UsuarioModel
+        public virtual UsuarioModel Usuario { get; set; }
 
     }
 }

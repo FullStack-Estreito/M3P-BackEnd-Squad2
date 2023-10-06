@@ -31,8 +31,11 @@ namespace Backend.Models
 
 
         // Relacionamentos
-        public virtual AlunoModel Aluno { get; set; }
-        public virtual ProfessorModel Professor { get; set; }
+        public virtual UsuarioModel Usuario {get ; set; }
+
+     
+
+
 
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using Backend.Base;
 using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,59 +11,48 @@ namespace Backend.Context
         }
 
         // Tabelas
-        public DbSet<AdministradorModel> Administradores { get; set; }
-        public DbSet<AlunoModel> Alunos { get; set; }
         public DbSet<AtendimentoModel> Atendimentos { get; set; }
-        public DbSet<BaseUsuarioModel> Usuarios { get; set; }
         public DbSet<EmpresaModel> Empresas { get; set; }
         public DbSet<EnderecoModel> Enderecos { get; set; }
         public DbSet<ExercicioModel> Exercicios { get; set; }
         public DbSet<LogModel> Logs { get; set; }
-        public DbSet<PedagogoModel> Pedagogos { get; set; }
-        public DbSet<ProfessorModel> Professores { get; set; }
-
+        public DbSet<UsuarioModel> Usuarios { get; set; }
         // Declaração dos relacionamentos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AdministradorModel>()
-                .HasOne(x => x.Empresa)
-                .WithOne(y => y.Administrador)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict; 
-
-            modelBuilder.Entity<AtendimentoModel>()
-                .HasOne(x => x.Aluno)
-                .WithMany(y => y.Atendimentos)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
-
-            modelBuilder.Entity<AtendimentoModel>()
-                .HasOne(x => x.Pedagogo)
-                .WithMany(y => y.Atendimentos)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
-
-            modelBuilder.Entity<BaseUsuarioModel>()
+            modelBuilder.Entity<UsuarioModel>()
                 .HasOne(x => x.Endereco)
                 .WithOne(y => y.Usuario)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
-            modelBuilder.Entity<ExercicioModel>()
-                .HasOne(x => x.Aluno)
-                .WithMany(y => y.Exercicios)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
-
-            modelBuilder.Entity<ExercicioModel>()
-                .HasOne(x => x.Professor)
-                .WithMany(y => y.Exercicios)
+            modelBuilder.Entity<UsuarioModel>()
+                .HasOne(x => x.Empresa)
+                .WithMany(y => y.Usuarios)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<LogModel>()
                 .HasOne(x => x.Usuario)
                 .WithMany(y => y.Logs)
+                .Metadata
+                .DeleteBehavior = DeleteBehavior.Restrict;
+
+            modelBuilder.Entity<AvaliacaoModel>()
+                .HasOne(x => x.Professor)
+                .WithMany(y => y.Avaliacoes)
+                .Metadata
+                .DeleteBehavior = DeleteBehavior.Restrict;
+
+            modelBuilder.Entity<ExercicioModel>()
+                .HasOne(x => x.Usuario)
+                .WithMany(y => y.Exercicios)
+                .Metadata
+                .DeleteBehavior = DeleteBehavior.Restrict;
+
+            modelBuilder.Entity<AtendimentoModel>()
+                .HasOne(x => x.Usuario)
+                .WithMany(y => y.Atendimentos)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 

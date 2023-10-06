@@ -4,14 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-	public class AtendimentoModel
+	public class Atendimento
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), Required]
         public string Data { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required]
@@ -24,7 +23,7 @@ namespace Backend.Models
         public int Pedagogo_Id { get; set; }
 
          // Relacionamentos
-        public virtual UsuarioModel Usuario {get ; set; }
+        public virtual Usuario Usuario {get ; set; }
 
 
 

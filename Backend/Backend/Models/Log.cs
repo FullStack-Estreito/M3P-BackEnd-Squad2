@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-	public class LogModel
+	public class Log
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -14,7 +14,7 @@ namespace Backend.Models
         public int Usuario_Id { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required]
-        public string Descricao { get; set; }
+        public string Acao { get; set; }
 
         [Required]
         public DateTime Data { get; set; }
@@ -23,7 +23,7 @@ namespace Backend.Models
         public string Detalhes { get; set; }
 
         // Relacionamento com UsuarioModel
-        public virtual UsuarioModel Usuario { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }
 

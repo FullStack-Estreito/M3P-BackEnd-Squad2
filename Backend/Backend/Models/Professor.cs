@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-    public class UsuarioModel
-    {
-
+	public class Professor
+	{
+        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -23,7 +23,7 @@ namespace Backend.Models
         [Column(TypeName = "VARCHAR"), Required]
         public string Telefone { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, EmailAddress]
         public string Email { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required, MinLength(6)]
@@ -35,26 +35,14 @@ namespace Backend.Models
         [Required]
         public bool Status_Sistema { get; set; } = true;
 
-        [Column(TypeName = "VARCHAR")]
-        public string Matricula_Aluno { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
+
+
+        [Column(TypeName = "VARCHAR"), Required]
         public string Codigo_Registro_Professor { get; set; }
 
-        [Required]
-        public int Empresa_Id { get; set; }
-
-        [Required, ForeignKey("Endereco")]
-        public int Endereco_Id { get; set; }
-
-        // Relacionamentos
-        public virtual EnderecoModel Endereco { get; set; }
-        public virtual IList<LogModel> Logs { get; set; }
-        public virtual EmpresaModel Empresa { get; set; }
-        public virtual IList<AvaliacaoModel> Avaliacoes { get; set; }
-        public virtual IList<ExercicioModel> Exercicios { get; set; }
-        public virtual IList<AtendimentoModel> Atendimentos { get; set; }
-
+        // Relacionamento com ExercicioModel
+        public virtual IList<Exercicio> Exercicios { get; set; }
     }
 }
 

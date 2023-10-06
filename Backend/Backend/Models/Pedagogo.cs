@@ -4,7 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
+<<<<<<<< HEAD:Backend/Backend/Models/UsuarioModel.cs
     public class UsuarioModel
+========
+	public class Pedagogo
+>>>>>>>> origin/develop:Backend/Backend/Models/Pedagogo.cs
     {
 
         [Key]
@@ -35,6 +39,7 @@ namespace Backend.Models
         [Required]
         public bool Status_Sistema { get; set; } = true;
 
+<<<<<<<< HEAD:Backend/Backend/Models/UsuarioModel.cs
         [Column(TypeName = "VARCHAR")]
         public string Matricula_Aluno { get; set; }
 
@@ -55,6 +60,15 @@ namespace Backend.Models
         public virtual IList<ExercicioModel> Exercicios { get; set; }
         public virtual IList<AtendimentoModel> Atendimentos { get; set; }
 
+
+========
+        // [Required]
+        public int Endereco_Id { get; set; }
+
+
+        // Relacionamento com AtendimentoModel
+        public virtual IList<Atendimento> Atendimentos { get; set; }
+>>>>>>>> origin/develop:Backend/Backend/Models/Pedagogo.cs
     }
 }
 

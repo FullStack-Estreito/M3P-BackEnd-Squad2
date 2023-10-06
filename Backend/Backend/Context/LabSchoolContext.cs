@@ -32,12 +32,6 @@ namespace Backend.Context
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
-            modelBuilder.Entity<LogModel>()
-                .HasOne(x => x.Usuario)
-                .WithMany(y => y.Logs)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
-
             modelBuilder.Entity<AvaliacaoModel>()
                 .HasOne(x => x.Professor)
                 .WithMany(y => y.Avaliacoes)

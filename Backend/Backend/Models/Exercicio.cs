@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-	public class ExercicioModel
+	public class Exercicio
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

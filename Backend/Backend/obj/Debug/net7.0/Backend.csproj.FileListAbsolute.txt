@@ -210,3 +210,6 @@ C:/Users/djblabla/Desktop/M3P-BackEnd-Squad2/Backend/Backend/obj/Debug/net7.0/re
 C:/Users/djblabla/Desktop/M3P-BackEnd-Squad2/Backend/Backend/obj/Debug/net7.0/Backend.pdb
 C:/Users/djblabla/Desktop/M3P-BackEnd-Squad2/Backend/Backend/obj/Debug/net7.0/Backend.genruntimeconfig.cache
 C:/Users/djblabla/Desktop/M3P-BackEnd-Squad2/Backend/Backend/obj/Debug/net7.0/ref/Backend.dll
+/Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/bin/Debug/net7.0/FluentValidation.dll
+/Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/bin/Debug/net7.0/FluentValidation.AspNetCore.dll
+/Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/bin/Debug/net7.0/FluentValidation.DependencyInjectionExtensions.dll

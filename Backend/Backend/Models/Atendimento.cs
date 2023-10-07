@@ -10,8 +10,7 @@ namespace Backend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), Required]
         public string Data { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required]
@@ -23,9 +22,13 @@ namespace Backend.Models
         [Required]
         public int Pedagogo_Id { get; set; }
 
-        // Relacionamentos
-        public virtual Aluno Aluno { get; set; }
-        public virtual Pedagogo Pedagogo { get; set; }
+         // Relacionamentos
+        [ForeignKey("Aluno_Id")]
+        public virtual Usuario Aluno { get; set; }
+
+        // Define another foreign key property explicitly
+        [ForeignKey("Pedagogo_Id")]
+        public virtual Usuario Pedagogo { get; set; }
     }
 }
 

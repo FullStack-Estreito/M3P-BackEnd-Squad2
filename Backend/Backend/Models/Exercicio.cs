@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-	public class Exercicio
-	{
+    public class Exercicio
+    {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -29,12 +29,13 @@ namespace Backend.Models
         [Required]
         public int Aluno_Id { get; set; }
 
-
         // Relacionamentos
-        public virtual Aluno Aluno { get; set; }
-        public virtual Professor Professor { get; set; }
-        
+          [ForeignKey("Aluno_Id")]
+        public virtual Usuario Aluno { get; set; }
 
+        // Define another foreign key property explicitly
+        [ForeignKey("Professor_Id")]
+        public virtual Usuario Professor { get; set; }
     }
 }
 

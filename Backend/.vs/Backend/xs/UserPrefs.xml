@@ -1,4 +1,33 @@
 ﻿<Properties StartupConfiguration="{56A55611-0CB8-4422-AFCA-A44E24277825}|https">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Backend PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Backend FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Backend/Controllers/ExercicioController.cs">
+    <Files>
+      <File FileName="Backend/Controllers/ExercicioController.cs" Line="158" Column="27" />
+      <File FileName="Backend/Controllers/AvaliacaoController.cs" Line="147" Column="7" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Backend" expanded="True">
+            <Node name="Backend" expanded="True">
+              <Node name="AutoMapper" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="ExercicioController.cs" selected="True" />
+              </Node>
+              <Node name="DTO" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Repositories" expanded="True" />
+              <Node name="Validators" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
 </Properties>

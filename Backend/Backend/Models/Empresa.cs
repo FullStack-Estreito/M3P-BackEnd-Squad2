@@ -11,7 +11,7 @@ namespace Backend.Models
         public int Id { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required]
-		public string Nome_Empresa { get; set; }
+	    public string Nome_Empresa { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         public string Slogan { get; set; }
@@ -25,8 +25,9 @@ namespace Backend.Models
         [Column(TypeName = "VARCHAR")]
         public string Demais_Infos { get; set; }
 
-        // Relacionamento com EmpresaModel
-        // public virtual Administrador Admin { get; set; }
+        // Relacionamento com UsuarioModel
+        public virtual IList<Usuario> Usuarios { get; set; }
+       
     }
 }
 

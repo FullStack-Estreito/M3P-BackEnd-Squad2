@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(LabSchoolContext))]
-    [Migration("20231007005142_InitialCreate")]
+    [Migration("20231007013751_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -90,7 +90,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("ProfessorId");
 
-                    b.ToTable("Avaliacao");
+                    b.ToTable("Avaliacoes");
                 });
 
             modelBuilder.Entity("Backend.Models.Empresa", b =>

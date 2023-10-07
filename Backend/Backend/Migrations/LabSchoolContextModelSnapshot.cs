@@ -87,7 +87,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("ProfessorId");
 
-                    b.ToTable("Avaliacao");
+                    b.ToTable("Avaliacoes");
                 });
 
             modelBuilder.Entity("Backend.Models.Empresa", b =>

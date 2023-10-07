@@ -109,7 +109,7 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Avaliacao",
+                name: "Avaliacoes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -125,9 +125,9 @@ namespace Backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Avaliacao", x => x.Id);
+                    table.PrimaryKey("PK_Avaliacoes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Avaliacao_Usuarios_ProfessorId",
+                        name: "FK_Avaliacoes_Usuarios_ProfessorId",
                         column: x => x.ProfessorId,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
@@ -188,8 +188,8 @@ namespace Backend.Migrations
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Avaliacao_ProfessorId",
-                table: "Avaliacao",
+                name: "IX_Avaliacoes_ProfessorId",
+                table: "Avaliacoes",
                 column: "ProfessorId");
 
             migrationBuilder.CreateIndex(
@@ -221,7 +221,7 @@ namespace Backend.Migrations
                 name: "Atendimentos");
 
             migrationBuilder.DropTable(
-                name: "Avaliacao");
+                name: "Avaliacoes");
 
             migrationBuilder.DropTable(
                 name: "Exercicios");

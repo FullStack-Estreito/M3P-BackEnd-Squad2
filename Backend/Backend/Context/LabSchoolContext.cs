@@ -11,12 +11,14 @@ namespace Backend.Context
         }
 
         // Tabelas
+        public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Atendimento> Atendimentos { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Exercicio> Exercicios { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        
 
         // Declaração dos relacionamentos
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(LabSchoolContext))]
-    [Migration("20231006013605_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231007090532_MyMigration")]
+    partial class MyMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -112,22 +112,27 @@ namespace Backend.Migrations
 
                     b.Property<string>("Demais_Infos")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logotipo_URL")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Nome_Empresa")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Paleta_Cores")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Slogan")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
@@ -145,34 +150,42 @@ namespace Backend.Migrations
 
                     b.Property<string>("Bairro")
                         .IsRequired()
+                        .HasMaxLength(65)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("CEP")
                         .IsRequired()
+                        .HasMaxLength(15)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
+                        .HasMaxLength(40)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Complemento")
                         .IsRequired()
+                        .HasMaxLength(60)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Estado")
                         .IsRequired()
+                        .HasMaxLength(2)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logradouro")
                         .IsRequired()
+                        .HasMaxLength(55)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Numero")
                         .IsRequired()
+                        .HasMaxLength(8)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Ponto_Referencia")
                         .IsRequired()
+                        .HasMaxLength(65)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
@@ -232,6 +245,7 @@ namespace Backend.Migrations
 
                     b.Property<string>("Acao")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("VARCHAR");
 
                     b.Property<DateTime>("Data")
@@ -239,17 +253,15 @@ namespace Backend.Migrations
 
                     b.Property<string>("Detalhes")
                         .IsRequired()
+                        .HasMaxLength(60)
                         .HasColumnType("VARCHAR");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Usuario_Id")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("Usuario_Id");
 
                     b.ToTable("Logs");
                 });
@@ -264,18 +276,16 @@ namespace Backend.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
+                        .HasMaxLength(64)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<string>("Codigo_Registro_Professor")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR");
+                    b.Property<int>("Codigo_Registro_Professor")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasMaxLength(64)
                         .HasColumnType("VARCHAR");
-
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Empresa_Id")
                         .HasColumnType("int");
@@ -285,10 +295,12 @@ namespace Backend.Migrations
 
                     b.Property<string>("Genero")
                         .IsRequired()
+                        .HasMaxLength(64)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Matricula_Aluno")
                         .IsRequired()
+                        .HasMaxLength(15)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Nome")
@@ -298,6 +310,7 @@ namespace Backend.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("VARCHAR");
 
                     b.Property<bool>("Status_Sistema")
@@ -305,15 +318,17 @@ namespace Backend.Migrations
 
                     b.Property<string>("Telefone")
                         .IsRequired()
+                        .HasMaxLength(16)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpresaId");
+                    b.HasIndex("Empresa_Id");
 
                     b.HasIndex("Endereco_Id")
                         .IsUnique();
@@ -358,7 +373,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Models.Usuario", "Usuario")
                         .WithMany("Logs")
-                        .HasForeignKey("UsuarioId")
+                        .HasForeignKey("Usuario_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -369,7 +384,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Models.Empresa", "Empresa")
                         .WithMany("Usuarios")
-                        .HasForeignKey("EmpresaId")
+                        .HasForeignKey("Empresa_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

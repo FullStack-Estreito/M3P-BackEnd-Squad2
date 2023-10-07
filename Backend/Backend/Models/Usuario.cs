@@ -13,34 +13,33 @@ namespace Backend.Models
         [Column(TypeName = "VARCHAR"), Required, StringLength(64, MinimumLength = 8)]
         public string Nome { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(64)]
         public string Genero { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(64)]
         public string CPF { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(16)]
         public string Telefone { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(64)]
         public string Email { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, MinLength(6)]
+        [Column(TypeName = "VARCHAR"), Required, MinLength(2), StringLength(20)]
         public string Senha { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(20)]
         public string Tipo { get; set; }
 
         [Required]
         public bool Status_Sistema { get; set; } = true;
 
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), StringLength(15)]
         public string Matricula_Aluno { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
-        public string Codigo_Registro_Professor { get; set; }
+        public int Codigo_Registro_Professor { get; set; }
 
-        [Required]
+        [Required, ForeignKey("Empresa")]
         public int Empresa_Id { get; set; }
 
         [Required, ForeignKey("Endereco")]

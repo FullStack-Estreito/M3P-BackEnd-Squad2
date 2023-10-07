@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class MyMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,11 +17,11 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome_Empresa = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Slogan = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Paleta_Cores = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Logotipo_URL = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Demais_Infos = table.Column<string>(type: "VARCHAR", nullable: false)
+                    Nome_Empresa = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
+                    Slogan = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
+                    Paleta_Cores = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
+                    Logotipo_URL = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
+                    Demais_Infos = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,14 +34,14 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CEP = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Cidade = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Estado = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Logradouro = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Numero = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Complemento = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Bairro = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Ponto_Referencia = table.Column<string>(type: "VARCHAR", nullable: false)
+                    CEP = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
+                    Cidade = table.Column<string>(type: "VARCHAR(40)", maxLength: 40, nullable: false),
+                    Estado = table.Column<string>(type: "VARCHAR(2)", maxLength: 2, nullable: false),
+                    Logradouro = table.Column<string>(type: "VARCHAR(55)", maxLength: 55, nullable: false),
+                    Numero = table.Column<string>(type: "VARCHAR(8)", maxLength: 8, nullable: false),
+                    Complemento = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
+                    Bairro = table.Column<string>(type: "VARCHAR(65)", maxLength: 65, nullable: false),
+                    Ponto_Referencia = table.Column<string>(type: "VARCHAR(65)", maxLength: 65, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,25 +55,24 @@ namespace Backend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Genero = table.Column<string>(type: "VARCHAR", nullable: false),
-                    CPF = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Telefone = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Email = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Senha = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Tipo = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Genero = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
+                    CPF = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
+                    Telefone = table.Column<string>(type: "VARCHAR(16)", maxLength: 16, nullable: false),
+                    Email = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
+                    Senha = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
+                    Tipo = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
                     Status_Sistema = table.Column<bool>(type: "bit", nullable: false),
-                    Matricula_Aluno = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Codigo_Registro_Professor = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Matricula_Aluno = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
+                    Codigo_Registro_Professor = table.Column<int>(type: "int", nullable: false),
                     Empresa_Id = table.Column<int>(type: "int", nullable: false),
-                    Endereco_Id = table.Column<int>(type: "int", nullable: false),
-                    EmpresaId = table.Column<int>(type: "int", nullable: false)
+                    Endereco_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Usuarios_Empresas_EmpresaId",
-                        column: x => x.EmpresaId,
+                        name: "FK_Usuarios_Empresas_Empresa_Id",
+                        column: x => x.Empresa_Id,
                         principalTable: "Empresas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -166,17 +165,16 @@ namespace Backend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Usuario_Id = table.Column<int>(type: "int", nullable: false),
-                    Acao = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Acao = table.Column<string>(type: "VARCHAR(30)", maxLength: 30, nullable: false),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Detalhes = table.Column<string>(type: "VARCHAR", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                    Detalhes = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Logs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Logs_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_Logs_Usuarios_Usuario_Id",
+                        column: x => x.Usuario_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -198,14 +196,14 @@ namespace Backend.Migrations
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Logs_UsuarioId",
+                name: "IX_Logs_Usuario_Id",
                 table: "Logs",
-                column: "UsuarioId");
+                column: "Usuario_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_EmpresaId",
+                name: "IX_Usuarios_Empresa_Id",
                 table: "Usuarios",
-                column: "EmpresaId");
+                column: "Empresa_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuarios_Endereco_Id",

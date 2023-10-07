@@ -4,62 +4,49 @@ using System.Linq;
 using System.Threading.Tasks;
 using Backend.Context;
 using Backend.Models;
+using Backend.Repositories.Interfaces;
 
-namespace Backend.Repositories.Avaliacao
+namespace Backend.Repositories
 {
     public class AvaliacaoRepository : IAvaliacaoRepository
     {
-        
+        // Injeção de dependência do banco de dados
         private readonly LabSchoolContext _context;
 
-        // Injeção de dependência do banco de dados
         public AvaliacaoRepository(LabSchoolContext context)
         {
             _context = context;
         }
 
-        // OBTER LISTA COMPLETA OU OPCIONALMENTE PELO PARÂMETRO SITUAÇÃO
+        
         public List<Avaliacao>? ObterTodos()
         {
             return  _context.Avaliacoes.ToList();
         }
 
-        // OBTER POR ID
-        public Atendimento ObterPorId(int id)
+        public Avaliacao ObterPorId(int id)
         {
-            return _context.Atendimentos.FirstOrDefault(x => x.Aluno_Id.Equals(codigo));
+            return _context.Avaliacoes.FirstOrDefault(x => x.Id.Equals(id));
         }
 
-        // EXCLUIR
-        public bool Delete(int codigo)
+        public void Delete(int id)
         {
-            var aluno = ObterPorCodigo(codigo);
-            if (aluno == null)
-            {
-                return false;
-            }
-            _context.Alunos.Remove(aluno);
-            _context.SaveChanges();
-            return true;
-        }
-
-        // ATUALIZAR
-        public void Atualizar(Aluno aluno)
-        {
-            _context.Update(aluno);
+            var avaliacao = _context.Avaliacoes.FirstOrDefault(x => x.Id.Equals(id));
+          
+            _context.Avaliacoes.Remove(avaliacao);
             _context.SaveChanges();
         }
 
-        // ADICIONAR
-        public void Adicionar(Aluno aluno)
+        public void Atualizar(Avaliacao avaliacao)
         {
-            _context.Alunos.Add(aluno);
+            _context.Avaliacoes.Update(avaliacao);
             _context.SaveChanges();
         }
 
-        // CHECA SE HÁ ALGUM CPF JÁ REGISTRADO NO BANCO DE DADOS
-        public bool CPF_Unico(string valor_cpf)
+        public void Adicionar(Avaliacao avaliacao)
         {
-            re
+            _context.Avaliacoes.Add(avaliacao);
+            _context.SaveChanges();
+        }
     }
 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(LabSchoolContext))]
-    [Migration("20231007013751_InitialCreate")]
+    [Migration("20231007153359_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -40,12 +40,11 @@ namespace Backend.Migrations
                     b.Property<int>("Pedagogo_Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("Aluno_Id");
+
+                    b.HasIndex("Pedagogo_Id");
 
                     b.ToTable("Atendimentos");
                 });
@@ -80,17 +79,14 @@ namespace Backend.Migrations
                     b.Property<double>("Pontuacao_Maxima")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("ProfessorId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Professor_Id")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProfessorId");
+                    b.HasIndex("Professor_Id");
 
-                    b.ToTable("Avaliacoes");
+                    b.ToTable("Avaliacao");
                 });
 
             modelBuilder.Entity("Backend.Models.Empresa", b =>
@@ -121,7 +117,7 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Empresas");
+                    b.ToTable("Empresa");
                 });
 
             modelBuilder.Entity("Backend.Models.Endereco", b =>
@@ -197,12 +193,11 @@ namespace Backend.Migrations
                     b.Property<int>("Professor_Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("Aluno_Id");
+
+                    b.HasIndex("Professor_Id");
 
                     b.ToTable("Exercicios");
                 });
@@ -224,15 +219,12 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Usuario_Id")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("Usuario_Id");
 
                     b.ToTable("Logs");
                 });
@@ -254,9 +246,6 @@ namespace Backend.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("VARCHAR");
-
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Empresa_Id")
                         .HasColumnType("INTEGER");
@@ -294,7 +283,7 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpresaId");
+                    b.HasIndex("Empresa_Id");
 
                     b.HasIndex("Endereco_Id")
                         .IsUnique();
@@ -304,20 +293,28 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Atendimento", b =>
                 {
-                    b.HasOne("Backend.Models.Usuario", "Usuario")
-                        .WithMany("Atendimentos")
-                        .HasForeignKey("UsuarioId")
+                    b.HasOne("Backend.Models.Usuario", "Aluno")
+                        .WithMany("Atendimentos_Alunos")
+                        .HasForeignKey("Aluno_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.HasOne("Backend.Models.Usuario", "Pedagogo")
+                        .WithMany("Atendimentos_Pedagogos")
+                        .HasForeignKey("Pedagogo_Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Aluno");
+
+                    b.Navigation("Pedagogo");
                 });
 
             modelBuilder.Entity("Backend.Models.Avaliacao", b =>
                 {
                     b.HasOne("Backend.Models.Usuario", "Professor")
                         .WithMany("Avaliacoes")
-                        .HasForeignKey("ProfessorId")
+                        .HasForeignKey("Professor_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -326,20 +323,28 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Exercicio", b =>
                 {
-                    b.HasOne("Backend.Models.Usuario", "Usuario")
-                        .WithMany("Exercicios")
-                        .HasForeignKey("UsuarioId")
+                    b.HasOne("Backend.Models.Usuario", "Aluno")
+                        .WithMany("Exercicios_Alunos")
+                        .HasForeignKey("Aluno_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.HasOne("Backend.Models.Usuario", "Professor")
+                        .WithMany("Exercicios_Professores")
+                        .HasForeignKey("Professor_Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Aluno");
+
+                    b.Navigation("Professor");
                 });
 
             modelBuilder.Entity("Backend.Models.Log", b =>
                 {
                     b.HasOne("Backend.Models.Usuario", "Usuario")
                         .WithMany("Logs")
-                        .HasForeignKey("UsuarioId")
+                        .HasForeignKey("Usuario_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -350,7 +355,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Models.Empresa", "Empresa")
                         .WithMany("Usuarios")
-                        .HasForeignKey("EmpresaId")
+                        .HasForeignKey("Empresa_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -378,11 +383,15 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Usuario", b =>
                 {
-                    b.Navigation("Atendimentos");
+                    b.Navigation("Atendimentos_Alunos");
+
+                    b.Navigation("Atendimentos_Pedagogos");
 
                     b.Navigation("Avaliacoes");
 
-                    b.Navigation("Exercicios");
+                    b.Navigation("Exercicios_Alunos");
+
+                    b.Navigation("Exercicios_Professores");
 
                     b.Navigation("Logs");
                 });

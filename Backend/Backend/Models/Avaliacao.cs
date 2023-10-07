@@ -31,7 +31,7 @@ namespace Backend.Models
         [Required]
         public double Nota { get; set; }
 
-        [Required]
+        [Required, ForeignKey("Professor")]
         public int Professor_Id { get; set; }
 
         // Relacionamento com UsuarioModel

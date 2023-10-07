@@ -12,7 +12,7 @@ namespace Backend.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Empresas",
+                name: "Empresa",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -25,7 +25,7 @@ namespace Backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Empresas", x => x.Id);
+                    table.PrimaryKey("PK_Empresa", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,16 +65,15 @@ namespace Backend.Migrations
                     Matricula_Aluno = table.Column<string>(type: "VARCHAR", nullable: false),
                     Codigo_Registro_Professor = table.Column<string>(type: "VARCHAR", nullable: false),
                     Empresa_Id = table.Column<int>(type: "INTEGER", nullable: false),
-                    Endereco_Id = table.Column<int>(type: "INTEGER", nullable: false),
-                    EmpresaId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Endereco_Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Usuarios_Empresas_EmpresaId",
-                        column: x => x.EmpresaId,
-                        principalTable: "Empresas",
+                        name: "FK_Usuarios_Empresa_Empresa_Id",
+                        column: x => x.Empresa_Id,
+                        principalTable: "Empresa",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -94,22 +93,27 @@ namespace Backend.Migrations
                     Data = table.Column<string>(type: "VARCHAR", nullable: false),
                     Descricao = table.Column<string>(type: "VARCHAR", nullable: false),
                     Aluno_Id = table.Column<int>(type: "INTEGER", nullable: false),
-                    Pedagogo_Id = table.Column<int>(type: "INTEGER", nullable: false),
-                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Pedagogo_Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Atendimentos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Atendimentos_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_Atendimentos_Usuarios_Aluno_Id",
+                        column: x => x.Aluno_Id,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Atendimentos_Usuarios_Pedagogo_Id",
+                        column: x => x.Pedagogo_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Avaliacoes",
+                name: "Avaliacao",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -120,15 +124,14 @@ namespace Backend.Migrations
                     Data = table.Column<string>(type: "VARCHAR", nullable: false),
                     Pontuacao_Maxima = table.Column<double>(type: "REAL", nullable: false),
                     Nota = table.Column<double>(type: "REAL", nullable: false),
-                    Professor_Id = table.Column<int>(type: "INTEGER", nullable: false),
-                    ProfessorId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Professor_Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Avaliacoes", x => x.Id);
+                    table.PrimaryKey("PK_Avaliacao", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Avaliacoes_Usuarios_ProfessorId",
-                        column: x => x.ProfessorId,
+                        name: "FK_Avaliacao_Usuarios_Professor_Id",
+                        column: x => x.Professor_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -145,15 +148,20 @@ namespace Backend.Migrations
                     Materia = table.Column<string>(type: "VARCHAR", nullable: false),
                     Data_Conclusao = table.Column<string>(type: "VARCHAR", nullable: false),
                     Professor_Id = table.Column<int>(type: "INTEGER", nullable: false),
-                    Aluno_Id = table.Column<int>(type: "INTEGER", nullable: false),
-                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Aluno_Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Exercicios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Exercicios_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_Exercicios_Usuarios_Aluno_Id",
+                        column: x => x.Aluno_Id,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Exercicios_Usuarios_Professor_Id",
+                        column: x => x.Professor_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -168,44 +176,53 @@ namespace Backend.Migrations
                     Usuario_Id = table.Column<int>(type: "INTEGER", nullable: false),
                     Acao = table.Column<string>(type: "VARCHAR", nullable: false),
                     Data = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Detalhes = table.Column<string>(type: "VARCHAR", nullable: false),
-                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Detalhes = table.Column<string>(type: "VARCHAR", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Logs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Logs_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_Logs_Usuarios_Usuario_Id",
+                        column: x => x.Usuario_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Atendimentos_UsuarioId",
+                name: "IX_Atendimentos_Aluno_Id",
                 table: "Atendimentos",
-                column: "UsuarioId");
+                column: "Aluno_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Avaliacoes_ProfessorId",
-                table: "Avaliacoes",
-                column: "ProfessorId");
+                name: "IX_Atendimentos_Pedagogo_Id",
+                table: "Atendimentos",
+                column: "Pedagogo_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exercicios_UsuarioId",
+                name: "IX_Avaliacao_Professor_Id",
+                table: "Avaliacao",
+                column: "Professor_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exercicios_Aluno_Id",
                 table: "Exercicios",
-                column: "UsuarioId");
+                column: "Aluno_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Logs_UsuarioId",
+                name: "IX_Exercicios_Professor_Id",
+                table: "Exercicios",
+                column: "Professor_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Logs_Usuario_Id",
                 table: "Logs",
-                column: "UsuarioId");
+                column: "Usuario_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_EmpresaId",
+                name: "IX_Usuarios_Empresa_Id",
                 table: "Usuarios",
-                column: "EmpresaId");
+                column: "Empresa_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuarios_Endereco_Id",
@@ -221,7 +238,7 @@ namespace Backend.Migrations
                 name: "Atendimentos");
 
             migrationBuilder.DropTable(
-                name: "Avaliacoes");
+                name: "Avaliacao");
 
             migrationBuilder.DropTable(
                 name: "Exercicios");
@@ -233,7 +250,7 @@ namespace Backend.Migrations
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Empresas");
+                name: "Empresa");
 
             migrationBuilder.DropTable(
                 name: "Enderecos");

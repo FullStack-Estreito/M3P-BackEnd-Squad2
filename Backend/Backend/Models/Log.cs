@@ -10,7 +10,7 @@ namespace Backend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
+        [Required, ForeignKey("Usuario")]
         public int Usuario_Id { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required]

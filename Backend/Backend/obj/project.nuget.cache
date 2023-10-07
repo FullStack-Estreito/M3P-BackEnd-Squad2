@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Sb2jPfR921HcUHl8BV88AFmXsCY7AJxh5gdpx1vSH6N3K7GjZZzZZu5AbZxvCPTR+YobIJXe0XwD+3GPZuQQgw==",
+  "dgSpecHash": "Rg4hcezLt/C8EkZbGDh4fUavLZ+Dv1qwquznfbw7W5bHOuv9euad3GWIJqGppO3NuWaTEtKk+G8TAyxfRUou6Q==",
   "success": true,
   "projectFilePath": "/Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/Backend.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,9 @@
     "/Users/mariacarolinaboabaid/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "/Users/mariacarolinaboabaid/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/mariacarolinaboabaid/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
+    "/Users/mariacarolinaboabaid/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
+    "/Users/mariacarolinaboabaid/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/Users/mariacarolinaboabaid/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "/Users/mariacarolinaboabaid/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/mariacarolinaboabaid/.nuget/packages/microsoft.aspnetcore.openapi/7.0.4/microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
     "/Users/mariacarolinaboabaid/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

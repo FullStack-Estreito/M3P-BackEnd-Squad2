@@ -3,42 +3,161 @@ using AutoMapper;
 using Backend.DTO.Avaliacao;
 using Backend.Models;
 using Backend.Repositories;
+using Backend.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Backend.Validators;
+using System.Net;
 
 namespace Backend.Controllers
 {
-	public class AvaliacaoController : ControllerBase
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AvaliacaoController : ControllerBase
     {
 
-		// Injeção de dependência do repositório
-		private readonly AvaliacaoRepository _avaliacaoRepository;
+        // Injeção de dependência do repositório
+        private readonly IAvaliacaoRepository _avaliacaoRepository;
         private readonly IMapper _mapper;
 
-        public AvaliacaoController(AvaliacaoRepository avaliacaoRepository, IMapper mapper)
-		{
-			_avaliacaoRepository = avaliacaoRepository;
+        public AvaliacaoController(IAvaliacaoRepository avaliacaoRepository, IMapper mapper)
+        {
+            _avaliacaoRepository = avaliacaoRepository;
             _mapper = mapper;
         }
 
         // Endpoints
         [HttpGet]
-        [Route("api/avaliacao")]
-        public IActionResult Obter()
+        public ActionResult<IEnumerable<AvaliacaoReadDTO>> GetAll()
         {
             try
             {
-                List<Avaliacao> resposta;
+                List<Avaliacao> retorno;
 
-                resposta = _avaliacaoRepository.ObterTodos();
+                retorno = _avaliacaoRepository.ObterTodos();
 
-                if (resposta.Count() == 0)
+                if (retorno.Count() == 0)
                 {
                     return NotFound("Nenhum registro encontrado no banco de dados.");
                 }
 
-                var respostaDTO = _mapper.Map<List<AvaliacaoReadDTO>>(resposta);
+                var retornoDTO = _mapper.Map<List<AvaliacaoReadDTO>>(retorno);
 
-                return Ok(respostaDTO);
+                return Ok(retornoDTO);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+
+        [HttpGet("{id}")]
+        public ActionResult<AvaliacaoReadDTO> GetById(int id)
+        {
+            try
+            {
+                var retorno = _avaliacaoRepository.ObterPorId(id);
+
+                if (retorno == null)
+                {
+                    return NotFound("Nenhum registro encontrado no banco de dados.");
+                }
+
+                var retornoDTO = _mapper.Map<AvaliacaoReadDTO>(retorno);
+
+                return Ok(retornoDTO);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult<AvaliacaoReadDTO> Post([FromBody] AvaliacaoCreateDTO avaliacaoCreateDTO)
+        {
+            try
+            {
+                // Mapeando para a model
+                var novaAvaliacao = _mapper.Map<Avaliacao>(avaliacaoCreateDTO);
+
+                // Validando os dados informados
+                var avaliacaoValidator = new AvaliacaoValidator();
+                var validatorResult = avaliacaoValidator.Validate(novaAvaliacao);
+
+                if (validatorResult.IsValid == false)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, validatorResult.Errors);
+                }
+
+                _avaliacaoRepository.Adicionar(novaAvaliacao);
+
+                // Mapeando o retorno para o ReadDTO
+                var novaAvaliacaoRead = _mapper.Map<AvaliacaoReadDTO>(novaAvaliacao);
+
+                return StatusCode(HttpStatusCode.Created.GetHashCode(), novaAvaliacaoRead);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+
+        [HttpPut("{id}")]
+        public ActionResult<AvaliacaoReadDTO> Put(int id, [FromBody] AvaliacaoUpdateDTO avaliacaoUpdateDTO)
+        {
+            try
+            {
+                var avaliacao = _avaliacaoRepository.ObterPorId(id);
+
+                if (avaliacao == null)
+                {
+                    return NotFound("Nenhum registro encontrado no banco de dados.");
+                }
+
+                // Mapeando para a model
+                avaliacao = _mapper.Map(avaliacaoUpdateDTO, avaliacao);
+
+                // Validando os dados informados
+                var avaliacaoValidator = new AvaliacaoValidator();
+                var validatorResult = avaliacaoValidator.Validate(avaliacao);
+
+                if (validatorResult.IsValid == false)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, validatorResult.Errors);
+                }
+
+                _avaliacaoRepository.Atualizar(avaliacao);
+
+                // Mapeando o retorno para o ReadDTO
+                var avaliacaoAtualizadaRead = _mapper.Map<AvaliacaoReadDTO>(avaliacao);
+                return Ok(avaliacaoAtualizadaRead);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                var avaliacao = _avaliacaoRepository.ObterPorId(id);
+
+                if (avaliacao == null)
+                {
+                    return NotFound("Nenhum registro encontrado no banco de dados.");
+                }
+
+                _avaliacaoRepository.Delete(id);
+                return StatusCode(204);
             }
             catch (Exception ex)
             {

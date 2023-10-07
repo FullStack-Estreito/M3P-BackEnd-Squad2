@@ -23,6 +23,7 @@ builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(con
 //Repositories
 // builder.Services.AddScoped<UsuarioRepository>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
+builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
 
 // Automapper
 builder.Services.AddAutoMapper(typeof(Program));

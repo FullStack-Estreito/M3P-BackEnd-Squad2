@@ -2,6 +2,7 @@
 using Backend.Context;
 using Backend.Models;
 using Backend.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Repositories
 {
@@ -18,12 +19,18 @@ namespace Backend.Repositories
 
         public List<Exercicio>? ObterTodos()
         {
-            return _context.Exercicios.ToList();
+            return _context.Exercicios
+                .Include(item => item.Professor)
+                .Include(item => item.Aluno)
+                .ToList();
         }
 
         public Exercicio ObterPorId(int id)
         {
-            return _context.Exercicios.FirstOrDefault(x => x.Id.Equals(id));
+            return _context.Exercicios
+                .Include(item => item.Professor)
+                .Include(item => item.Aluno)
+                .FirstOrDefault(x => x.Id.Equals(id));
         }
 
         public void Delete(int id)

@@ -5,10 +5,10 @@ using FluentValidation;
 
 namespace Backend.Validators
 {
-	public class AvaliacaoValidator : AbstractValidator<Avaliacao>
-	{
-		public AvaliacaoValidator()
-		{
+    public class ExercicioValidator : AbstractValidator<Exercicio>
+    {
+        public ExercicioValidator()
+        {
 
             RuleFor(x => x.Nome).NotEmpty()
                 .NotNull()
@@ -23,25 +23,20 @@ namespace Backend.Validators
             RuleFor(x => x.Materia).NotEmpty()
                 .NotNull()
                 .WithMessage("O campo MATÉRIA possui preenchimento obrigatório.");
-               
-            RuleFor(x => x.Pontuacao_Maxima).NotEmpty()
-                .NotNull()
-                .WithMessage("O campo PONTUAÇÃO MÁXIMA possui preenchimento obrigatório.");
 
-            RuleFor(x => x.Nota).NotEmpty()
+            RuleFor(x => x.Aluno_Id).NotEmpty()
                 .NotNull()
-                .WithMessage("O campo NOTA possui preenchimento obrigatório.");
+                .WithMessage("O campo ID DO ALUNO possui preenchimento obrigatório.");
 
             RuleFor(x => x.Professor_Id).NotEmpty()
                 .NotNull()
                 .WithMessage("O campo ID DO PROFESSOR possui preenchimento obrigatório.");
 
-            RuleFor(x => x.Data).NotEmpty()
+            RuleFor(x => x.Data_Conclusao).NotEmpty()
                 .NotNull()
-                .WithMessage("O campo DATA possui preenchimento obrigatório.")
+                .WithMessage("O campo DATA CONCLUSÃO possui preenchimento obrigatório.")
                 .Matches(@"^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$")
                 .WithMessage("A data deve estar no formato DD/MM/AAAA.");
-            
         }
     }
 }

@@ -25,6 +25,7 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,7 @@
     <None Remove="DTO\" />
     <None Remove="DTO\Avaliacao\" />
     <None Remove="AutoMapper\" />
+    <None Remove="Validators\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Base\" />
@@ -44,5 +46,6 @@
     <Folder Include="DTO\" />
     <Folder Include="DTO\Avaliacao\" />
     <Folder Include="AutoMapper\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
 </Project>

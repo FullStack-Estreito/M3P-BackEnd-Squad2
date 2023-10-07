@@ -8,21 +8,17 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="Backend/Controllers/AvaliacaoController.cs">
     <Files>
-      <File FileName="Backend/Program.cs" Line="31" Column="27" />
-      <File FileName="Backend/Repositories/ExercicioRepository.cs" Line="14" Column="10" />
-      <File FileName="Backend/Repositories/Interfaces/IExercicioRepository.cs" Line="1" Column="1" />
-      <File FileName="Backend/Repositories/AvaliacaoRepository.cs" Line="1" Column="1" />
-      <File FileName="Backend/Context/LabSchoolContext.cs" Line="1" Column="1" />
-      <File FileName="Backend/Controllers/AvaliacaoController.cs" Line="1" Column="1" />
+      <File FileName="Backend/Program.cs" Line="13" Column="1" />
+      <File FileName="Backend/Context/LabSchoolContext.cs" Line="65" Column="2" />
+      <File FileName="Backend/Repositories/Avaliacao/IAvaliacaoRepository.cs" Line="11" Column="32" />
+      <File FileName="Backend/Models/Atendimento.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Backend" expanded="True">
             <Node name="Backend" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
-              </Node>
+              <Node name="AutoMapper" expanded="True" />
               <Node name="Context" expanded="True" />
               <Node name="Controllers" expanded="True">
                 <Node name="AvaliacaoController.cs" selected="True" />
@@ -31,10 +27,10 @@
                 <Node name="Avaliacao" expanded="True" />
               </Node>
               <Node name="Models" expanded="True" />
-              <Node name="Properties" expanded="True" />
               <Node name="Repositories" expanded="True">
                 <Node name="Interfaces" expanded="True" />
               </Node>
+              <Node name="Validators" expanded="True" />
             </Node>
           </Node>
         </State>

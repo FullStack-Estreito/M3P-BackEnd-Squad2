@@ -11,6 +11,10 @@ namespace Backend.AutoMapper
 		{
 			CreateMap<Avaliacao, AvaliacaoReadDTO>();
 
+            CreateMap<AvaliacaoCreateDTO, Avaliacao>();
+
+            CreateMap<AvaliacaoUpdateDTO, Avaliacao>();
+
         }
 	}
 }

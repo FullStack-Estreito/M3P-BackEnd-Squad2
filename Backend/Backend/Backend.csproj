@@ -37,6 +37,7 @@
     <None Remove="DTO\Avaliacao\" />
     <None Remove="AutoMapper\" />
     <None Remove="Validators\" />
+    <None Remove="DTO\Exercicio\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Base\" />
@@ -47,5 +48,6 @@
     <Folder Include="DTO\Avaliacao\" />
     <Folder Include="AutoMapper\" />
     <Folder Include="Validators\" />
+    <Folder Include="DTO\Exercicio\" />
   </ItemGroup>
 </Project>

@@ -29,6 +29,7 @@ string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/Sen
 //Repositories
 // builder.Services.AddScoped<UsuarioRepository>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
+builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
 
 // Injeção de dependência LabSchoolContext
 builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));

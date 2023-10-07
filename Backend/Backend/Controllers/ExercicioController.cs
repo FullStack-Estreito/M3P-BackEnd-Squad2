@@ -1,47 +1,48 @@
 ﻿using System;
+using System.Net;
 using AutoMapper;
 using Backend.DTO.Avaliacao;
+using Backend.DTO.Exercicio;
 using Backend.Models;
 using Backend.Repositories;
 using Backend.Repositories.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Backend.Validators;
-using System.Net;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
-    public class AvaliacaoController : ControllerBase
-    {
+    public class ExercicioController : ControllerBase
+	{
 
         // Injeção de dependência do repositório e mapper
-        private readonly IAvaliacaoRepository _avaliacaoRepository;
+        private readonly IExercicioRepository _exercicioRepository;
         private readonly IMapper _mapper;
 
-        public AvaliacaoController(IAvaliacaoRepository avaliacaoRepository, IMapper mapper)
-        {
-            _avaliacaoRepository = avaliacaoRepository;
+        public ExercicioController(IExercicioRepository exercicioRepository, IMapper mapper)
+		{
+            _exercicioRepository = exercicioRepository;
             _mapper = mapper;
         }
 
         // Endpoints
         [HttpGet]
-        public ActionResult<IEnumerable<AvaliacaoReadDTO>> GetAll()
+        public ActionResult<IEnumerable<ExercicioReadDTO>> GetAll()
         {
             try
             {
-                List<Avaliacao> retorno;
+                List<Exercicio> retorno;
 
-                retorno = _avaliacaoRepository.ObterTodos();
+                retorno = _exercicioRepository.ObterTodos();
 
                 if (retorno.Count() == 0)
                 {
                     return NotFound("Nenhum registro encontrado no banco de dados.");
                 }
 
-                var retornoDTO = _mapper.Map<List<AvaliacaoReadDTO>>(retorno);
+                var retornoDTO = _mapper.Map<List<ExercicioReadDTO>>(retorno);
 
                 return Ok(retornoDTO);
             }
@@ -53,18 +54,18 @@ namespace Backend.Controllers
 
 
         [HttpGet("{id}")]
-        public ActionResult<AvaliacaoReadDTO> GetById(int id)
+        public ActionResult<ExercicioReadDTO> GetById(int id)
         {
             try
             {
-                var retorno = _avaliacaoRepository.ObterPorId(id);
+                var retorno = _exercicioRepository.ObterPorId(id);
 
                 if (retorno == null)
                 {
                     return NotFound("Nenhum registro encontrado no banco de dados.");
                 }
 
-                var retornoDTO = _mapper.Map<AvaliacaoReadDTO>(retorno);
+                var retornoDTO = _mapper.Map<ExercicioReadDTO>(retorno);
 
                 return Ok(retornoDTO);
             }
@@ -74,30 +75,29 @@ namespace Backend.Controllers
             }
         }
 
-
         [HttpPost]
-        public ActionResult<AvaliacaoReadDTO> Post([FromBody] AvaliacaoCreateDTO avaliacaoCreateDTO)
+        public ActionResult<ExercicioReadDTO> Post([FromBody] ExercicioCreateDTO exercicioCreateDTO)
         {
             try
             {
                 // Mapeando para a model
-                var novaAvaliacao = _mapper.Map<Avaliacao>(avaliacaoCreateDTO);
+                var novoExercicio = _mapper.Map<Exercicio>(exercicioCreateDTO);
 
                 // Validando os dados informados
-                var avaliacaoValidator = new AvaliacaoValidator();
-                var validatorResult = avaliacaoValidator.Validate(novaAvaliacao);
+                var exercicioValidator = new ExercicioValidator();
+                var validatorResult = exercicioValidator.Validate(novoExercicio);
 
                 if (validatorResult.IsValid == false)
                 {
                     return StatusCode(StatusCodes.Status400BadRequest, validatorResult.Errors);
                 }
 
-                _avaliacaoRepository.Adicionar(novaAvaliacao);
+                _exercicioRepository.Adicionar(novoExercicio);
 
                 // Mapeando o retorno para o ReadDTO
-                var novaAvaliacaoRead = _mapper.Map<AvaliacaoReadDTO>(novaAvaliacao);
+                var novoExercicioRead = _mapper.Map<ExercicioReadDTO>(novoExercicio);
 
-                return StatusCode(HttpStatusCode.Created.GetHashCode(), novaAvaliacaoRead);
+                return StatusCode(HttpStatusCode.Created.GetHashCode(), novoExercicioRead);
 
             }
             catch (Exception ex)
@@ -106,36 +106,35 @@ namespace Backend.Controllers
             }
         }
 
-
         [HttpPut("{id}")]
-        public ActionResult<AvaliacaoReadDTO> Put(int id, [FromBody] AvaliacaoUpdateDTO avaliacaoUpdateDTO)
+        public ActionResult<ExercicioReadDTO> Put(int id, [FromBody] ExercicioUpdateDTO exercicioUpdateDTO)
         {
             try
             {
-                var avaliacao = _avaliacaoRepository.ObterPorId(id);
+                var exercicio = _exercicioRepository.ObterPorId(id);
 
-                if (avaliacao == null)
+                if (exercicio == null)
                 {
                     return NotFound("Nenhum registro encontrado no banco de dados.");
                 }
 
                 // Mapeando para a model
-                avaliacao = _mapper.Map(avaliacaoUpdateDTO, avaliacao);
+                exercicio = _mapper.Map(exercicioUpdateDTO, exercicio);
 
                 // Validando os dados informados
-                var avaliacaoValidator = new AvaliacaoValidator();
-                var validatorResult = avaliacaoValidator.Validate(avaliacao);
+                var exercicioValidator = new ExercicioValidator();
+                var validatorResult = exercicioValidator.Validate(exercicio);
 
                 if (validatorResult.IsValid == false)
                 {
                     return StatusCode(StatusCodes.Status400BadRequest, validatorResult.Errors);
                 }
 
-                _avaliacaoRepository.Atualizar(avaliacao);
+                _exercicioRepository.Atualizar(exercicio);
 
                 // Mapeando o retorno para o ReadDTO
-                var avaliacaoAtualizadaRead = _mapper.Map<AvaliacaoReadDTO>(avaliacao);
-                return Ok(avaliacaoAtualizadaRead);
+                var exercicioAtualizadoRead = _mapper.Map<ExercicioReadDTO>(exercicio);
+                return Ok(exercicioAtualizadoRead);
 
             }
             catch (Exception ex)
@@ -149,14 +148,14 @@ namespace Backend.Controllers
         {
             try
             {
-                var avaliacao = _avaliacaoRepository.ObterPorId(id);
+                var exercicio = _exercicioRepository.ObterPorId(id);
 
-                if (avaliacao == null)
+                if (exercicio == null)
                 {
                     return NotFound("Nenhum registro encontrado no banco de dados.");
                 }
 
-                _avaliacaoRepository.Delete(id);
+                _exercicioRepository.Delete(id);
                 return StatusCode(204);
             }
             catch (Exception ex)

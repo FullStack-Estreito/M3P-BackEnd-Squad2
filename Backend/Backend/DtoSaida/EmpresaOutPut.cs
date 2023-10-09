@@ -3,6 +3,7 @@ namespace Backend.Output;
 
 public class EmpresaOutPut
 {
+        public int Id { get; set; }
         public string Nome_Empresa { get; set; }
 
         public string Slogan { get; set; }
@@ -13,6 +14,6 @@ public class EmpresaOutPut
 
         public string Demais_Infos { get; set; }
 
-        public int Usuario_Id { get; set; }
+        // public int Usuario_Id { get; set; }
 
 }

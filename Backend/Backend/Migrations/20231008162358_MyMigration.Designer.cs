@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(LabSchoolContext))]
-    [Migration("20231007090532_MyMigration")]
+    [Migration("20231008162358_MyMigration")]
     partial class MyMigration
     {
         /// <inheritdoc />
@@ -99,7 +99,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("ProfessorId");
 
-                    b.ToTable("Avaliacao");
+                    b.ToTable("Avaliacoes");
                 });
 
             modelBuilder.Entity("Backend.Models.Empresa", b =>
@@ -138,6 +138,17 @@ namespace Backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Empresas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Demais_Infos = "Unicórnio",
+                            Logotipo_URL = "www.qq.com",
+                            Nome_Empresa = "Sucesso Total",
+                            Paleta_Cores = "Blue",
+                            Slogan = "Só Vitória"
+                        });
                 });
 
             modelBuilder.Entity("Backend.Models.Endereco", b =>
@@ -170,7 +181,7 @@ namespace Backend.Migrations
 
                     b.Property<string>("Estado")
                         .IsRequired()
-                        .HasMaxLength(2)
+                        .HasMaxLength(20)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logradouro")
@@ -264,6 +275,29 @@ namespace Backend.Migrations
                     b.HasIndex("Usuario_Id");
 
                     b.ToTable("Logs");
+                });
+
+            modelBuilder.Entity("Backend.Models.Login", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("VARCHAR");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Login");
                 });
 
             modelBuilder.Entity("Backend.Models.Usuario", b =>

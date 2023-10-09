@@ -29,7 +29,9 @@ public class EmpresaProfile : Profile
             );
 
         CreateMap<Empresa, EmpresaOutPut>()
-    .ForMember(dest => dest.Nome_Empresa,
+    .ForMember(dest => dest.Id,
+    opt => opt.MapFrom(src => src.Id)
+    ).ForMember(dest => dest.Nome_Empresa,
     opt => opt.MapFrom(src => src.Nome_Empresa)
     ).ForMember(
             dest => dest.Slogan,
@@ -43,10 +45,10 @@ public class EmpresaProfile : Profile
             ).ForMember(
             dest => dest.Demais_Infos,
             opt => opt.MapFrom(src => src.Demais_Infos));
-        //     ).ForMember(
-        //     dest => dest.Usuario_Id,
-        //      opt => opt.MapFrom(src => src.Usuarios)
-        //     );
+        // ).ForMember(
+        // dest => dest.Usuario_Id,
+        //  opt => opt.MapFrom(src => src.Usuarios)
+        // );
 
     }
 }

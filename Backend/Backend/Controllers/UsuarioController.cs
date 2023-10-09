@@ -10,6 +10,8 @@ using AutoMapper;
 using Backend.DtoSaida;
 using Backend.Output;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Authorization;
+using Backend.Service;
 
 namespace Backend.Controllers;
 
@@ -18,10 +20,10 @@ namespace Backend.Controllers;
 public class UsuarioController : ControllerBase
 {
 
-    private readonly UsuarioRepository _usuarioRepository;
     private readonly IMapper _mapper;
     private readonly LabSchoolContext _context;
 
+    private readonly UsuarioRepository _usuarioRepository;
     public UsuarioController(UsuarioRepository usuarioRepository, IMapper mapper, LabSchoolContext context)
     {
         _mapper = mapper;
@@ -30,7 +32,7 @@ public class UsuarioController : ControllerBase
     }
 
 
-
+    [Authorize]
     [HttpGet("/Listar")]
     public IActionResult Listar()
     {
@@ -71,6 +73,7 @@ public class UsuarioController : ControllerBase
         var usuario = _mapper.Map<Usuario>(user);
         _usuarioRepository.Criar(usuario);
         var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
+        _usuarioRepository.SalvarLogs("salvar", usuario.Id);
         return CreatedAtAction(
             nameof(UsuarioController.Listar),
             new { id = usuarioSaida.Id },
@@ -131,12 +134,12 @@ public class UsuarioController : ControllerBase
         var enterSaida = _mapper.Map<EmpresaOutPut>(empresa);
 
         return CreatedAtAction(
-            nameof(UsuarioController.Listar),
+            nameof(UsuarioController.ListarEmpresa),
             new { id = empresa.Id },
             empresa
         );
     }
-
+    // [Authorize]
     [HttpDelete("/DeletarUsuario/{id}")]
     public IActionResult Delete(int id)
     {
@@ -149,31 +152,35 @@ public class UsuarioController : ControllerBase
         return NoContent();
     }
 
-    int response = 0;
-    [HttpGet("/Login")]
-    public IActionResult SignUp(string email, string senha)
+    [HttpPost("/Login")]
+    public IActionResult SignUp([FromBody] Login login)
     {
-        var logado = _usuarioRepository.Logar(email, senha);
+
+        var logado = _usuarioRepository.Logar(login);
         if (logado)
-            return Ok("logado");
+        {
+            var token = TokenService.GerarTokem(login);
+            return Ok(token);
+        }
         else
             return BadRequest("Login Incorreto");
     }
-    [HttpPost("/SalvarLogs")]
-    public IActionResult SaveLog([FromBody] LogInput log)
+
+
+    [HttpPatch("/resetar")]
+    public IActionResult MudarSenha(string email, ResetarSenhaInput senha)
     {
 
-        var logs = _mapper.Map<Log>(log);
-        _usuarioRepository.SalvarLogs(logs);
-        var logSaida = _mapper.Map<LogOutPut>(logs);
+        var up = _usuarioRepository?.Resetar(email, senha);
+        return Ok(up);
+    }
 
-        return Ok(logSaida);
-        // return CreatedAtAction(
-        //     nameof(UsuarioController.),
-        //     new { id = logSaida.Id },
-        //     logSaida
-        //  );
-
+    // [Authorize]
+    [HttpGet("/ListarLogs")]
+    public IActionResult ListarLogs()
+    {
+        var log = _usuarioRepository.ExibirLogs();
+        return Ok(log);
     }
 
 }

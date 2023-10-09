@@ -16,7 +16,7 @@ namespace Backend.Models
         [Column(TypeName = "VARCHAR"), StringLength(40)]
         public string Cidade { get; set; }
 
-        [Column(TypeName = "VARCHAR"), StringLength(2)]
+        [Column(TypeName = "VARCHAR"), StringLength(20)]
         public string Estado { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(55)]

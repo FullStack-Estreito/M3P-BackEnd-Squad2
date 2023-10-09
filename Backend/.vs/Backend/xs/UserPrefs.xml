@@ -1,17 +1,10 @@
 ﻿<Properties StartupConfiguration="{56A55611-0CB8-4422-AFCA-A44E24277825}|https">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Backend PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Backend/Models/LogModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Backend/Repositories/Avaliacao/IAvaliacaoRepository.cs">
     <Files>
       <File FileName="Backend/Program.cs" Line="13" Column="1" />
-      <File FileName="Backend/Context/LabSchoolContext.cs" Line="65" Column="88" />
-      <File FileName="Backend/Models/AdministradorModel.cs" Line="1" Column="1" />
-      <File FileName="Backend/Models/AlunoModel.cs" Line="1" Column="1" />
-      <File FileName="Backend/Models/AtendimentoModel.cs" Line="1" Column="1" />
-      <File FileName="Backend/Models/EmpresaModel.cs" Line="1" Column="1" />
-      <File FileName="Backend/Models/EnderecoModel.cs" Line="1" Column="1" />
-      <File FileName="Backend/Models/ExercicioModel.cs" Line="1" Column="1" />
-      <File FileName="Backend/Models/LogModel.cs" Line="1" Column="1" />
+      <File FileName="Backend/Context/LabSchoolContext.cs" Line="65" Column="2" />
+      <File FileName="Backend/Repositories/Avaliacao/IAvaliacaoRepository.cs" Line="11" Column="32" />
+      <File FileName="Backend/Models/Atendimento.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,19 +14,25 @@
               <Node name="Dependencies" expanded="True">
                 <Node name="FrameworkReferences" expanded="True" />
               </Node>
-              <Node name="Base" expanded="True" />
               <Node name="Context" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="Avaliacao" expanded="True">
+                  <Node name="IAvaliacaoRepository.cs" selected="True" />
+                </Node>
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Backend PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
 </Properties>

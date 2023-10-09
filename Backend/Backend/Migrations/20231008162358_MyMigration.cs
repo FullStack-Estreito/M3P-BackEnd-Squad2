@@ -36,7 +36,7 @@ namespace Backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CEP = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
                     Cidade = table.Column<string>(type: "VARCHAR(40)", maxLength: 40, nullable: false),
-                    Estado = table.Column<string>(type: "VARCHAR(2)", maxLength: 2, nullable: false),
+                    Estado = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
                     Logradouro = table.Column<string>(type: "VARCHAR(55)", maxLength: 55, nullable: false),
                     Numero = table.Column<string>(type: "VARCHAR(8)", maxLength: 8, nullable: false),
                     Complemento = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
@@ -46,6 +46,20 @@ namespace Backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Enderecos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Login",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
+                    Senha = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Login", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,7 +122,7 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Avaliacao",
+                name: "Avaliacoes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -124,9 +138,9 @@ namespace Backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Avaliacao", x => x.Id);
+                    table.PrimaryKey("PK_Avaliacoes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Avaliacao_Usuarios_ProfessorId",
+                        name: "FK_Avaliacoes_Usuarios_ProfessorId",
                         column: x => x.ProfessorId,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
@@ -180,14 +194,19 @@ namespace Backend.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Empresas",
+                columns: new[] { "Id", "Demais_Infos", "Logotipo_URL", "Nome_Empresa", "Paleta_Cores", "Slogan" },
+                values: new object[] { 1, "Unicórnio", "www.qq.com", "Sucesso Total", "Blue", "Só Vitória" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Atendimentos_UsuarioId",
                 table: "Atendimentos",
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Avaliacao_ProfessorId",
-                table: "Avaliacao",
+                name: "IX_Avaliacoes_ProfessorId",
+                table: "Avaliacoes",
                 column: "ProfessorId");
 
             migrationBuilder.CreateIndex(
@@ -219,10 +238,13 @@ namespace Backend.Migrations
                 name: "Atendimentos");
 
             migrationBuilder.DropTable(
-                name: "Avaliacao");
+                name: "Avaliacoes");
 
             migrationBuilder.DropTable(
                 name: "Exercicios");
+
+            migrationBuilder.DropTable(
+                name: "Login");
 
             migrationBuilder.DropTable(
                 name: "Logs");

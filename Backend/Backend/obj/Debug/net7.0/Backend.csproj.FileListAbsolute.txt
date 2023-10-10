@@ -210,6 +210,7 @@ C:/Users/djblabla/Desktop/M3P-BackEnd-Squad2/Backend/Backend/obj/Debug/net7.0/re
 C:/Users/djblabla/Desktop/M3P-BackEnd-Squad2/Backend/Backend/obj/Debug/net7.0/Backend.pdb
 C:/Users/djblabla/Desktop/M3P-BackEnd-Squad2/Backend/Backend/obj/Debug/net7.0/Backend.genruntimeconfig.cache
 C:/Users/djblabla/Desktop/M3P-BackEnd-Squad2/Backend/Backend/obj/Debug/net7.0/ref/Backend.dll
+<<<<<<< HEAD
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\BackEnd\BackEnd\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\BackEnd\BackEnd\bin\Debug\net7.0\appsettings.json
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\BackEnd\BackEnd\bin\Debug\net7.0\Backend.exe
@@ -320,3 +321,8 @@ C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\BackEnd\BackEnd\bin\Debug\net7.0\Fl
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\BackEnd\BackEnd\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\BackEnd\BackEnd\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\BackEnd\BackEnd\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+=======
+/Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/bin/Debug/net7.0/FluentValidation.dll
+/Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/bin/Debug/net7.0/FluentValidation.AspNetCore.dll
+/Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/bin/Debug/net7.0/FluentValidation.DependencyInjectionExtensions.dll
+>>>>>>> origin

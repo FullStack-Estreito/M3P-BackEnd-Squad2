@@ -50,8 +50,10 @@ namespace Backend.Models
         public virtual IList<Log> Logs { get; set; }
         public virtual Empresa Empresa { get; set; }
         public virtual IList<Avaliacao> Avaliacoes { get; set; }
-        public virtual IList<Exercicio> Exercicios { get; set; }
-        public virtual IList<Atendimento> Atendimentos { get; set; }
+        public virtual IList<Exercicio> Exercicios_Alunos { get; set; }
+        public virtual IList<Exercicio> Exercicios_Professores { get; set; }
+        public virtual IList<Atendimento> Atendimentos_Alunos { get; set; }
+        public virtual IList<Atendimento> Atendimentos_Pedagogos { get; set; }
 
     }
 }

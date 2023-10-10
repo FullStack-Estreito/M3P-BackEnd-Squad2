@@ -1,7 +1,9 @@
-﻿using Backend.Context;
+﻿using System.Reflection;
+using Backend.Context;
 using Backend.Repositories;
-using Microsoft.EntityFrameworkCore;
+using Backend.Repositories.Interfaces;
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Backend.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.IdentityModel.Tokens;
@@ -12,32 +14,29 @@ using Microsoft.OpenApi.Models;
 
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
-// // Add Fluent
-builder.Services.AddControllers().AddFluentValidation(config =>
-{
-    config.RegisterValidatorsFromAssembly(typeof(Program).Assembly);
-});
+builder.Services.AddControllers()
+    .AddFluentValidation(options =>
+    {
+        // Validate child properties and root collection elements
+        options.ImplicitlyValidateChildProperties = true;
+        options.ImplicitlyValidateRootCollectionElements = true;
 
-builder.Services.AddControllers();
+        // Automatic registration of validators in assembly
+        options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+    });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-// string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/Senai/LabSchoolContext.db;";
-
-// Injeção de dependência LabSchoolContext
-// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
-builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
-
+string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/Senai/LabSchoolContext.db;";
 
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-
-builder.Services.AddScoped<UsuarioRepository>();
 
 //Token
 
@@ -71,7 +70,6 @@ builder.Services.AddScoped<UsuarioRepository>();
 
 // });
 
-builder.Services.AddTransient<UsuarioRepository, UsuarioRepository>();
 
 var Key = Encoding.ASCII.GetBytes(Backend.Service.Key.Secret);
 
@@ -92,8 +90,20 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 });
+//Repositories
+builder.Services.AddScoped<UsuarioRepository>();
+builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
+builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
+
+// Injeção de dependência LabSchoolContext
+builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
+// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
+
+// Automapper
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

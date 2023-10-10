@@ -10,7 +10,7 @@ namespace Backend.Context
         {
         }
 
-        // Tabelas
+        // 
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Atendimento> Atendimentos { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
@@ -19,10 +19,6 @@ namespace Backend.Context
         public DbSet<Log> Logs { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
-        public DbSet<Login> Login { get; set; }
-
-
-        // Declaração dos relacionamentos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Empresa>().HasData(
@@ -56,14 +52,30 @@ namespace Backend.Context
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Exercicio>()
-                .HasOne(x => x.Usuario)
-                .WithMany(y => y.Exercicios)
+                .HasOne(x => x.Aluno)
+                .WithMany(y => y.Exercicios_Alunos)
+                .HasForeignKey( x => x.Aluno_Id)
+                .Metadata
+                .DeleteBehavior = DeleteBehavior.Restrict;
+
+            modelBuilder.Entity<Exercicio>()
+                .HasOne(x => x.Professor)
+                .WithMany(y => y.Exercicios_Professores)
+                .HasForeignKey( x => x.Professor_Id)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Atendimento>()
-                .HasOne(x => x.Usuario)
-                .WithMany(y => y.Atendimentos)
+                .HasOne(x => x.Aluno)
+                .WithMany(y => y.Atendimentos_Alunos)
+                .HasForeignKey( x => x.Aluno_Id)
+                .Metadata
+                .DeleteBehavior = DeleteBehavior.Restrict;
+
+            modelBuilder.Entity<Atendimento>()
+                .HasOne(x => x.Pedagogo)
+                .WithMany(y => y.Atendimentos_Pedagogos)
+                .HasForeignKey( x => x.Pedagogo_Id)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 

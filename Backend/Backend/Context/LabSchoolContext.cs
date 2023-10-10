@@ -10,19 +10,29 @@ namespace Backend.Context
         {
         }
 
-        // Tabelas
+        // 
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Atendimento> Atendimentos { get; set; }
-        public DbSet<Avaliacao> Empresas { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Exercicio> Exercicios { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
-
-        // Declaração dos relacionamentos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Empresa>().HasData(
+                new Empresa
+                {
+                    Id = 1,
+                    Nome_Empresa = "Sucesso Total",
+                    Slogan = "Só Vitória",
+                    Paleta_Cores = "Blue",
+                    Logotipo_URL = "www.qq.com",
+                    Demais_Infos = "Unicórnio"
+                }
+            );
+
             modelBuilder.Entity<Usuario>()
                 .HasOne(x => x.Endereco)
                 .WithOne(y => y.Usuario)
@@ -74,6 +84,8 @@ namespace Backend.Context
                 .WithMany(y => y.Logs)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
+
+            modelBuilder.Entity<Login>();
 
             base.OnModelCreating(modelBuilder);
         }

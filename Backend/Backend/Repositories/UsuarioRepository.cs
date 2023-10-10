@@ -96,7 +96,7 @@ public class UsuarioRepository
 
         if (testeEmail != null && testeSenha != null)
         {
-            _context.Login.Add(login);
+            _context.Logins.Add(login);
             _context.SaveChanges();
             SalvarLogs("Logar", testeEmail.Id);
             return true;

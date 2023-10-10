@@ -13,13 +13,13 @@ namespace Backend.Models
         [Required, ForeignKey("Usuario")]
         public int Usuario_Id { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), StringLength(30)]
         public string Acao { get; set; }
 
-        [Required]
+        // [Column(TypeName = "DateTime")]        
         public DateTime Data { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), StringLength(60)]
         public string Detalhes { get; set; }
 
         // Relacionamento com UsuarioModel

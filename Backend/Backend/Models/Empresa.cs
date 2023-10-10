@@ -10,19 +10,19 @@ namespace Backend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
-	    public string Nome_Empresa { get; set; }
+        [Column(TypeName = "VARCHAR"), StringLength(50)]
+	public string Nome_Empresa { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), StringLength(50)]
         public string Slogan { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), StringLength(50)]
         public string Paleta_Cores { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), StringLength(100)]
         public string Logotipo_URL { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), StringLength(50)]
         public string Demais_Infos { get; set; }
 
         // Relacionamento com UsuarioModel

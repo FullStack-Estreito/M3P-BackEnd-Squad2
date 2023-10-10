@@ -17,6 +17,7 @@ namespace Backend.Context
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Exercicio> Exercicios { get; set; }
         public DbSet<Log> Logs { get; set; }
+        public DbSet<Login> Logins { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

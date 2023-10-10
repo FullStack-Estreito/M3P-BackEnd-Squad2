@@ -5,6 +5,7 @@ using Backend.DtoEntrada;
 using Backend.DtoSaida;
 using Backend.Models;
 using Backend.Output;
+using global::AutoMapper;
 
 public class EmpresaProfile : Profile
 {

@@ -1,4 +1,5 @@
 using System.Net;
+using AutoMapper;
 using Backend.DTO.WhiteLabel;
 using Backend.Models;
 using Backend.Repositories.Interfaces;
@@ -11,9 +12,11 @@ namespace Backend.Controllers
     [Route("api/[controller]")]
     public class WhiteLabelController : ControllerBase
     {
+         private readonly IMapper _mapper;
         private readonly IWhiteLabel _whiteLabelRepository;
-        public WhiteLabelController(IWhiteLabel whiteLabelRepository)
+        public WhiteLabelController(IWhiteLabel whiteLabelRepository, IMapper mapper)
         {
+            _mapper = mapper;
             _whiteLabelRepository = whiteLabelRepository;
         }
 
@@ -28,14 +31,8 @@ namespace Backend.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, ModelState);
                 }
 
-                var empresa = new Empresa()
-                {
-                    Nome_Empresa = whiteLabelDto.Nome_Empresa,
-                    Slogan = whiteLabelDto.Slogan,
-                    Paleta_Cores = whiteLabelDto.Palheta_Cores,
-                    Logotipo_URL = whiteLabelDto.Imagem_Logotipo,
-                    Demais_Infos = whiteLabelDto.Demais_Informacoes,
-                };
+                var empresa = _mapper.Map<Empresa>(whiteLabelDto);
+                
 
                 var empresaValidator = new EmpresaValidator();
                 var validatorResult = empresaValidator.Validate(empresa);
@@ -47,8 +44,9 @@ namespace Backend.Controllers
                 else
                 {
                     _whiteLabelRepository.Adicionar(empresa);
+                    var saidaEmpresa = _mapper.Map<WhiteLabelDTO>(empresa);
 
-                    return StatusCode(HttpStatusCode.Created.GetHashCode(), empresa);
+                    return StatusCode(HttpStatusCode.Created.GetHashCode(), saidaEmpresa);
                 }
             }
             catch (Exception ex)

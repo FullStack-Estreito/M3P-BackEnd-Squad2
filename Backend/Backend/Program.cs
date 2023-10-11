@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿﻿using System.Reflection;
 using Backend.Context;
 using Backend.Repositories;
 using Backend.Repositories.Interfaces;
@@ -94,10 +94,12 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddScoped<UsuarioRepository>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
 builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
+builder.Services.AddScoped<IWhiteLabel, WhiteLabelRepository>();
+
 
 // Injeção de dependência LabSchoolContext
-// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
-builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
+builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
+// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
 
 // Automapper
 builder.Services.AddAutoMapper(typeof(Program));
@@ -117,4 +119,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

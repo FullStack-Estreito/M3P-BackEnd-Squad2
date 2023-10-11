@@ -22,17 +22,17 @@ namespace Backend.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Empresa>().HasData(
-                new Empresa
-                {
-                    Id = 1,
-                    Nome_Empresa = "Sucesso Total",
-                    Slogan = "Só Vitória",
-                    Paleta_Cores = "Blue",
-                    Logotipo_URL = "www.qq.com",
-                    Demais_Infos = "Unicórnio"
-                }
-            );
+            // modelBuilder.Entity<Empresa>().HasData(
+            //     new Empresa
+            //     {
+            //         Id = 1,
+            //         Nome_Empresa = "S",
+            //         Slogan = "a",
+            //         Paleta_Cores = "B",
+            //         Logotipo_URL = "w",
+            //         Demais_Infos = "U"
+            //     }
+            // );
 
             modelBuilder.Entity<Usuario>()
                 .HasOne(x => x.Endereco)

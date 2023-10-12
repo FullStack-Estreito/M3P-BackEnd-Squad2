@@ -18,7 +18,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.11",
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.11",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.11",
+<<<<<<< HEAD
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
+=======
+>>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
           "Microsoft.IdentityModel.Tokens": "6.25.1",
           "Swashbuckle.AspNetCore": "6.4.0",
           "System.IdentityModel.Tokens.Jwt": "6.25.1"

@@ -10,7 +10,6 @@ namespace Backend.Context
         {
         }
 
-        // 
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Atendimento> Atendimentos { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
@@ -22,17 +21,33 @@ namespace Backend.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.Entity<Empresa>().HasData(
-            //     new Empresa
-            //     {
-            //         Id = 1,
-            //         Nome_Empresa = "S",
-            //         Slogan = "a",
-            //         Paleta_Cores = "B",
-            //         Logotipo_URL = "w",
-            //         Demais_Infos = "U"
-            //     }
-            // );
+
+            modelBuilder.Entity<Empresa>().HasData(
+                new Empresa
+                {
+                    Id = 1,
+                    Nome_Empresa = "Sucesso Total",
+                    Slogan = "Vitória",
+                    Paleta_Cores = "RGB",
+                    Logotipo_URL = "wwww.Success.com",
+                    Demais_Infos = "Silicon Island"
+                }
+            );
+
+            modelBuilder.Entity<Endereco>().HasData(
+                new Endereco
+                {
+                    Id = 1,
+                    CEP = "88062015",
+                    Estado = "SC",
+                    Logradouro = "Nsa Senhora",
+                    Numero = "3432",
+                    Complemento = "Centrinho",
+                    Bairro = "Lagoon",
+                    Cidade = "Floripa",
+                    Ponto_Referencia = "Sei lá"
+                }
+            );
 
             modelBuilder.Entity<Usuario>()
                 .HasOne(x => x.Endereco)
@@ -55,28 +70,28 @@ namespace Backend.Context
             modelBuilder.Entity<Exercicio>()
                 .HasOne(x => x.Aluno)
                 .WithMany(y => y.Exercicios_Alunos)
-                .HasForeignKey( x => x.Aluno_Id)
+                .HasForeignKey(x => x.Aluno_Id)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Exercicio>()
                 .HasOne(x => x.Professor)
                 .WithMany(y => y.Exercicios_Professores)
-                .HasForeignKey( x => x.Professor_Id)
+                .HasForeignKey(x => x.Professor_Id)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Atendimento>()
                 .HasOne(x => x.Aluno)
                 .WithMany(y => y.Atendimentos_Alunos)
-                .HasForeignKey( x => x.Aluno_Id)
+                .HasForeignKey(x => x.Aluno_Id)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Atendimento>()
                 .HasOne(x => x.Pedagogo)
                 .WithMany(y => y.Atendimentos_Pedagogos)
-                .HasForeignKey( x => x.Pedagogo_Id)
+                .HasForeignKey(x => x.Pedagogo_Id)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 

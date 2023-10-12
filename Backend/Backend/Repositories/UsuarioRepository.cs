@@ -4,6 +4,7 @@ using Backend.Context;
 using Backend.DtoEntrada;
 using Backend.DtoSaida;
 using Backend.Models;
+using Backend.Output;
 
 namespace Backend.Repositories;
 

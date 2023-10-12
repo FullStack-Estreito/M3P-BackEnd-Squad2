@@ -3867,24 +3867,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\leona\\.nuget\\packages\\": {}
+    "C:\\Users\\djblabla\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\teste\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "D:\\teste\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
-      "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-      "outputPath": "D:\\teste\\M3P-BackEnd-Squad2\\Backend\\Backend\\obj\\",
+      "projectPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
+      "packagesPath": "C:\\Users\\djblabla\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\djblabla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3979,7 +3981,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

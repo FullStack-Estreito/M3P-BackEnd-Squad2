@@ -32,7 +32,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/Senai/LabSchoolContext.db;";
+//string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/Senai/LabSchoolContext.db;";
 
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -96,8 +96,8 @@ builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
 builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
 
 // Injeção de dependência LabSchoolContext
-builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
-// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
+//builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
+builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
 
 // Automapper
 builder.Services.AddAutoMapper(typeof(Program));

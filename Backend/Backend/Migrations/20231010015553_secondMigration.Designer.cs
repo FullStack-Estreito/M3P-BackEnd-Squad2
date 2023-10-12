@@ -4,6 +4,7 @@ using Backend.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(LabSchoolContext))]
-    partial class LabSchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20231010015553_secondMigration")]
+    partial class secondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,11 +95,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("Professor_Id");
 
-<<<<<<< HEAD
                     b.ToTable("Avaliacao");
-=======
-                    b.ToTable("Avaliacoes");
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                 });
 
             modelBuilder.Entity("Backend.Models.Empresa", b =>
@@ -109,62 +108,27 @@ namespace Backend.Migrations
 
                     b.Property<string>("Demais_Infos")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logotipo_URL")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(100)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Nome_Empresa")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Paleta_Cores")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Slogan")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
                     b.ToTable("Empresa");
-=======
-                    b.ToTable("Empresas");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Demais_Infos = "Sylicon Island",
-                            Logotipo_URL = "wwww.Success.com",
-                            Nome_Empresa = "Sucesso Total",
-                            Paleta_Cores = "RGB",
-                            Slogan = "Vitória"
-                        });
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                 });
 
             modelBuilder.Entity("Backend.Models.Endereco", b =>
@@ -177,88 +141,39 @@ namespace Backend.Migrations
 
                     b.Property<string>("Bairro")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(65)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("CEP")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(15)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(40)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Complemento")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(60)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Estado")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(20)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logradouro")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(55)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Numero")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(8)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Ponto_Referencia")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(65)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 
                     b.ToTable("Enderecos");
-<<<<<<< HEAD
-=======
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Bairro = "Lagoon",
-                            CEP = "88062015",
-                            Cidade = "Floripa",
-                            Complemento = "Centrinho",
-                            Estado = "SC",
-                            Logradouro = "Nsa Senhora",
-                            Numero = "3432",
-                            Ponto_Referencia = "Sei lá"
-                        });
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                 });
 
             modelBuilder.Entity("Backend.Models.Exercicio", b =>
@@ -312,10 +227,6 @@ namespace Backend.Migrations
 
                     b.Property<string>("Acao")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(30)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<DateTime>("Data")
@@ -323,10 +234,6 @@ namespace Backend.Migrations
 
                     b.Property<string>("Detalhes")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(60)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<int>("Usuario_Id")
@@ -339,32 +246,6 @@ namespace Backend.Migrations
                     b.ToTable("Logs");
                 });
 
-<<<<<<< HEAD
-=======
-            modelBuilder.Entity("Backend.Models.Login", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("VARCHAR");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Logins");
-                });
-
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
             modelBuilder.Entity("Backend.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -375,7 +256,6 @@ namespace Backend.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-<<<<<<< HEAD
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Codigo_Registro_Professor")
@@ -384,17 +264,6 @@ namespace Backend.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-=======
-                        .HasMaxLength(64)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<int>("Codigo_Registro_Professor")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(64)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<int>("Empresa_Id")
@@ -405,18 +274,10 @@ namespace Backend.Migrations
 
                     b.Property<string>("Genero")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(64)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Matricula_Aluno")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(15)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Nome")
@@ -426,10 +287,6 @@ namespace Backend.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(20)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<bool>("Status_Sistema")
@@ -437,18 +294,10 @@ namespace Backend.Migrations
 
                     b.Property<string>("Telefone")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(16)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(20)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");

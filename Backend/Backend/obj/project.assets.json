@@ -3861,25 +3861,31 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.11",
+      "Microsoft.Extensions.DependencyInjection >= 7.0.0",
       "Microsoft.IdentityModel.Tokens >= 6.25.1",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "System.IdentityModel.Tokens.Jwt >= 6.25.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\djblabla\\.nuget\\packages\\": {}
+    "C:\\Users\\angelo.souza\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\angelo.souza\\source\\repos\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
-      "packagesPath": "C:\\Users\\djblabla\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\obj\\",
+      "projectPath": "C:\\Users\\angelo.souza\\source\\repos\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
+      "packagesPath": "C:\\Users\\angelo.souza\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\angelo.souza\\source\\repos\\M3P-BackEnd-Squad2\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\djblabla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\angelo.souza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3887,7 +3893,9 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://packagesource": {}
       },
       "frameworks": {
         "net7.0": {
@@ -3949,6 +3957,10 @@
             "target": "Package",
             "version": "[7.0.11, )"
           },
+          "Microsoft.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "[7.0.0, )"
+          },
           "Microsoft.IdentityModel.Tokens": {
             "target": "Package",
             "version": "[6.25.1, )"
@@ -3984,5 +3996,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\angelo.souza\\source\\repos\\M3P-BackEnd-Squad2\\Backend\\Backend\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

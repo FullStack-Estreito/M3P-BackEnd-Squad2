@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using Backend.DTO.Atendimentos;
 using Backend.DTO.Avaliacao;
 using Backend.DTO.Exercicio;
 using Backend.Models;
@@ -10,8 +11,13 @@ namespace Backend.AutoMapper
     {
 		public Automapper()
 		{
-			// Avaliacao
-			CreateMap<Avaliacao, AvaliacaoReadDTO>();
+            // Atendimentos
+            CreateMap<Atendimento, AtendimentosReadDTO>();
+            CreateMap<AtendimentosCreateDTO, Atendimento>();
+            CreateMap<AtendimentosUpdateDTO, Atendimento>();
+
+            // Avaliacao
+            CreateMap<Avaliacao, AvaliacaoReadDTO>();
 
             CreateMap<AvaliacaoCreateDTO, Avaliacao>();
 

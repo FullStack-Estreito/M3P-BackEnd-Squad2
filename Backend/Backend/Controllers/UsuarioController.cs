@@ -33,7 +33,7 @@ public class UsuarioController : ControllerBase
 
 
     [Authorize]
-    [HttpGet("/Listar")]
+    [HttpGet("/ListarUsuários")]
     public IActionResult Listar()
     {
         var user = _usuarioRepository.ObterAdmins();
@@ -57,7 +57,7 @@ public class UsuarioController : ControllerBase
         return Ok(empresa);
     }
 
-    [HttpGet("/ListarEnd")]
+    [HttpGet("/ListarEndereço")]
     public IActionResult ListarEnd()
     {
         var end = _usuarioRepository.ObterEnd();
@@ -123,7 +123,6 @@ public class UsuarioController : ControllerBase
         );
     }
 
-
     [HttpPost]
     [Route("/CriarEmpresa")]
     public IActionResult CadastrarEmpresa([FromBody] EmpresaInput enter)
@@ -131,12 +130,12 @@ public class UsuarioController : ControllerBase
 
         var empresa = _mapper.Map<Empresa>(enter);
         _usuarioRepository.CriarEmpresa(empresa);
-        var enterSaida = _mapper.Map<EmpresaOutPut>(empresa);
+        var empresaSaida = _mapper.Map<EmpresaOutPut>(empresa);
 
         return CreatedAtAction(
             nameof(UsuarioController.ListarEmpresa),
             new { id = empresa.Id },
-            empresa
+            empresaSaida
         );
     }
     // [Authorize]

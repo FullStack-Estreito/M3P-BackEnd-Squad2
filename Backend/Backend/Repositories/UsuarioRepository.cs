@@ -4,6 +4,7 @@ using Backend.Context;
 using Backend.DtoEntrada;
 using Backend.DtoSaida;
 using Backend.Models;
+using Backend.Output;
 
 namespace Backend.Repositories;
 
@@ -96,7 +97,7 @@ public class UsuarioRepository
 
         if (testeEmail != null && testeSenha != null)
         {
-            _context.Login.Add(login);
+            _context.Logins.Add(login);
             _context.SaveChanges();
             SalvarLogs("Logar", testeEmail.Id);
             return true;

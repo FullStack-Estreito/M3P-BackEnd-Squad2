@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿﻿using System.Reflection;
 using Backend.Context;
 using Backend.Repositories;
 using Backend.Repositories.Interfaces;
@@ -32,44 +32,13 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/Senai/LabSchoolContext.db;";
+// string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/Senai/LabSchoolContext.db;";
 
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 //Token
-
-// builder.Services.AddSwaggerGen(x =>
-// {
-
-//     x.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-//     {
-//         Name = "Authorization",
-//         In = ParameterLocation.Header,
-//         Type = SecuritySchemeType.ApiKey,
-//         Scheme = "Bearer"
-//     });
-
-//     x.AddSecurityRequirement(new OpenApiSecurityRequirement()
-//     {
-//       {
-//         new OpenApiSecurityScheme
-//         {
-//             Reference = new OpenApiReference{
-//                 Type = ReferenceType.SecurityScheme,
-//                 Id = "Bearer"
-//             },
-//             Scheme = "oauth2",
-//             Name = "Bearer",
-//             In = ParameterLocation.Header,
-//             },
-//             new List<string>()
-//         }
-//     });
-
-// });
-
 
 var Key = Encoding.ASCII.GetBytes(Backend.Service.Key.Secret);
 
@@ -94,10 +63,12 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddScoped<UsuarioRepository>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
 builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
+builder.Services.AddScoped<IWhiteLabel, WhiteLabelRepository>();
+
 
 // Injeção de dependência LabSchoolContext
-builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
-// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
+// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
+builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
 
 // Automapper
 builder.Services.AddAutoMapper(typeof(Program));
@@ -117,4 +88,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

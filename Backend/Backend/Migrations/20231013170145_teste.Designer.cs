@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(LabSchoolContext))]
-    [Migration("20231011061334_MyMigration")]
-    partial class MyMigration
+    [Migration("20231013170145_teste")]
+    partial class teste
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,7 +139,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Demais_Infos = "Sylicon Island",
+                            Demais_Infos = "Silicon Island",
                             Logotipo_URL = "wwww.Success.com",
                             Nome_Empresa = "Sucesso Total",
                             Paleta_Cores = "RGB",

@@ -136,7 +136,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Demais_Infos = "Sylicon Island",
+                            Demais_Infos = "Silicon Island",
                             Logotipo_URL = "wwww.Success.com",
                             Nome_Empresa = "Sucesso Total",
                             Paleta_Cores = "RGB",

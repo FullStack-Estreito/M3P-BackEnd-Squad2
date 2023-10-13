@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class MyMigration : Migration
+    public partial class teste : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -206,7 +206,7 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "Empresas",
                 columns: new[] { "Id", "Demais_Infos", "Logotipo_URL", "Nome_Empresa", "Paleta_Cores", "Slogan" },
-                values: new object[] { 1, "Sylicon Island", "wwww.Success.com", "Sucesso Total", "RGB", "Vitória" });
+                values: new object[] { 1, "Silicon Island", "wwww.Success.com", "Sucesso Total", "RGB", "Vitória" });
 
             migrationBuilder.InsertData(
                 table: "Enderecos",

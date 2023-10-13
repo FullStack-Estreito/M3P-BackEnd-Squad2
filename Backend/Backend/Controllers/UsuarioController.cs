@@ -32,8 +32,8 @@ public class UsuarioController : ControllerBase
     }
 
 
-    [Authorize]
-    [HttpGet("/ListarUsuários")]
+    // [Authorize]
+    [HttpGet("/ListarUsuarios")]
     public IActionResult Listar()
     {
         var user = _usuarioRepository.ObterAdmins();
@@ -57,7 +57,7 @@ public class UsuarioController : ControllerBase
         return Ok(empresa);
     }
 
-    [HttpGet("/ListarEndereço")]
+    [HttpGet("/ListarEndereco")]
     public IActionResult ListarEnd()
     {
         var end = _usuarioRepository.ObterEnd();
@@ -67,7 +67,7 @@ public class UsuarioController : ControllerBase
 
 
     [HttpPost]
-    [Route("/CriarUsuário")]
+    [Route("/CriarUsuario")]
     public IActionResult Cadastrar([FromBody] UsuarioInput user)
     {
         var usuario = _mapper.Map<Usuario>(user);

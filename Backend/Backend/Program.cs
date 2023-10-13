@@ -72,15 +72,20 @@ builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(
 
 // Automapper
 builder.Services.AddAutoMapper(typeof(Program));
-
+builder.Services.AddCors();
 var app = builder.Build();
+
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors(char =>{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+})
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\BackEnd\\BackEnd\\Backend.csproj": {}
+    "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\BackEnd\\BackEnd\\Backend.csproj": {
+    "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\BackEnd\\BackEnd\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\BackEnd\\BackEnd\\Backend.csproj",
+        "projectPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\djblabla\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\BackEnd\\BackEnd\\obj\\",
+        "outputPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\djblabla\\AppData\\Roaming\\NuGet\\NuGet.Config",

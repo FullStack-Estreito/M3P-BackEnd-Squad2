@@ -32,8 +32,8 @@ public class UsuarioController : ControllerBase
     }
 
 
-    [Authorize]
-    [HttpGet("/ListarUsuários")]
+    // [Authorize]
+    [HttpGet("/ListarUsuarios")]
     public IActionResult Listar()
     {
         var user = _usuarioRepository.ObterAdmins();
@@ -57,7 +57,7 @@ public class UsuarioController : ControllerBase
         return Ok(empresa);
     }
 
-    [HttpGet("/ListarEndereço")]
+    [HttpGet("/ListarEndereco")]
     public IActionResult ListarEnd()
     {
         var end = _usuarioRepository.ObterEnd();
@@ -67,13 +67,19 @@ public class UsuarioController : ControllerBase
 
 
     [HttpPost]
-    [Route("/CriarUsuário")]
+    [Route("/CriarUsuario")]
     public IActionResult Cadastrar([FromBody] UsuarioInput user)
     {
+        var endereco = _mapper.Map<Endereco>(user.Endereco);
+        // _usuarioRepository.CriarEndereco(endereco);
+
         var usuario = _mapper.Map<Usuario>(user);
+        usuario.Endereco_Id = endereco.Id;
         _usuarioRepository.Criar(usuario);
         var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
         _usuarioRepository.SalvarLogs("salvar", usuario.Id);
+
+
         return CreatedAtAction(
             nameof(UsuarioController.Listar),
             new { id = usuarioSaida.Id },
@@ -85,26 +91,14 @@ public class UsuarioController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public ActionResult<UsuarioOutput> Put(int id, [FromBody] UsuarioInput user)
+    public ActionResult<UsuarioCompleto> Put(int id, [FromBody] UsuarioCompletoInput user)
     {
-        try
-        {
-            var usuario = _context.Usuarios.Where(w => w.Id == id).FirstOrDefault();
+        
+                var usuario = _mapper.Map<UsuarioCompleto>(user);
 
-            if (usuario == null)
-            {
-                return NotFound(new { erro = "Registro não encontrado" });
-            }
-
-            usuario = _mapper.Map(user, usuario);
-            var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
-            _usuarioRepository.Atualizar(usuario);
-            return Ok(usuarioSaida);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex);
-        }
+                _usuarioRepository.Atualizar(id, usuario);
+                return Ok(usuario);           
+    
     }
 
 
@@ -139,17 +133,17 @@ public class UsuarioController : ControllerBase
         );
     }
     // [Authorize]
-    [HttpDelete("/DeletarUsuario/{id}")]
-    public IActionResult Delete(int id)
-    {
-        var user = _usuarioRepository.ObterPorId(id);
-        if (user == null)
-        {
-            return NotFound("Not Found");
-        }
-        _usuarioRepository.Excluir(id);
-        return NoContent();
-    }
+    // [HttpDelete("/DeletarUsuario/{id}")]
+    // public IActionResult Delete(int id)
+    // {
+    //     var user = _usuarioRepository.ObterPorId(id);
+    //     if (user == null)
+    //     {
+    //         return NotFound("Not Found");
+    //     }
+    //     _usuarioRepository.Excluir(id);
+    //     return NoContent();
+    // }
 
     [HttpPost("/Login")]
     public IActionResult SignUp([FromBody] Login login)
@@ -181,6 +175,20 @@ public class UsuarioController : ControllerBase
         var log = _usuarioRepository.ExibirLogs();
         return Ok(log);
     }
+
+    [HttpPost("/CriarUsuarioCompleto")]
+    public IActionResult Criar([FromBody] UsuarioCompleto user)
+    {
+
+        _usuarioRepository.CriarUsuario(user);
+
+        return CreatedAtAction(
+            nameof(UsuarioController.Listar),
+            new { id = user.Id },
+            user
+        );
+    }
+
 
 }
 

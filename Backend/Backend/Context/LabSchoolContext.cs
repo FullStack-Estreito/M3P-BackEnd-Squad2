@@ -18,6 +18,7 @@ namespace Backend.Context
         public DbSet<Log> Logs { get; set; }
         public DbSet<Login> Logins { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<UsuarioCompleto> UsuarioCompleto { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,13 +40,12 @@ namespace Backend.Context
                 {
                     Id = 1,
                     CEP = "88062015",
-                    Estado = "SC",
+                    UF = "SC",
                     Logradouro = "Nsa Senhora",
                     Numero = "3432",
                     Complemento = "Centrinho",
                     Bairro = "Lagoon",
-                    Cidade = "Floripa",
-                    Ponto_Referencia = "Sei lá"
+                    Localidade = "Floripa",
                 }
             );
 
@@ -102,6 +102,7 @@ namespace Backend.Context
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Login>();
+            modelBuilder.Entity<UsuarioCompleto>();
 
             base.OnModelCreating(modelBuilder);
         }

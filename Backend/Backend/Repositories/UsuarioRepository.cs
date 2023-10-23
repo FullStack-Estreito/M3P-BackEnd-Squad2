@@ -11,7 +11,6 @@ namespace Backend.Repositories;
 public class UsuarioRepository
 {
     private readonly LabSchoolContext _context;
-    private bool y;
 
     private int idUsuario { get; set; }
     public UsuarioRepository(LabSchoolContext context)
@@ -20,24 +19,21 @@ public class UsuarioRepository
         _context = context;
     }
 
-    public List<Usuario> ObterAdmins()
+    public List<UsuarioCompleto> ObterAdmins()
     {
-        Usuario user = new Usuario();
-        // SalvarLogs("Listar usuário por ", user.Id);
-        return _context.Usuarios.ToList();
+        // SalvarLogs("Listar usuário por", 1);
+        return _context.UsuarioCompleto.ToList();
     }
 
     public List<Endereco> ObterEnd()
     {
-        Usuario user = new Usuario();
-        // SalvarLogs("Obter endereço por id", user.Id);
+        // SalvarLogs("Obter endereço por id", 1);
         return _context.Enderecos.ToList();
     }
 
     public List<Empresa> ObterEmpresas()
     {
-        // Usuario user = new Usuario();
-        // SalvarLogs("Obter Empresas", idUsuario);
+        SalvarLogs("Obter Empresas", 1);
         return _context.Empresas.ToList();
     }
 
@@ -45,22 +41,36 @@ public class UsuarioRepository
     public void Criar(Usuario users)
     {
         _context.Usuarios.Add(users);
-
         _context.SaveChanges();
     }
+
 
     public void CriarEndereco(Endereco end)
     {
+        // List<Endereco> endereco = new List<Endereco>();
         _context.Enderecos.Add(end);
-        // SalvarLogs("Criar endereço ", end.Id);
+        // SalvarLogs("Criar endereço", 1);
         _context.SaveChanges();
     }
 
-    public void Atualizar(Usuario users)
+    public Usuario Resetar(string email, ResetarSenhaInput senha)
     {
+        var testeEmail = _context.Usuarios.FirstOrDefault(x => x.Email.Equals(email));
+        _context.Usuarios?.Remove(testeEmail);
+        testeEmail.Senha = senha.Senha;
+        _context.Usuarios?.Update(testeEmail);
+        SalvarLogs("Resetar Senha", idUsuario);
+        _context.SaveChanges();
+        return testeEmail;
+    }
 
-        _context.Usuarios.Update(users);
-        SalvarLogs("Atualizar usuário por id", users.Id);
+
+    public void Atualizar(int id, UsuarioCompleto users)
+    {
+        var usuario = _context.UsuarioCompleto.Where(w => w.Id == id).FirstOrDefault();
+        _context.UsuarioCompleto?.Remove(usuario);
+        users.Id = id;
+        _context.UsuarioCompleto?.Update(users);
         _context.SaveChanges();
     }
 
@@ -68,26 +78,26 @@ public class UsuarioRepository
     public void CriarEmpresa(Empresa enter)
     {
         _context.Empresas.Add(enter);
-        // SalvarLogs("Criar empresa ", 3);
+        SalvarLogs("Criar empresa ", 3);
         _context.SaveChanges();
     }
 
-    public Usuario? ObterPorId(int id)
+    public UsuarioCompleto? ObterPorId(int id)
     {
         // SalvarLogs("Obter usuário por id", id);
-        return _context.Usuarios.FirstOrDefault(x => x.Id.Equals(id));
+        return _context.UsuarioCompleto.FirstOrDefault(x => x.Id.Equals(id));
     }
 
-    public void Excluir(int id)
-    {
-        var user = ObterPorId(id);
-        if (user != null)
-        {
-            _context?.Usuarios?.Remove(user);
-            // SalvarLogs("Excluir usuário por id", user.Id);
-            _context?.SaveChanges();
-        }
-    }
+    // public void Excluir(int id)
+    // {
+    //     var user = ObterPorId(id);
+    //     if (user != null)
+    //     {
+    //         _context?.Usuarios?.Remove(user);
+    //         SalvarLogs("Excluir usuário por id", user.Id);
+    //         _context?.SaveChanges();
+    //     }
+    // }
 
     public bool Logar(Login login)
     {
@@ -106,16 +116,6 @@ public class UsuarioRepository
             return false;
     }
 
-    public Usuario Resetar(string email, ResetarSenhaInput senha)
-    {
-        var testeEmail = _context.Usuarios.FirstOrDefault(x => x.Email.Equals(email));
-        _context.Usuarios?.Remove(testeEmail);
-        testeEmail.Senha = senha.Senha;
-        _context.Usuarios?.Update(testeEmail);
-        SalvarLogs("Resetar Senha", idUsuario);
-        _context.SaveChanges();
-        return testeEmail;
-    }
 
 
     public void SalvarLogs(string acao, int id)
@@ -134,9 +134,16 @@ public class UsuarioRepository
     public List<Log> ExibirLogs()
     {
         // Usuario user = new Usuario();
-        // SalvarLogs("Listar ", user.Id);
+        SalvarLogs("Listar ", 1);
         return _context.Logs.ToList();
     }
+
+    public void CriarUsuario(UsuarioCompleto usuarioCompleto)
+    {
+        _context.UsuarioCompleto.Add(usuarioCompleto);
+        _context.SaveChanges();
+    }
+
 
 
 }

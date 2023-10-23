@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\angelo.souza\\source\\repos\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj": {}
+    "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\angelo.souza\\source\\repos\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj": {
+    "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\angelo.souza\\source\\repos\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\angelo.souza\\source\\repos\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
-        "packagesPath": "C:\\Users\\angelo.souza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\angelo.souza\\source\\repos\\M3P-BackEnd-Squad2\\Backend\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\Backend.csproj",
+        "packagesPath": "C:\\Users\\djblabla\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\djblabla\\Desktop\\M3P-BackEnd-Squad2\\Backend\\Backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\angelo.souza\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\djblabla\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,9 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {

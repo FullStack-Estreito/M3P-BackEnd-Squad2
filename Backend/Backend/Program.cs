@@ -11,11 +11,15 @@ using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+// builder.Services.AddControllers().AddJsonOptions(x =>
+//    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
 builder.Services.AddControllers()
     .AddFluentValidation(options =>
@@ -73,15 +77,20 @@ builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(
 
 // Automapper
 builder.Services.AddAutoMapper(typeof(Program));
-
+builder.Services.AddCors();
 var app = builder.Build();
+
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors(c =>{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

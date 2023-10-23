@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class MyMigration : Migration
+    public partial class teste : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,13 +35,12 @@ namespace Backend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CEP = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
-                    Cidade = table.Column<string>(type: "VARCHAR(40)", maxLength: 40, nullable: false),
-                    Estado = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
+                    Localidade = table.Column<string>(type: "VARCHAR(40)", maxLength: 40, nullable: false),
+                    UF = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
                     Logradouro = table.Column<string>(type: "VARCHAR(55)", maxLength: 55, nullable: false),
                     Numero = table.Column<string>(type: "VARCHAR(8)", maxLength: 8, nullable: false),
-                    Complemento = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
-                    Bairro = table.Column<string>(type: "VARCHAR(65)", maxLength: 65, nullable: false),
-                    Ponto_Referencia = table.Column<string>(type: "VARCHAR(65)", maxLength: 65, nullable: false)
+                    Complemento = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: true),
+                    Bairro = table.Column<string>(type: "VARCHAR(65)", maxLength: 65, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,6 +59,35 @@ namespace Backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Logins", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UsuarioCompleto",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
+                    Genero = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
+                    CPF = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
+                    Telefone = table.Column<string>(type: "VARCHAR(16)", maxLength: 16, nullable: false),
+                    Email = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
+                    Senha = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
+                    Tipo = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
+                    Status_Sistema = table.Column<bool>(type: "bit", nullable: false),
+                    Matricula_Aluno = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
+                    Codigo_Registro_Professor = table.Column<int>(type: "int", nullable: false),
+                    CEP = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
+                    Localidade = table.Column<string>(type: "VARCHAR(40)", maxLength: 40, nullable: false),
+                    UF = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
+                    Logradouro = table.Column<string>(type: "VARCHAR(55)", maxLength: 55, nullable: false),
+                    Numero = table.Column<string>(type: "VARCHAR(8)", maxLength: 8, nullable: false),
+                    Complemento = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: true),
+                    Bairro = table.Column<string>(type: "VARCHAR(65)", maxLength: 65, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UsuarioCompleto", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,12 +234,12 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "Empresas",
                 columns: new[] { "Id", "Demais_Infos", "Logotipo_URL", "Nome_Empresa", "Paleta_Cores", "Slogan" },
-                values: new object[] { 1, "Sylicon Island", "wwww.Success.com", "Sucesso Total", "RGB", "Vitória" });
+                values: new object[] { 1, "Silicon Island", "wwww.Success.com", "Sucesso Total", "RGB", "Vitória" });
 
             migrationBuilder.InsertData(
                 table: "Enderecos",
-                columns: new[] { "Id", "Bairro", "CEP", "Cidade", "Complemento", "Estado", "Logradouro", "Numero", "Ponto_Referencia" },
-                values: new object[] { 1, "Lagoon", "88062015", "Floripa", "Centrinho", "SC", "Nsa Senhora", "3432", "Sei lá" });
+                columns: new[] { "Id", "Bairro", "CEP", "Complemento", "Localidade", "Logradouro", "Numero", "UF" },
+                values: new object[] { 1, "Lagoon", "88062015", "Centrinho", "Floripa", "Nsa Senhora", "3432", "SC" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Atendimentos_Aluno_Id",
@@ -272,6 +300,9 @@ namespace Backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "Logs");
+
+            migrationBuilder.DropTable(
+                name: "UsuarioCompleto");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");

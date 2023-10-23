@@ -14,10 +14,10 @@ namespace Backend.Models
 		public string CEP { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(40)]
-        public string Cidade { get; set; }
+        public string Localidade { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(20)]
-        public string Estado { get; set; }
+        public string UF { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(55)]
         public string Logradouro { get; set; }
@@ -26,13 +26,12 @@ namespace Backend.Models
         public string Numero { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(60)]
-        public string Complemento { get; set; }
+        public string? Complemento { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(65)]
         public string Bairro { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(65)]
-        public string Ponto_Referencia { get; set; }
     
 
         // Relacionamento com UsuarioModel

@@ -70,11 +70,11 @@ public class UsuarioController : ControllerBase
     [Route("/CriarUsuario")]
     public IActionResult Cadastrar([FromBody] UsuarioInput user)
     {
-        var endereco = _mapper.Map<Endereco>(user.Endereco);
+        // var endereco = _mapper.Map<Endereco>(user.Endereco);
         // _usuarioRepository.CriarEndereco(endereco);
 
         var usuario = _mapper.Map<Usuario>(user);
-        usuario.Endereco_Id = endereco.Id;
+        // usuario.Endereco_Id = endereco.Id;
         _usuarioRepository.Criar(usuario);
         var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
         _usuarioRepository.SalvarLogs("salvar", usuario.Id);
@@ -121,7 +121,6 @@ public class UsuarioController : ControllerBase
     [Route("/CriarEmpresa")]
     public IActionResult CadastrarEmpresa([FromBody] EmpresaInput enter)
     {
-
         var empresa = _mapper.Map<Empresa>(enter);
         _usuarioRepository.CriarEmpresa(empresa);
         var empresaSaida = _mapper.Map<EmpresaOutPut>(empresa);

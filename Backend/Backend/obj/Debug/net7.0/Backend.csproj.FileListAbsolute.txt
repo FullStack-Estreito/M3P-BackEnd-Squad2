@@ -110,7 +110,6 @@
 /Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/bin/Debug/net7.0/FluentValidation.AspNetCore.dll
 /Users/mariacarolinaboabaid/Downloads/Senai/Projeto/M3P-BackEnd-Squad2/Backend/Backend/bin/Debug/net7.0/FluentValidation.DependencyInjectionExtensions.dll
 >>>>>>> origin
-<<<<<<< HEAD
 C:\Users\angelo.souza\source\repos\M3P-BackEnd-Squad2\Backend\Backend\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\angelo.souza\source\repos\M3P-BackEnd-Squad2\Backend\Backend\bin\Debug\net7.0\appsettings.json
 C:\Users\angelo.souza\source\repos\M3P-BackEnd-Squad2\Backend\Backend\bin\Debug\net7.0\Backend.exe
@@ -221,7 +220,6 @@ C:\Users\angelo.souza\source\repos\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\
 C:\Users\angelo.souza\source\repos\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Backend.pdb
 C:\Users\angelo.souza\source\repos\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Backend.genruntimeconfig.cache
 C:\Users\angelo.souza\source\repos\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\ref\Backend.dll
-=======
 D:\teste\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Backend.csproj.AssemblyReference.cache
 D:\teste\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Backend.GeneratedMSBuildEditorConfig.editorconfig
 D:\teste\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Backend.AssemblyInfoInputs.cache
@@ -332,7 +330,6 @@ D:\teste\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\scopedcss\bundle\Ba
 D:\teste\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Backend.csproj.CopyComplete
 D:\teste\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Backend.genruntimeconfig.cache
 D:\teste\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\ref\Backend.dll
-<<<<<<< HEAD
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\Backend\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\Backend\bin\Debug\net7.0\appsettings.json
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\Backend\bin\Debug\net7.0\Backend.exe
@@ -443,6 +440,5 @@ C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\re
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Backend.pdb
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Backend.genruntimeconfig.cache
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\ref\Backend.dll
-=======
 >>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
 >>>>>>> e0f3b7e540a76181b45605f7e6acdbdfc8d1de98

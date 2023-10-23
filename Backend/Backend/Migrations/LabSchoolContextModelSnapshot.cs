@@ -162,19 +162,13 @@ namespace Backend.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("VARCHAR");
-
                     b.Property<string>("Complemento")
-                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<string>("Estado")
+                    b.Property<string>("Localidade")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(40)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logradouro")
@@ -187,9 +181,9 @@ namespace Backend.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<string>("Ponto_Referencia")
+                    b.Property<string>("UF")
                         .IsRequired()
-                        .HasMaxLength(65)
+                        .HasMaxLength(20)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
@@ -202,12 +196,11 @@ namespace Backend.Migrations
                             Id = 1,
                             Bairro = "Lagoon",
                             CEP = "88062015",
-                            Cidade = "Floripa",
                             Complemento = "Centrinho",
-                            Estado = "SC",
+                            Localidade = "Floripa",
                             Logradouro = "Nsa Senhora",
                             Numero = "3432",
-                            Ponto_Referencia = "Sei lá"
+                            UF = "SC"
                         });
                 });
 
@@ -374,6 +367,99 @@ namespace Backend.Migrations
                         .IsUnique();
 
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("Backend.Models.UsuarioCompleto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasMaxLength(65)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("CEP")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<int>("Codigo_Registro_Professor")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Complemento")
+                        .HasMaxLength(60)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Genero")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Localidade")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Logradouro")
+                        .IsRequired()
+                        .HasMaxLength(55)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Matricula_Aluno")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<bool>("Status_Sistema")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("UF")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("VARCHAR");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UsuarioCompleto");
                 });
 
             modelBuilder.Entity("Backend.Models.Atendimento", b =>

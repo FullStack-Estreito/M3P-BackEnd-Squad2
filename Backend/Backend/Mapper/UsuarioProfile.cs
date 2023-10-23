@@ -35,9 +35,9 @@ public class UsuarioProfile : Profile
             // ).ForMember(
             //     dest => dest.Status_Sistema,
             //     opt => opt.MapFrom(src => src.Status_Sistema)
-            ).ForMember(
-                dest => dest.Endereco_Id,
-                opt => opt.MapFrom(src => src.Endereco_Id)
+            // ).ForMember(
+            //     dest => dest.Endereco_Id,
+            //     opt => opt.MapFrom(src => src.Endereco_Id)
             ).ForMember(
                 dest => dest.Matricula_Aluno,
                 opt => opt.MapFrom(src => src.Matricula_Aluno)
@@ -51,6 +51,7 @@ public class UsuarioProfile : Profile
                 dest => dest.Codigo_Registro_Professor,
                 opt => opt.MapFrom(src => src.Codigo_Registro_Professor)
             );
+
 
 
         CreateMap<Usuario, UsuarioOutput>()

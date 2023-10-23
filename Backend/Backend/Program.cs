@@ -11,11 +11,15 @@ using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+// builder.Services.AddControllers().AddJsonOptions(x =>
+//    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
 builder.Services.AddControllers()
     .AddFluentValidation(options =>
@@ -85,7 +89,7 @@ app.UseCors(c =>{
     c.AllowAnyHeader();
     c.AllowAnyMethod();
     c.AllowAnyOrigin();
-})
+});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

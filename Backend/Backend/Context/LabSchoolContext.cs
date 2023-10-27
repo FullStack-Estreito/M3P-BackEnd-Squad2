@@ -13,12 +13,10 @@ namespace Backend.Context
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Atendimento> Atendimentos { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
-        public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Exercicio> Exercicios { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Login> Logins { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<UsuarioCompleto> UsuarioCompleto { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,26 +33,6 @@ namespace Backend.Context
                 }
             );
 
-            modelBuilder.Entity<Endereco>().HasData(
-                new Endereco
-                {
-                    Id = 1,
-                    CEP = "88062015",
-                    UF = "SC",
-                    Logradouro = "Nsa Senhora",
-                    Numero = "3432",
-                    Complemento = "Centrinho",
-                    Bairro = "Lagoon",
-                    Localidade = "Floripa",
-                }
-            );
-
-            modelBuilder.Entity<Usuario>()
-                .HasOne(x => x.Endereco)
-                .WithOne(y => y.Usuario)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
-
             modelBuilder.Entity<Usuario>()
                 .HasOne(x => x.Empresa)
                 .WithMany(y => y.Usuarios)
@@ -63,7 +41,13 @@ namespace Backend.Context
 
             modelBuilder.Entity<Avaliacao>()
                 .HasOne(x => x.Professor)
-                .WithMany(y => y.Avaliacoes)
+                .WithMany(y => y.Avaliacoes_Professores)
+                .Metadata
+                .DeleteBehavior = DeleteBehavior.Restrict;
+
+            modelBuilder.Entity<Avaliacao>()
+                .HasOne(x => x.Aluno)
+                .WithMany(y => y.Avaliacoes_Alunos)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
@@ -100,9 +84,6 @@ namespace Backend.Context
                 .WithMany(y => y.Logs)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
-
-            modelBuilder.Entity<Login>();
-            modelBuilder.Entity<UsuarioCompleto>();
 
             base.OnModelCreating(modelBuilder);
         }

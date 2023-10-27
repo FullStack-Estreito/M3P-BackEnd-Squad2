@@ -3,7 +3,7 @@ namespace Backend.DTO.Exercicio
 {
 	public class ExercicioUpdateDTO
 	{
-        public string Nome { get; set; }
+        public string Titulo { get; set; }
 
         public string Descricao { get; set; }
 

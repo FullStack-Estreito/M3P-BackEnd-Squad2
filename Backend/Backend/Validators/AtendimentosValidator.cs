@@ -16,8 +16,7 @@ namespace Backend.Validators
 
             RuleFor(x => x.Descricao).NotEmpty()
                 .NotNull()
-                .WithMessage("O campo DESCRIÇÃO possui preenchimento obrigatório.")
-                .Length(15, 255).WithMessage("O campo DESCRIÇÃO deve possuir no mínimo 15 e no máximo 255 caracteres.");
+                .WithMessage("O campo DESCRIÇÃO possui preenchimento obrigatório.");
 
             RuleFor(x => x.Aluno_Id).NotEmpty()
                 .NotNull()

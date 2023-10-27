@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Repositories
 {
-	public class ExercicioRepository : IExercicioRepository
-	{
+    public class ExercicioRepository : IExercicioRepository
+    {
         // Injeção de dependência do banco de dados
         private readonly LabSchoolContext _context;
 
@@ -51,6 +51,13 @@ namespace Backend.Repositories
         {
             _context.Exercicios.Add(exercicio);
             _context.SaveChanges();
+        }
+
+        public List<Exercicio>? ObterExerciciosPorAluno(int alunoId)
+        {
+            return _context.Exercicios
+                .Where(e => e.Aluno_Id == alunoId)
+                .ToList();
         }
     }
 }

@@ -14,8 +14,6 @@ using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 
 
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 // builder.Services.AddControllers().AddJsonOptions(x =>
@@ -65,19 +63,27 @@ builder.Services.AddAuthentication(x =>
     };
 });
 //Repositories
-builder.Services.AddScoped<UsuarioRepository>();
+builder.Services.AddScoped<IAtendimentosRepository, AtendimentosRepository>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
 builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
-builder.Services.AddScoped<IWhiteLabel, WhiteLabelRepository>();
+builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+builder.Services.AddScoped<ILogRepository, LogRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
+string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/BANCO/fichaCadastro.db;";
+builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
 
-// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
-
-builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
+// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
 
 // Automapper
 builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddCors();
+
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
 var app = builder.Build();
 
 

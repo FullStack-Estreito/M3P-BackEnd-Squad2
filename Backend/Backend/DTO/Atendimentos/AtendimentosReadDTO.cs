@@ -8,6 +8,7 @@ namespace Backend.DTO.Atendimentos
 {
     public class AtendimentosReadDTO
     {
+        public int Id { get; set; }
         public string Data { get; set; }
 
         public string Descricao { get; set; }

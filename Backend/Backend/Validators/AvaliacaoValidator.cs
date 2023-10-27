@@ -10,7 +10,7 @@ namespace Backend.Validators
 		public AvaliacaoValidator()
 		{
 
-            RuleFor(x => x.Nome).NotEmpty()
+            RuleFor(x => x.Titulo).NotEmpty()
                 .NotNull()
                 .WithMessage("O campo NOME possui preenchimento obrigatório.")
                 .Length(8, 64).WithMessage("O campo NOME deve possuir no mínimo 8 e no máximo 64 caracteres.");
@@ -28,9 +28,10 @@ namespace Backend.Validators
                 .NotNull()
                 .WithMessage("O campo PONTUAÇÃO MÁXIMA possui preenchimento obrigatório.");
 
-            RuleFor(x => x.Nota).NotEmpty()
+            RuleFor(x => x.Nota)
                 .NotNull()
-                .WithMessage("O campo NOTA possui preenchimento obrigatório.");
+                .WithMessage("O campo NOTA possui preenchimento obrigatório.")
+                .GreaterThanOrEqualTo(0).WithMessage("'Nota' deve ser maior ou igual a 0.");
 
             RuleFor(x => x.Professor_Id).NotEmpty()
                 .NotNull()

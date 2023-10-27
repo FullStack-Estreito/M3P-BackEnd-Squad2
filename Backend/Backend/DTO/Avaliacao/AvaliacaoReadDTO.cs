@@ -9,7 +9,7 @@ namespace Backend.DTO.Avaliacao
 	{
         public int Id { get; set; }
 
-        public string Nome { get; set; }
+        public string Titulo { get; set; }
 
         public string Descricao { get; set; }
 
@@ -22,6 +22,8 @@ namespace Backend.DTO.Avaliacao
         public double Nota { get; set; }
 
         public int Professor_Id { get; set; }
+
+        public int Aluno_Id { get; set; }
     }
 }
 

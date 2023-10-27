@@ -18,7 +18,6 @@ namespace Backend.Repositories
             _context = context;
         }
 
-        
         public List<Avaliacao>? ObterTodos()
         {
             return  _context.Avaliacoes.ToList();

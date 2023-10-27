@@ -3,7 +3,6 @@ using System;
 using Backend.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -16,22 +15,16 @@ namespace Backend.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
 
             modelBuilder.Entity("Backend.Models.Atendimento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Aluno_Id")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Data")
                         .IsRequired()
@@ -42,7 +35,7 @@ namespace Backend.Migrations
                         .HasColumnType("VARCHAR");
 
                     b.Property<int>("Pedagogo_Id")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -57,9 +50,10 @@ namespace Backend.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("Aluno_Id")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Data")
                         .IsRequired()
@@ -67,91 +61,69 @@ namespace Backend.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasMaxLength(15)
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Materia")
                         .IsRequired()
                         .HasColumnType("VARCHAR");
 
-                    b.Property<string>("Nome")
+                    b.Property<double>("Nota")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Pontuacao_Maxima")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Professor_Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<double>("Nota")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Pontuacao_Maxima")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Professor_Id")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("Aluno_Id");
 
                     b.HasIndex("Professor_Id");
 
-<<<<<<< HEAD
-                    b.ToTable("Avaliacao");
-=======
                     b.ToTable("Avaliacoes");
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                 });
 
             modelBuilder.Entity("Backend.Models.Empresa", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Demais_Infos")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logotipo_URL")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(100)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Nome_Empresa")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Paleta_Cores")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Slogan")
                         .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
+                        .HasMaxLength(500)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
-                    b.ToTable("Empresa");
-=======
                     b.ToTable("Empresas");
 
                     b.HasData(
@@ -164,124 +136,16 @@ namespace Backend.Migrations
                             Paleta_Cores = "RGB",
                             Slogan = "Vitória"
                         });
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                });
-
-            modelBuilder.Entity("Backend.Models.Endereco", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(65)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("CEP")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(15)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-<<<<<<< HEAD
-                    b.Property<string>("Complemento")
-=======
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(40)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Complemento")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
->>>>>>> e0f3b7e540a76181b45605f7e6acdbdfc8d1de98
-                        .HasMaxLength(60)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Localidade")
-                        .IsRequired()
-<<<<<<< HEAD
-                        .HasMaxLength(40)
-=======
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(20)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
->>>>>>> e0f3b7e540a76181b45605f7e6acdbdfc8d1de98
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Logradouro")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(55)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Numero")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(8)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("UF")
-                        .IsRequired()
-<<<<<<< HEAD
-                        .HasMaxLength(20)
-=======
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(65)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
->>>>>>> e0f3b7e540a76181b45605f7e6acdbdfc8d1de98
-                        .HasColumnType("VARCHAR");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Enderecos");
-<<<<<<< HEAD
-=======
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Bairro = "Lagoon",
-                            CEP = "88062015",
-                            Complemento = "Centrinho",
-                            Localidade = "Floripa",
-                            Logradouro = "Nsa Senhora",
-                            Numero = "3432",
-                            UF = "SC"
-                        });
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                 });
 
             modelBuilder.Entity("Backend.Models.Exercicio", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Aluno_Id")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Data_Conclusao")
                         .IsRequired()
@@ -296,13 +160,13 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR");
 
-                    b.Property<string>("Nome")
+                    b.Property<int>("Professor_Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("VARCHAR");
-
-                    b.Property<int>("Professor_Id")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -317,31 +181,23 @@ namespace Backend.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Acao")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(30)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Detalhes")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(60)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<int>("Usuario_Id")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -350,15 +206,11 @@ namespace Backend.Migrations
                     b.ToTable("Logs");
                 });
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("Backend.Models.Login", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -375,110 +227,11 @@ namespace Backend.Migrations
                     b.ToTable("Logins");
                 });
 
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
             modelBuilder.Entity("Backend.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CPF")
-                        .IsRequired()
-<<<<<<< HEAD
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Codigo_Registro_Professor")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-=======
-                        .HasMaxLength(64)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<int>("Codigo_Registro_Professor")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(64)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<int>("Empresa_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Endereco_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Genero")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(64)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Matricula_Aluno")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(15)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(20)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<bool>("Status_Sistema")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(16)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(20)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Empresa_Id");
-
-                    b.HasIndex("Endereco_Id")
-                        .IsUnique();
-
-                    b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("Backend.Models.UsuarioCompleto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Bairro")
                         .IsRequired()
@@ -495,10 +248,17 @@ namespace Backend.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("VARCHAR");
 
+                    b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("VARCHAR");
+
                     b.Property<int>("Codigo_Registro_Professor")
-                        .HasColumnType("int");
+                        .HasMaxLength(15)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("Complemento")
+                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("VARCHAR");
 
@@ -507,14 +267,12 @@ namespace Backend.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("VARCHAR");
 
+                    b.Property<int>("Empresa_Id")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Genero")
                         .IsRequired()
                         .HasMaxLength(64)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Localidade")
-                        .IsRequired()
-                        .HasMaxLength(40)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logradouro")
@@ -537,13 +295,18 @@ namespace Backend.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("VARCHAR");
 
+                    b.Property<string>("Ponto_Referência")
+                        .IsRequired()
+                        .HasMaxLength(65)
+                        .HasColumnType("VARCHAR");
+
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("VARCHAR");
 
                     b.Property<bool>("Status_Sistema")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
@@ -552,7 +315,6 @@ namespace Backend.Migrations
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasMaxLength(20)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("UF")
@@ -562,7 +324,9 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UsuarioCompleto");
+                    b.HasIndex("Empresa_Id");
+
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Backend.Models.Atendimento", b =>
@@ -586,11 +350,19 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Avaliacao", b =>
                 {
+                    b.HasOne("Backend.Models.Usuario", "Aluno")
+                        .WithMany("Avaliacoes_Alunos")
+                        .HasForeignKey("Aluno_Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Backend.Models.Usuario", "Professor")
-                        .WithMany("Avaliacoes")
+                        .WithMany("Avaliacoes_Professores")
                         .HasForeignKey("Professor_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Aluno");
 
                     b.Navigation("Professor");
                 });
@@ -633,26 +405,12 @@ namespace Backend.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Backend.Models.Endereco", "Endereco")
-                        .WithOne("Usuario")
-                        .HasForeignKey("Backend.Models.Usuario", "Endereco_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Empresa");
-
-                    b.Navigation("Endereco");
                 });
 
             modelBuilder.Entity("Backend.Models.Empresa", b =>
                 {
                     b.Navigation("Usuarios");
-                });
-
-            modelBuilder.Entity("Backend.Models.Endereco", b =>
-                {
-                    b.Navigation("Usuario")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Backend.Models.Usuario", b =>
@@ -661,7 +419,9 @@ namespace Backend.Migrations
 
                     b.Navigation("Atendimentos_Pedagogos");
 
-                    b.Navigation("Avaliacoes");
+                    b.Navigation("Avaliacoes_Alunos");
+
+                    b.Navigation("Avaliacoes_Professores");
 
                     b.Navigation("Exercicios_Alunos");
 

@@ -38,7 +38,7 @@ namespace Backend.Models
         public string Matricula_Aluno { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(15)]
-        public int Codigo_Registro_Professor { get; set; }
+        public string Codigo_Registro_Professor { get; set; }
 
         // ENDEREÇO
         [Column(TypeName = "VARCHAR"), Required, StringLength(15)]

@@ -44,6 +44,16 @@ namespace Backend.Migrations
                     b.HasIndex("Pedagogo_Id");
 
                     b.ToTable("Atendimentos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Aluno_Id = 1,
+                            Data = "10/10/2023",
+                            Descricao = "DESCRICAO EXERCICIO TESTE",
+                            Pedagogo_Id = 3
+                        });
                 });
 
             modelBuilder.Entity("Backend.Models.Avaliacao", b =>
@@ -89,6 +99,20 @@ namespace Backend.Migrations
                     b.HasIndex("Professor_Id");
 
                     b.ToTable("Avaliacoes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Aluno_Id = 1,
+                            Data = "10/10/2023",
+                            Descricao = "DESCRICAO EXERCICIO TESTE",
+                            Materia = "TESTE",
+                            Nota = 0.0,
+                            Pontuacao_Maxima = 0.0,
+                            Professor_Id = 2,
+                            Titulo = "EXERCICIO TESTE"
+                        });
                 });
 
             modelBuilder.Entity("Backend.Models.Empresa", b =>
@@ -175,6 +199,18 @@ namespace Backend.Migrations
                     b.HasIndex("Professor_Id");
 
                     b.ToTable("Exercicios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Aluno_Id = 1,
+                            Data_Conclusao = "10/10/2023",
+                            Descricao = "DESCRICAO EXERCICIO TESTE",
+                            Materia = "TESTE",
+                            Professor_Id = 2,
+                            Titulo = "EXERCICIO TESTE"
+                        });
                 });
 
             modelBuilder.Entity("Backend.Models.Log", b =>
@@ -253,7 +289,8 @@ namespace Backend.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<int>("Codigo_Registro_Professor")
+                    b.Property<string>("Codigo_Registro_Professor")
+                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("VARCHAR");
 
@@ -327,6 +364,100 @@ namespace Backend.Migrations
                     b.HasIndex("Empresa_Id");
 
                     b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Bairro = "Bairro",
+                            CEP = "88053505",
+                            CPF = "999.999.999-99",
+                            Cidade = "Floripa",
+                            Codigo_Registro_Professor = "",
+                            Complemento = "Complemento",
+                            Email = "email@gmail.com",
+                            Empresa_Id = 1,
+                            Genero = "Masculino",
+                            Logradouro = "Rua do Senai",
+                            Matricula_Aluno = "",
+                            Nome = "ALUNO TESTE",
+                            Numero = "222",
+                            Ponto_Referência = "Teste",
+                            Senha = "12345678",
+                            Status_Sistema = true,
+                            Telefone = "(99) 9 9999 - 99999",
+                            Tipo = "Usuario",
+                            UF = "SC"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Bairro = "Bairro",
+                            CEP = "88053505",
+                            CPF = "999.999.999-99",
+                            Cidade = "Floripa",
+                            Codigo_Registro_Professor = "",
+                            Complemento = "Complemento",
+                            Email = "email@gmail.com",
+                            Empresa_Id = 1,
+                            Genero = "Masculino",
+                            Logradouro = "Rua do Senai",
+                            Matricula_Aluno = "",
+                            Nome = "PROFESSOR TESTE",
+                            Numero = "222",
+                            Ponto_Referência = "Teste",
+                            Senha = "12345678",
+                            Status_Sistema = true,
+                            Telefone = "(99) 9 9999 - 99999",
+                            Tipo = "Professor",
+                            UF = "SC"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Bairro = "Bairro",
+                            CEP = "88053505",
+                            CPF = "999.999.999-99",
+                            Cidade = "Floripa",
+                            Codigo_Registro_Professor = "",
+                            Complemento = "Complemento",
+                            Email = "email@gmail.com",
+                            Empresa_Id = 1,
+                            Genero = "Masculino",
+                            Logradouro = "Rua do Senai",
+                            Matricula_Aluno = "",
+                            Nome = "PEDAGOGO TESTE",
+                            Numero = "222",
+                            Ponto_Referência = "Teste",
+                            Senha = "12345678",
+                            Status_Sistema = true,
+                            Telefone = "(99) 9 9999 - 99999",
+                            Tipo = "Pedagogo",
+                            UF = "SC"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Bairro = "Bairro",
+                            CEP = "88053505",
+                            CPF = "999.999.999-99",
+                            Cidade = "Floripa",
+                            Codigo_Registro_Professor = "",
+                            Complemento = "Complemento",
+                            Email = "email@gmail.com",
+                            Empresa_Id = 1,
+                            Genero = "Masculino",
+                            Logradouro = "Rua do Senai",
+                            Matricula_Aluno = "",
+                            Nome = "ADMINISTRADOR TESTE",
+                            Numero = "222",
+                            Ponto_Referência = "Teste",
+                            Senha = "12345678",
+                            Status_Sistema = true,
+                            Telefone = "(99) 9 9999 - 99999",
+                            Tipo = "Administrador",
+                            UF = "SC"
+                        });
                 });
 
             modelBuilder.Entity("Backend.Models.Atendimento", b =>

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Backend.Migrations
 {
     /// <inheritdoc />
@@ -57,7 +59,7 @@ namespace Backend.Migrations
                     Tipo = table.Column<string>(type: "VARCHAR", nullable: false),
                     Status_Sistema = table.Column<bool>(type: "INTEGER", nullable: false),
                     Matricula_Aluno = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
-                    Codigo_Registro_Professor = table.Column<int>(type: "VARCHAR", maxLength: 15, nullable: false),
+                    Codigo_Registro_Professor = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
                     CEP = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
                     Cidade = table.Column<string>(type: "VARCHAR", maxLength: 40, nullable: false),
                     UF = table.Column<string>(type: "VARCHAR", maxLength: 20, nullable: false),
@@ -195,6 +197,32 @@ namespace Backend.Migrations
                 table: "Empresas",
                 columns: new[] { "Id", "Demais_Infos", "Logotipo_URL", "Nome_Empresa", "Paleta_Cores", "Slogan" },
                 values: new object[] { 1, "Silicon Island", "wwww.Success.com", "Sucesso Total", "RGB", "Vitória" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "Id", "Bairro", "CEP", "CPF", "Cidade", "Codigo_Registro_Professor", "Complemento", "Email", "Empresa_Id", "Genero", "Logradouro", "Matricula_Aluno", "Nome", "Numero", "Ponto_Referência", "Senha", "Status_Sistema", "Telefone", "Tipo", "UF" },
+                values: new object[,]
+                {
+                    { 1, "Bairro", "88053505", "999.999.999-99", "Floripa", "", "Complemento", "email@gmail.com", 1, "Masculino", "Rua do Senai", "", "ALUNO TESTE", "222", "Teste", "12345678", true, "(99) 9 9999 - 99999", "Usuario", "SC" },
+                    { 2, "Bairro", "88053505", "999.999.999-99", "Floripa", "", "Complemento", "email@gmail.com", 1, "Masculino", "Rua do Senai", "", "PROFESSOR TESTE", "222", "Teste", "12345678", true, "(99) 9 9999 - 99999", "Professor", "SC" },
+                    { 3, "Bairro", "88053505", "999.999.999-99", "Floripa", "", "Complemento", "email@gmail.com", 1, "Masculino", "Rua do Senai", "", "PEDAGOGO TESTE", "222", "Teste", "12345678", true, "(99) 9 9999 - 99999", "Pedagogo", "SC" },
+                    { 4, "Bairro", "88053505", "999.999.999-99", "Floripa", "", "Complemento", "email@gmail.com", 1, "Masculino", "Rua do Senai", "", "ADMINISTRADOR TESTE", "222", "Teste", "12345678", true, "(99) 9 9999 - 99999", "Administrador", "SC" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Atendimentos",
+                columns: new[] { "Id", "Aluno_Id", "Data", "Descricao", "Pedagogo_Id" },
+                values: new object[] { 1, 1, "10/10/2023", "DESCRICAO EXERCICIO TESTE", 3 });
+
+            migrationBuilder.InsertData(
+                table: "Avaliacoes",
+                columns: new[] { "Id", "Aluno_Id", "Data", "Descricao", "Materia", "Nota", "Pontuacao_Maxima", "Professor_Id", "Titulo" },
+                values: new object[] { 1, 1, "10/10/2023", "DESCRICAO EXERCICIO TESTE", "TESTE", 0.0, 0.0, 2, "EXERCICIO TESTE" });
+
+            migrationBuilder.InsertData(
+                table: "Exercicios",
+                columns: new[] { "Id", "Aluno_Id", "Data_Conclusao", "Descricao", "Materia", "Professor_Id", "Titulo" },
+                values: new object[] { 1, 1, "10/10/2023", "DESCRICAO EXERCICIO TESTE", "TESTE", 2, "EXERCICIO TESTE" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Atendimentos_Aluno_Id",

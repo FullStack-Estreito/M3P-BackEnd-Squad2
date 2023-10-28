@@ -43,7 +43,7 @@ namespace Backend.Context
                     Telefone = "(99) 9 9999 - 99999",
                     Email = "email@gmail.com",
                     Senha = "12345678",
-                    Tipo = "Usuario",
+                    Tipo = "Aluno",
                     Status_Sistema = true,
                     Matricula_Aluno = "",
                     Codigo_Registro_Professor = "",
@@ -175,59 +175,57 @@ namespace Backend.Context
            );
 
 
-
-
             modelBuilder.Entity<Usuario>()
                 .HasOne(x => x.Empresa)
-                .WithMany(y => y.Usuarios)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
+                .WithMany(y => y.Usuarios);
+                // .Metadata
+                // .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Avaliacao>()
                 .HasOne(x => x.Professor)
-                .WithMany(y => y.Avaliacoes_Professores)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
+                .WithMany(y => y.Avaliacoes_Professores);
+                // .Metadata
+                // .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Avaliacao>()
                 .HasOne(x => x.Aluno)
-                .WithMany(y => y.Avaliacoes_Alunos)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
+                .WithMany(y => y.Avaliacoes_Alunos);
+                // .Metadata
+                // .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Exercicio>()
                 .HasOne(x => x.Aluno)
                 .WithMany(y => y.Exercicios_Alunos)
-                .HasForeignKey(x => x.Aluno_Id)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
+                .HasForeignKey(x => x.Aluno_Id);
+                // .Metadata
+                // .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Exercicio>()
                 .HasOne(x => x.Professor)
                 .WithMany(y => y.Exercicios_Professores)
-                .HasForeignKey(x => x.Professor_Id)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
+                .HasForeignKey(x => x.Professor_Id);
+                // .Metadata
+                // .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Atendimento>()
                 .HasOne(x => x.Aluno)
                 .WithMany(y => y.Atendimentos_Alunos)
-                .HasForeignKey(x => x.Aluno_Id)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
+                .HasForeignKey(x => x.Aluno_Id);
+                // .Metadata
+                // .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Atendimento>()
                 .HasOne(x => x.Pedagogo)
                 .WithMany(y => y.Atendimentos_Pedagogos)
-                .HasForeignKey(x => x.Pedagogo_Id)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
+                .HasForeignKey(x => x.Pedagogo_Id);
+                // .Metadata
+                // .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Log>()
                 .HasOne(x => x.Usuario)
-                .WithMany(y => y.Logs)
-                .Metadata
-                .DeleteBehavior = DeleteBehavior.Restrict;
+                .WithMany(y => y.Logs);
+                // .Metadata
+                // .DeleteBehavior = DeleteBehavior.Restrict;
 
             base.OnModelCreating(modelBuilder);
         }

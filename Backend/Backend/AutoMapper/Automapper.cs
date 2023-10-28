@@ -16,12 +16,22 @@ namespace Backend.AutoMapper
         public Automapper()
         {
             // Atendimentos
-            CreateMap<Atendimento, AtendimentosReadDTO>();
+            CreateMap<Atendimento, AtendimentosReadDTO>()
+                .ForMember(destino => destino.Aluno_nome, origem => origem.MapFrom(src => src.Aluno))
+                .ForMember(destino => destino.Pedagogo_nome, origem => origem.MapFrom(src => src.Pedagogo));
+
+            CreateMap<Usuario, AtendimentoAlunoReadDTO>();
+            CreateMap<Usuario, AtendimentoPedagogoReadDTO>();
             CreateMap<AtendimentosCreateDTO, Atendimento>();
             CreateMap<AtendimentosUpdateDTO, Atendimento>();
 
             // Avaliacao
-            CreateMap<Avaliacao, AvaliacaoReadDTO>();
+            CreateMap<Avaliacao, AvaliacaoReadDTO>()
+                 .ForMember(destino => destino.Aluno_nome, origem => origem.MapFrom(src => src.Aluno))
+                .ForMember(destino => destino.Professor_nome, origem => origem.MapFrom(src => src.Professor));
+
+            CreateMap<Usuario, AvaliacaoAlunoReadDTO>();
+            CreateMap<Usuario, AvaliacaoProfessorReadDTO>();
             CreateMap<AvaliacaoCreateDTO, Avaliacao>();
             CreateMap<AvaliacaoUpdateDTO, Avaliacao>();
 
@@ -32,8 +42,8 @@ namespace Backend.AutoMapper
 
             // Exercicio
             CreateMap<Exercicio, ExercicioReadDTO>()
-                .ForMember(destino => destino.Aluno_Nome, origem => origem.MapFrom(src => src.Aluno))
-                .ForMember(destino => destino.Professor_Nome, origem => origem.MapFrom(src => src.Professor)); ;
+                .ForMember(destino => destino.Aluno_nome, origem => origem.MapFrom(src => src.Aluno))
+                .ForMember(destino => destino.Professor_nome, origem => origem.MapFrom(src => src.Professor));
 
             CreateMap<Usuario, ExercicioAlunoReadDTO>();
             CreateMap<Usuario, ExercicioProfessorReadDTO>();

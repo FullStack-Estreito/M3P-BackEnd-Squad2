@@ -16,5 +16,20 @@ namespace Backend.DTO.Atendimentos
         public int Aluno_id { get; set; }
 
         public int Pedagogo_id { get; set; }
+
+        public AtendimentoAlunoReadDTO Aluno_nome { get; set; }
+
+        public AtendimentoPedagogoReadDTO Pedagogo_nome { get; set; }
+    }
+
+
+    public class AtendimentoAlunoReadDTO
+    {
+        public string Nome { get; set; }
+    }
+
+    public class AtendimentoPedagogoReadDTO
+    {
+        public string Nome { get; set; }
     }
 }

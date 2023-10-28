@@ -15,9 +15,9 @@ namespace Backend.DTO.Avaliacao
 
         public double Nota { get; set; }
 
-        public int Professor_Id { get; set; }
+        public int Professor_id { get; set; }
 
-        public int Aluno_Id { get; set; }
+        public int Aluno_id { get; set; }
     }
 }
 

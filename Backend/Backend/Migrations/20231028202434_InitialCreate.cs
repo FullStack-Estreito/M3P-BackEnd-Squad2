@@ -78,7 +78,7 @@ namespace Backend.Migrations
                         column: x => x.Empresa_Id,
                         principalTable: "Empresas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,13 +100,13 @@ namespace Backend.Migrations
                         column: x => x.Aluno_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Atendimentos_Usuarios_Pedagogo_Id",
                         column: x => x.Pedagogo_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -132,13 +132,13 @@ namespace Backend.Migrations
                         column: x => x.Aluno_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Avaliacoes_Usuarios_Professor_Id",
                         column: x => x.Professor_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,13 +162,13 @@ namespace Backend.Migrations
                         column: x => x.Aluno_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Exercicios_Usuarios_Professor_Id",
                         column: x => x.Professor_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,7 +190,7 @@ namespace Backend.Migrations
                         column: x => x.Usuario_Id,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -203,7 +203,7 @@ namespace Backend.Migrations
                 columns: new[] { "Id", "Bairro", "CEP", "CPF", "Cidade", "Codigo_Registro_Professor", "Complemento", "Email", "Empresa_Id", "Genero", "Logradouro", "Matricula_Aluno", "Nome", "Numero", "Ponto_Referência", "Senha", "Status_Sistema", "Telefone", "Tipo", "UF" },
                 values: new object[,]
                 {
-                    { 1, "Bairro", "88053505", "999.999.999-99", "Floripa", "", "Complemento", "email@gmail.com", 1, "Masculino", "Rua do Senai", "", "ALUNO TESTE", "222", "Teste", "12345678", true, "(99) 9 9999 - 99999", "Usuario", "SC" },
+                    { 1, "Bairro", "88053505", "999.999.999-99", "Floripa", "", "Complemento", "email@gmail.com", 1, "Masculino", "Rua do Senai", "", "ALUNO TESTE", "222", "Teste", "12345678", true, "(99) 9 9999 - 99999", "Aluno", "SC" },
                     { 2, "Bairro", "88053505", "999.999.999-99", "Floripa", "", "Complemento", "email@gmail.com", 1, "Masculino", "Rua do Senai", "", "PROFESSOR TESTE", "222", "Teste", "12345678", true, "(99) 9 9999 - 99999", "Professor", "SC" },
                     { 3, "Bairro", "88053505", "999.999.999-99", "Floripa", "", "Complemento", "email@gmail.com", 1, "Masculino", "Rua do Senai", "", "PEDAGOGO TESTE", "222", "Teste", "12345678", true, "(99) 9 9999 - 99999", "Pedagogo", "SC" },
                     { 4, "Bairro", "88053505", "999.999.999-99", "Floripa", "", "Complemento", "email@gmail.com", 1, "Masculino", "Rua do Senai", "", "ADMINISTRADOR TESTE", "222", "Teste", "12345678", true, "(99) 9 9999 - 99999", "Administrador", "SC" }

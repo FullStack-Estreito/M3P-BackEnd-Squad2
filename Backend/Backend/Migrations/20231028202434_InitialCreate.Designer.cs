@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(LabSchoolContext))]
-    [Migration("20231027234554_InitialCreate")]
+    [Migration("20231028202434_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -389,7 +389,7 @@ namespace Backend.Migrations
                             Senha = "12345678",
                             Status_Sistema = true,
                             Telefone = "(99) 9 9999 - 99999",
-                            Tipo = "Usuario",
+                            Tipo = "Aluno",
                             UF = "SC"
                         },
                         new
@@ -468,13 +468,13 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Models.Usuario", "Aluno")
                         .WithMany("Atendimentos_Alunos")
                         .HasForeignKey("Aluno_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Backend.Models.Usuario", "Pedagogo")
                         .WithMany("Atendimentos_Pedagogos")
                         .HasForeignKey("Pedagogo_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Aluno");
@@ -487,13 +487,13 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Models.Usuario", "Aluno")
                         .WithMany("Avaliacoes_Alunos")
                         .HasForeignKey("Aluno_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Backend.Models.Usuario", "Professor")
                         .WithMany("Avaliacoes_Professores")
                         .HasForeignKey("Professor_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Aluno");
@@ -506,13 +506,13 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Models.Usuario", "Aluno")
                         .WithMany("Exercicios_Alunos")
                         .HasForeignKey("Aluno_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Backend.Models.Usuario", "Professor")
                         .WithMany("Exercicios_Professores")
                         .HasForeignKey("Professor_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Aluno");
@@ -525,7 +525,7 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Models.Usuario", "Usuario")
                         .WithMany("Logs")
                         .HasForeignKey("Usuario_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Usuario");
@@ -536,7 +536,7 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Models.Empresa", "Empresa")
                         .WithMany("Usuarios")
                         .HasForeignKey("Empresa_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Empresa");

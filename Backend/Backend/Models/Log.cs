@@ -14,6 +14,9 @@ namespace Backend.Models
         public int Usuario_Id { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(30)]
+        public string Nome { get; set; }
+
+        [Column(TypeName = "VARCHAR"), StringLength(30)]
         public string Acao { get; set; }
 
         // [Column(TypeName = "DateTime")]        

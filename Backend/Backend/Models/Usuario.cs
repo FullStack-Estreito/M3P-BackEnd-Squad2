@@ -35,9 +35,9 @@ namespace Backend.Models
         public bool Status_Sistema { get; set; } = true;
 
         [Column(TypeName = "VARCHAR"), StringLength(15)]
-        public string Matricula_Aluno { get; set; }
+        public string? Matricula_Aluno { get; set; }
 
-        public int Codigo_Registro_Professor { get; set; }
+        public int? Codigo_Registro_Professor { get; set; }
 
         [Required, ForeignKey("Empresa")]
         public int Empresa_Id { get; set; }

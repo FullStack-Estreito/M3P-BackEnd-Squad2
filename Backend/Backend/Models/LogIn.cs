@@ -8,11 +8,14 @@ public class Login
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
-    
+
     [Column(TypeName = "VARCHAR"), Required, StringLength(64)]
     public string Email { get; set; }
 
     [Column(TypeName = "VARCHAR"), Required, StringLength(20)]
     public string Senha { get; set; }
+
+    [Column(TypeName = "VARCHAR"), StringLength(20)]
+    public string Tipo { get; set; }
 
 }

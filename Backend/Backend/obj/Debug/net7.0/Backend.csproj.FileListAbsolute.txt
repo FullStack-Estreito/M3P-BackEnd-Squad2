@@ -442,3 +442,16 @@ C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\Ba
 C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\Backend\obj\Debug\net7.0\ref\Backend.dll
 >>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
 >>>>>>> e0f3b7e540a76181b45605f7e6acdbdfc8d1de98
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\Twilio.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\Twilio.AspNet.Common.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\Twilio.AspNet.Core.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\System.Web.Mvc.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\System.Web.Razor.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\System.Web.Helpers.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\System.Web.WebPages.Deployment.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\System.Web.WebPages.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
+C:\Users\djblabla\Desktop\M3P-BackEnd-Squad2\Backend\backend\bin\Debug\net7.0\Twilio.AspNet.Mvc.dll

@@ -32,7 +32,6 @@ public class UsuarioController : ControllerBase
     }
 
 
-    // [Authorize]
     [HttpGet("/ListarUsuarios")]
     public IActionResult Listar()
     {
@@ -50,12 +49,18 @@ public class UsuarioController : ControllerBase
             return NotFound("Nada Consta");
     }
 
-    [HttpGet("/ListarEmpresas")]
-    public IActionResult ListarEmpresa()
+
+    [HttpGet("/ObterEndPorId/{id}")]
+    public IActionResult ObterEndId(int id)
     {
-        var empresa = _usuarioRepository.ObterEmpresas();
-        return Ok(empresa);
+        var user = _usuarioRepository.ObterEndPorId(id);
+        if (user != null)
+            return Ok(user);
+        else
+            return NotFound("Nada Consta");
     }
+
+
 
     [HttpGet("/ListarEndereco")]
     public IActionResult ListarEnd()
@@ -64,20 +69,16 @@ public class UsuarioController : ControllerBase
         return Ok(end);
     }
 
-
-
+    // [Authorize]
     [HttpPost]
     [Route("/CriarUsuario")]
     public IActionResult Cadastrar([FromBody] UsuarioInput user)
     {
-        // var endereco = _mapper.Map<Endereco>(user.Endereco);
-        // _usuarioRepository.CriarEndereco(endereco);
 
         var usuario = _mapper.Map<Usuario>(user);
-        // usuario.Endereco_Id = endereco.Id;
         _usuarioRepository.Criar(usuario);
         var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
-        _usuarioRepository.SalvarLogs("salvar", usuario.Id);
+        _usuarioRepository.SalvarLogs("salvar", usuario.Nome, usuario.Id);
 
 
         return CreatedAtAction(
@@ -91,63 +92,53 @@ public class UsuarioController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public ActionResult<UsuarioCompleto> Put(int id, [FromBody] UsuarioCompletoInput user)
+    public ActionResult<Usuario> Put(int id, [FromBody] UsuarioInput user)
     {
+
+        var usuario = _mapper.Map<Usuario>(user);
+        _usuarioRepository.Atualizar(id, usuario);
+        var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
         
-                var usuario = _mapper.Map<UsuarioCompleto>(user);
-
-                _usuarioRepository.Atualizar(id, usuario);
-                return Ok(usuario);           
-    
-    }
-
-
-    [HttpPost]
-    [Route("/CriarEndereco")]
-    public IActionResult CadastrarEnd([FromBody] EnderecoInput end)
-    {
-        var endereco = _mapper.Map<Endereco>(end);
-        _usuarioRepository.CriarEndereco(endereco);
-        var enderecoOutPut = _mapper.Map<EnderecoOutPut>(endereco);
 
         return CreatedAtAction(
-            nameof(UsuarioController.ListarEnd),
-            new { id = enderecoOutPut.Id },
-            enderecoOutPut
+            nameof(UsuarioController.Listar),
+            new { id = usuarioSaida.Id },
+            usuarioSaida
         );
     }
 
-    [HttpPost]
-    [Route("/CriarEmpresa")]
-    public IActionResult CadastrarEmpresa([FromBody] EmpresaInput enter)
-    {
-        var empresa = _mapper.Map<Empresa>(enter);
-        _usuarioRepository.CriarEmpresa(empresa);
-        var empresaSaida = _mapper.Map<EmpresaOutPut>(empresa);
 
-        return CreatedAtAction(
-            nameof(UsuarioController.ListarEmpresa),
-            new { id = empresa.Id },
-            empresaSaida
-        );
-    }
-    // [Authorize]
-    // [HttpDelete("/DeletarUsuario/{id}")]
-    // public IActionResult Delete(int id)
+    // [HttpPost]
+    // [Route("/CriarEmpresa")]
+    // public IActionResult CadastrarEmpresa([FromBody] EmpresaInput enter)
     // {
-    //     var user = _usuarioRepository.ObterPorId(id);
-    //     if (user == null)
-    //     {
-    //         return NotFound("Not Found");
-    //     }
-    //     _usuarioRepository.Excluir(id);
-    //     return NoContent();
+    //     var empresa = _mapper.Map<Empresa>(enter);
+    //     _usuarioRepository.CriarEmpresa(empresa);
+    //     var empresaSaida = _mapper.Map<EmpresaOutPut>(empresa);
+
+    //     return CreatedAtAction(
+    //         nameof(UsuarioController.ListarEmpresa),
+    //         new { id = empresa.Id },
+    //         empresaSaida
+    //     );
     // }
+
+
+    [HttpDelete("/DeletarUsuario/{id}")]
+        public IActionResult Delete(int id)
+    {
+        var user = _usuarioRepository.ObterPorId(id);
+        if (user == null)
+        {
+            return NotFound("Not Found");
+        }
+        _usuarioRepository.Excluir(id);
+        return NoContent();
+    }
 
     [HttpPost("/Login")]
     public IActionResult SignUp([FromBody] Login login)
     {
-
         var logado = _usuarioRepository.Logar(login);
         if (logado)
         {
@@ -174,20 +165,6 @@ public class UsuarioController : ControllerBase
         var log = _usuarioRepository.ExibirLogs();
         return Ok(log);
     }
-
-    [HttpPost("/CriarUsuarioCompleto")]
-    public IActionResult Criar([FromBody] UsuarioCompleto user)
-    {
-
-        _usuarioRepository.CriarUsuario(user);
-
-        return CreatedAtAction(
-            nameof(UsuarioController.Listar),
-            new { id = user.Id },
-            user
-        );
-    }
-
 
 }
 

@@ -92,11 +92,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("Professor_Id");
 
-<<<<<<< HEAD
-                    b.ToTable("Avaliacao");
-=======
                     b.ToTable("Avaliacoes");
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                 });
 
             modelBuilder.Entity("Backend.Models.Empresa", b =>
@@ -109,49 +105,31 @@ namespace Backend.Migrations
 
                     b.Property<string>("Demais_Infos")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logotipo_URL")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(100)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Nome_Empresa")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Paleta_Cores")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Slogan")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(50)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
-                    b.ToTable("Empresa");
-=======
                     b.ToTable("Empresas");
 
                     b.HasData(
@@ -164,7 +142,6 @@ namespace Backend.Migrations
                             Paleta_Cores = "RGB",
                             Slogan = "Vitória"
                         });
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                 });
 
             modelBuilder.Entity("Backend.Models.Endereco", b =>
@@ -177,85 +154,41 @@ namespace Backend.Migrations
 
                     b.Property<string>("Bairro")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(65)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("CEP")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(15)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
-                        .HasColumnType("VARCHAR");
-
-<<<<<<< HEAD
-                    b.Property<string>("Complemento")
-=======
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(40)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Complemento")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
->>>>>>> e0f3b7e540a76181b45605f7e6acdbdfc8d1de98
                         .HasMaxLength(60)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Localidade")
                         .IsRequired()
-<<<<<<< HEAD
                         .HasMaxLength(40)
-=======
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(20)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
->>>>>>> e0f3b7e540a76181b45605f7e6acdbdfc8d1de98
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logradouro")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(55)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Numero")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(8)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("UF")
                         .IsRequired()
-<<<<<<< HEAD
                         .HasMaxLength(20)
-=======
-<<<<<<< HEAD
-=======
-                        .HasMaxLength(65)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
->>>>>>> e0f3b7e540a76181b45605f7e6acdbdfc8d1de98
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 
                     b.ToTable("Enderecos");
-<<<<<<< HEAD
-=======
 
                     b.HasData(
                         new
@@ -269,7 +202,6 @@ namespace Backend.Migrations
                             Numero = "3432",
                             UF = "SC"
                         });
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                 });
 
             modelBuilder.Entity("Backend.Models.Exercicio", b =>
@@ -323,10 +255,7 @@ namespace Backend.Migrations
 
                     b.Property<string>("Acao")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(30)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<DateTime>("Data")
@@ -334,10 +263,12 @@ namespace Backend.Migrations
 
                     b.Property<string>("Detalhes")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(60)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("VARCHAR");
 
                     b.Property<int>("Usuario_Id")
@@ -350,8 +281,6 @@ namespace Backend.Migrations
                     b.ToTable("Logs");
                 });
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("Backend.Models.Login", b =>
                 {
                     b.Property<int>("Id")
@@ -370,12 +299,16 @@ namespace Backend.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("VARCHAR");
 
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("VARCHAR");
+
                     b.HasKey("Id");
 
                     b.ToTable("Logins");
                 });
 
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
             modelBuilder.Entity("Backend.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -386,26 +319,15 @@ namespace Backend.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-<<<<<<< HEAD
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Codigo_Registro_Professor")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-=======
                         .HasMaxLength(64)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<int>("Codigo_Registro_Professor")
+                    b.Property<int?>("Codigo_Registro_Professor")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(64)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<int>("Empresa_Id")
@@ -416,18 +338,11 @@ namespace Backend.Migrations
 
                     b.Property<string>("Genero")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(64)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Matricula_Aluno")
-                        .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(15)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Nome")
@@ -437,10 +352,7 @@ namespace Backend.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(20)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<bool>("Status_Sistema")
@@ -448,18 +360,12 @@ namespace Backend.Migrations
 
                     b.Property<string>("Telefone")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(16)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-<<<<<<< HEAD
-=======
                         .HasMaxLength(20)
->>>>>>> c1622b38cb999d6564f1c1ac1282bd7d8a1ce5ee
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
@@ -470,99 +376,22 @@ namespace Backend.Migrations
                         .IsUnique();
 
                     b.ToTable("Usuarios");
-                });
 
-            modelBuilder.Entity("Backend.Models.UsuarioCompleto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-                        .HasMaxLength(65)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("CEP")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("CPF")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<int>("Codigo_Registro_Professor")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Complemento")
-                        .HasMaxLength(60)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Genero")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Localidade")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Logradouro")
-                        .IsRequired()
-                        .HasMaxLength(55)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Matricula_Aluno")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Numero")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<bool>("Status_Sistema")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("UF")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("VARCHAR");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UsuarioCompleto");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CPF = "111.222.333-23",
+                            Email = "admin@gmail.com",
+                            Empresa_Id = 1,
+                            Endereco_Id = 1,
+                            Genero = "Masculino",
+                            Nome = "Admin Supremo",
+                            Senha = "12345",
+                            Status_Sistema = true,
+                            Telefone = "(48) 9 8873-5467",
+                            Tipo = "Administrador"
+                        });
                 });
 
             modelBuilder.Entity("Backend.Models.Atendimento", b =>
@@ -619,7 +448,7 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Models.Usuario", "Usuario")
                         .WithMany("Logs")
                         .HasForeignKey("Usuario_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Usuario");
@@ -630,13 +459,13 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Models.Empresa", "Empresa")
                         .WithMany("Usuarios")
                         .HasForeignKey("Empresa_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Backend.Models.Endereco", "Endereco")
                         .WithOne("Usuario")
                         .HasForeignKey("Backend.Models.Usuario", "Endereco_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Empresa");

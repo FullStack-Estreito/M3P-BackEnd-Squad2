@@ -12,6 +12,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
+using System;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
+
+
+
 
 
 
@@ -42,9 +49,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+// builder.Services.AddConnections()
 
 //Token
-
 var Key = Encoding.ASCII.GetBytes(Backend.Service.Key.Secret);
 
 
@@ -86,7 +93,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors(c =>{
+app.UseCors(c =>
+{
     c.AllowAnyHeader();
     c.AllowAnyMethod();
     c.AllowAnyOrigin();
@@ -95,6 +103,11 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+// app.UseAuthentication();
+
+
 app.MapControllers();
 
 app.Run();
+
+

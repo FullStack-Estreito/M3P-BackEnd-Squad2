@@ -8,4 +8,5 @@ public class LoginOutPut
 
     public string Senha { get; set; }
 
+
 }

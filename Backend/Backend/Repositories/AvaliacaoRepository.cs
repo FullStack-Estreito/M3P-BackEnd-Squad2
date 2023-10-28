@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore; 
 using Backend.Context;
 using Backend.Models;
 using Backend.Repositories.Interfaces;
+
+
 
 namespace Backend.Repositories
 {
@@ -20,12 +22,18 @@ namespace Backend.Repositories
 
         public List<Avaliacao>? ObterTodos()
         {
-            return  _context.Avaliacoes.ToList();
+            return  _context.Avaliacoes
+                .Include(item => item.Professor)
+                .Include(item => item.Aluno)
+                .ToList();
         }
 
         public Avaliacao ObterPorId(int id)
         {
-            return _context.Avaliacoes.FirstOrDefault(x => x.Id.Equals(id));
+            return _context.Avaliacoes
+                .Include(item => item.Professor)
+                .Include(item => item.Aluno)
+                .FirstOrDefault(x => x.Id.Equals(id));
         }
 
         public void Delete(int id)

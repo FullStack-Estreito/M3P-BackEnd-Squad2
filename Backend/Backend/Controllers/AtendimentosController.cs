@@ -1,11 +1,7 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using AutoMapper;
-using Backend.DTO.Atendimentos;
-using Backend.DTO.Avaliacao;
-using Backend.DTO.Exercicio;
 using Backend.Models;
-using Backend.Repositories;
+using Backend.DTO.Atendimentos;
 using Backend.Repositories.Interfaces;
 using Backend.Validators;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +10,7 @@ namespace Backend.Controllers
 {
 
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/atendimentos")]
     public class AtendimentosController : ControllerBase
     {
         // Injeção de dependência do repositório e mapper
@@ -97,7 +93,8 @@ namespace Backend.Controllers
                 // Mapeando o retorno para o ReadDTO
                 var novoAtendimentosRead = _mapper.Map<AtendimentosReadDTO>(novoAtendimentos);
 
-                return StatusCode(HttpStatusCode.Created.GetHashCode(), novoAtendimentosRead);
+                return Created("Atendimento criado com sucesso!", novoAtendimentosRead);
+
 
             }
             catch (Exception ex)
@@ -134,7 +131,11 @@ namespace Backend.Controllers
 
                 // Mapeando o retorno para o ReadDTO
                 var atendimentosAtualizadoRead = _mapper.Map<AtendimentosReadDTO>(atendimentos);
-                return Ok(atendimentosAtualizadoRead);
+                return Ok(new
+            {
+                Mensagem = "Atendimento atualizado com sucesso",
+                Atendimento = atendimentosAtualizadoRead
+            });
 
             }
             catch (Exception ex)

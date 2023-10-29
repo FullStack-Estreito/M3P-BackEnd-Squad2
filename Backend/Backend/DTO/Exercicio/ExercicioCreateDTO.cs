@@ -5,7 +5,7 @@ namespace Backend.DTO.Exercicio
 {
 	public class ExercicioCreateDTO
 	{
-        public string Nome { get; set; }
+        public string Titulo { get; set; }
 
         public string Descricao { get; set; }
 
@@ -13,9 +13,9 @@ namespace Backend.DTO.Exercicio
 
         public string Data_Conclusao { get; set; }
 
-        public int Professor_Id { get; set; }
+        public int Professor_id { get; set; }
 
-        public int Aluno_Id { get; set; }
+        public int Aluno_id { get; set; }
     }
 }
 

@@ -6,7 +6,8 @@ namespace Backend.DTO.Exercicio
 {
     public class ExercicioReadDTO
 	{
-        public string Nome { get; set; }
+        public int Id { get; set; }
+        public string Titulo { get; set; }
 
         public string Descricao { get; set; }
 
@@ -14,13 +15,13 @@ namespace Backend.DTO.Exercicio
 
         public string Data_Conclusao { get; set; }
 
-        public int Professor_Id { get; set; }
+        public int Professor_id { get; set; }
 
-        public int Aluno_Id { get; set; }
+        public int Aluno_id { get; set; }
 
-        public ExercicioAlunoReadDTO Aluno_Nome { get; set; }
+        public ExercicioAlunoReadDTO Aluno_nome { get; set; }
 
-        public ExercicioProfessorReadDTO Professor_Nome { get; set; }
+        public ExercicioProfessorReadDTO Professor_nome { get; set; }
     }
 
     public class ExercicioAlunoReadDTO

@@ -12,7 +12,7 @@ using System.Net;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/avaliacao")]
     public class AvaliacaoController : ControllerBase
     {
 
@@ -97,7 +97,7 @@ namespace Backend.Controllers
                 // Mapeando o retorno para o ReadDTO
                 var novaAvaliacaoRead = _mapper.Map<AvaliacaoReadDTO>(novaAvaliacao);
 
-                return StatusCode(HttpStatusCode.Created.GetHashCode(), novaAvaliacaoRead);
+                return Created("Avaliacao criada com sucesso!", novaAvaliacaoRead);
 
             }
             catch (Exception ex)
@@ -135,7 +135,11 @@ namespace Backend.Controllers
 
                 // Mapeando o retorno para o ReadDTO
                 var avaliacaoAtualizadaRead = _mapper.Map<AvaliacaoReadDTO>(avaliacao);
-                return Ok(avaliacaoAtualizadaRead);
+                return Ok(new
+                {
+                    Mensagem = "Avaliacao atualizada com sucesso",
+                    Avaliacao = avaliacaoAtualizadaRead
+                });
 
             }
             catch (Exception ex)

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,7 +8,7 @@
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class teste : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,13 +17,13 @@ namespace Backend.Migrations
                 name: "Empresas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome_Empresa = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
-                    Slogan = table.Column<string>(type: "VARCHAR(500)", maxLength: 500, nullable: false),
-                    Paleta_Cores = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
-                    Logotipo_URL = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
-                    Demais_Infos = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome_Empresa = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
+                    Slogan = table.Column<string>(type: "VARCHAR", maxLength: 500, nullable: false),
+                    Paleta_Cores = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
+                    Logotipo_URL = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: false),
+                    Demais_Infos = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,10 +34,10 @@ namespace Backend.Migrations
                 name: "Logins",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Senha = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Email = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    Senha = table.Column<string>(type: "VARCHAR", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,27 +48,27 @@ namespace Backend.Migrations
                 name: "Usuarios",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Genero = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    CPF = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Telefone = table.Column<string>(type: "VARCHAR(16)", maxLength: 16, nullable: false),
-                    Email = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Senha = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
-                    Tipo = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
-                    Status_Sistema = table.Column<bool>(type: "bit", nullable: false),
-                    Matricula_Aluno = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
-                    Codigo_Registro_Professor = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
-                    CEP = table.Column<string>(type: "VARCHAR(15)", maxLength: 15, nullable: false),
-                    Cidade = table.Column<string>(type: "VARCHAR(40)", maxLength: 40, nullable: false),
-                    UF = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
-                    Logradouro = table.Column<string>(type: "VARCHAR(55)", maxLength: 55, nullable: false),
-                    Numero = table.Column<string>(type: "VARCHAR(8)", maxLength: 8, nullable: false),
-                    Complemento = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
-                    Bairro = table.Column<string>(type: "VARCHAR(65)", maxLength: 65, nullable: false),
-                    Ponto_Referência = table.Column<string>(type: "VARCHAR(65)", maxLength: 65, nullable: false),
-                    Empresa_Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    Genero = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    CPF = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    Telefone = table.Column<string>(type: "VARCHAR", maxLength: 16, nullable: false),
+                    Email = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    Senha = table.Column<string>(type: "VARCHAR", maxLength: 20, nullable: false),
+                    Tipo = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
+                    Status_Sistema = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Matricula_Aluno = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
+                    Codigo_Registro_Professor = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
+                    CEP = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
+                    Cidade = table.Column<string>(type: "VARCHAR", maxLength: 40, nullable: false),
+                    UF = table.Column<string>(type: "VARCHAR", maxLength: 20, nullable: false),
+                    Logradouro = table.Column<string>(type: "VARCHAR", maxLength: 55, nullable: false),
+                    Numero = table.Column<string>(type: "VARCHAR", maxLength: 8, nullable: false),
+                    Complemento = table.Column<string>(type: "VARCHAR", maxLength: 60, nullable: false),
+                    Bairro = table.Column<string>(type: "VARCHAR", maxLength: 65, nullable: false),
+                    Ponto_Referência = table.Column<string>(type: "VARCHAR", maxLength: 65, nullable: false),
+                    Empresa_Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -84,12 +85,12 @@ namespace Backend.Migrations
                 name: "Atendimentos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Data = table.Column<string>(type: "VARCHAR(10)", maxLength: 10, nullable: false),
-                    Descricao = table.Column<string>(type: "VARCHAR(40)", maxLength: 40, nullable: false),
-                    Aluno_Id = table.Column<int>(type: "int", nullable: false),
-                    Pedagogo_Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Data = table.Column<string>(type: "VARCHAR", maxLength: 10, nullable: false),
+                    Descricao = table.Column<string>(type: "VARCHAR", maxLength: 40, nullable: false),
+                    Aluno_Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    Pedagogo_Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,16 +111,16 @@ namespace Backend.Migrations
                 name: "Avaliacoes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Titulo = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Descricao = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
-                    Materia = table.Column<string>(type: "VARCHAR(30)", maxLength: 30, nullable: false),
-                    Data = table.Column<string>(type: "VARCHAR(10)", maxLength: 10, nullable: false),
-                    Pontuacao_Maxima = table.Column<double>(type: "float", nullable: false),
-                    Nota = table.Column<double>(type: "float", nullable: false),
-                    Professor_Id = table.Column<int>(type: "int", nullable: false),
-                    Aluno_Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Titulo = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    Descricao = table.Column<string>(type: "VARCHAR", maxLength: 255, nullable: false),
+                    Materia = table.Column<string>(type: "VARCHAR", maxLength: 30, nullable: false),
+                    Data = table.Column<string>(type: "VARCHAR", maxLength: 10, nullable: false),
+                    Pontuacao_Maxima = table.Column<double>(type: "REAL", nullable: false),
+                    Nota = table.Column<double>(type: "REAL", nullable: false),
+                    Professor_Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    Aluno_Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -142,14 +143,14 @@ namespace Backend.Migrations
                 name: "Exercicios",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Titulo = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Descricao = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
-                    Materia = table.Column<string>(type: "VARCHAR(30)", maxLength: 30, nullable: false),
-                    Data_Conclusao = table.Column<string>(type: "VARCHAR(10)", maxLength: 10, nullable: false),
-                    Professor_Id = table.Column<int>(type: "int", nullable: false),
-                    Aluno_Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Titulo = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    Descricao = table.Column<string>(type: "VARCHAR", maxLength: 255, nullable: false),
+                    Materia = table.Column<string>(type: "VARCHAR", maxLength: 30, nullable: false),
+                    Data_Conclusao = table.Column<string>(type: "VARCHAR", maxLength: 10, nullable: false),
+                    Professor_Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    Aluno_Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,12 +171,12 @@ namespace Backend.Migrations
                 name: "Logs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Usuario_Id = table.Column<int>(type: "int", nullable: false),
-                    Acao = table.Column<string>(type: "VARCHAR(30)", maxLength: 30, nullable: false),
-                    Data = table.Column<string>(type: "VARCHAR(10)", maxLength: 10, nullable: false),
-                    Detalhes = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Usuario_Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    Acao = table.Column<string>(type: "VARCHAR", maxLength: 30, nullable: false),
+                    Data = table.Column<DateTime>(type: "VARCHAR", maxLength: 10, nullable: false),
+                    Detalhes = table.Column<string>(type: "VARCHAR", maxLength: 60, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,7 +192,7 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "Empresas",
                 columns: new[] { "Id", "Demais_Infos", "Logotipo_URL", "Nome_Empresa", "Paleta_Cores", "Slogan" },
-                values: new object[] { 1, "Silicon Island", "wwww.Success.com", "Sucesso Total", "RGB", "Vitória" });
+                values: new object[] { 1, "", "../../../../assets/toolbar/logo.png", "LabSchool", "RGB", "A melhor educação" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",

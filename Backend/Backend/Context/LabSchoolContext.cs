@@ -25,11 +25,11 @@ namespace Backend.Context
                 new Empresa
                 {
                     Id = 1,
-                    Nome_Empresa = "Sucesso Total",
-                    Slogan = "Vitória",
+                    Nome_Empresa = "LabSchool",
+                    Slogan = "A melhor educação",
                     Paleta_Cores = "RGB",
-                    Logotipo_URL = "wwww.Success.com",
-                    Demais_Infos = "Silicon Island"
+                    Logotipo_URL = "../../../../assets/toolbar/logo.png",
+                    Demais_Infos = ""
                 }
             );
 

@@ -70,8 +70,8 @@ builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 builder.Services.AddScoped<ILogRepository, LogRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
-// string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/BANCO/fichaCadastro.db;";
-// builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
+string connectionString = "Data Source=/Users/mariacarolinaboabaid/Downloads/BANCO/fichaCadastro.db;";
+builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlite(connectionString));
 
 builder.Services.AddDbContext<LabSchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LabSchoolContext")));
 

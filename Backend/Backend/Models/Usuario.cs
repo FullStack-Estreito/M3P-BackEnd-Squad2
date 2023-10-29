@@ -28,7 +28,7 @@ namespace Backend.Models
         [Column(TypeName = "VARCHAR"), Required, MinLength(2), StringLength(20)]
         public string Senha { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(15)]
         public string Tipo { get; set; }
 
         [Required]

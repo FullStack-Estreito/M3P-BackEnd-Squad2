@@ -16,7 +16,7 @@ namespace Backend.Models
         [Column(TypeName = "VARCHAR"), StringLength(30)]
         public string Acao { get; set; }
 
-        // [Column(TypeName = "DateTime")]        
+        [Column(TypeName = "VARCHAR"), StringLength(10)]        
         public DateTime Data { get; set; }
 
         [Column(TypeName = "VARCHAR"), StringLength(60)]

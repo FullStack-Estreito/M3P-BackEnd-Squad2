@@ -13,16 +13,16 @@ namespace Backend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, StringLength(8, MinimumLength = 64)]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(64, MinimumLength = 8)]
         public string Titulo { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required, StringLength(255, MinimumLength = 15)]
         public string Descricao { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(30)]
         public string Materia { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(10)]
         public string Data { get; set; }
 
         [Required]

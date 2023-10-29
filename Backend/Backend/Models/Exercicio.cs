@@ -16,11 +16,11 @@ namespace Backend.Models
         [Column(TypeName = "VARCHAR"), Required, StringLength(255, MinimumLength = 15)]
         public string Descricao { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(30)]
         public string Materia { get; set; }
 
         [Required]
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), StringLength(10)]
         public string Data_Conclusao { get; set; }
 
         [Required]

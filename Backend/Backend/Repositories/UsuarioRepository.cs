@@ -77,7 +77,6 @@ public class UsuarioRepository
         {
             login.Tipo = testeEmail.Tipo;
             _context.Logins.Add(login);
-            SalvarLogs("logou", testeEmail.Nome, testeEmail.Id);
             _context.SaveChanges();
             return true;
         }
@@ -86,16 +85,10 @@ public class UsuarioRepository
     }
 
 
-    public void SalvarLogs(string acao, string nome, int id)
+    public void SalvarLogs(Log log)
     {
 
-        var logs = new Log();
-        logs.Usuario_Id = id;
-        logs.Nome = nome;
-        logs.Acao = acao;
-        logs.Detalhes = "blá, blá";
-        logs.Data = DateTime.Now;
-        _context.Logs.Add(logs);
+        _context.Logs.Add(log);
         _context.SaveChanges();
     }
 
@@ -106,13 +99,12 @@ public class UsuarioRepository
         return _context.Logs.ToList();
     }
 
-    public Usuario Resetar(string email, ResetarSenhaInput senha)
+    public Usuario Resetar(ResetarSenhaInput reset)
     {
-        var testeEmail = _context.Usuarios.FirstOrDefault(x => x.Email.Equals(email));
+        var testeEmail = _context.Usuarios.FirstOrDefault(x => x.Email.Equals(reset.Email));
         _context.Usuarios?.Remove(testeEmail);
-        testeEmail.Senha = senha.Senha;
+        testeEmail.Senha = reset.Senha;
         _context.Usuarios?.Update(testeEmail);
-        SalvarLogs("Resetar Senha", testeEmail.Nome, idUsuario);
         _context.SaveChanges();
         return testeEmail;
     }

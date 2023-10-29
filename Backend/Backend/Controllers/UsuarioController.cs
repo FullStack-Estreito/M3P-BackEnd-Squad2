@@ -78,7 +78,7 @@ public class UsuarioController : ControllerBase
         var usuario = _mapper.Map<Usuario>(user);
         _usuarioRepository.Criar(usuario);
         var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
-        _usuarioRepository.SalvarLogs("salvar", usuario.Nome, usuario.Id);
+        // _usuarioRepository.SalvarLogs("salvar", usuario.Nome, usuario.Id);
 
 
         return CreatedAtAction(
@@ -98,7 +98,7 @@ public class UsuarioController : ControllerBase
         var usuario = _mapper.Map<Usuario>(user);
         _usuarioRepository.Atualizar(id, usuario);
         var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
-        
+
 
         return CreatedAtAction(
             nameof(UsuarioController.Listar),
@@ -108,24 +108,9 @@ public class UsuarioController : ControllerBase
     }
 
 
-    // [HttpPost]
-    // [Route("/CriarEmpresa")]
-    // public IActionResult CadastrarEmpresa([FromBody] EmpresaInput enter)
-    // {
-    //     var empresa = _mapper.Map<Empresa>(enter);
-    //     _usuarioRepository.CriarEmpresa(empresa);
-    //     var empresaSaida = _mapper.Map<EmpresaOutPut>(empresa);
-
-    //     return CreatedAtAction(
-    //         nameof(UsuarioController.ListarEmpresa),
-    //         new { id = empresa.Id },
-    //         empresaSaida
-    //     );
-    // }
-
 
     [HttpDelete("/DeletarUsuario/{id}")]
-        public IActionResult Delete(int id)
+    public IActionResult Delete(int id)
     {
         var user = _usuarioRepository.ObterPorId(id);
         if (user == null)
@@ -151,10 +136,9 @@ public class UsuarioController : ControllerBase
 
 
     [HttpPatch("/resetar")]
-    public IActionResult MudarSenha(string email, ResetarSenhaInput senha)
+    public IActionResult MudarSenha(ResetarSenhaInput reset)
     {
-
-        var up = _usuarioRepository?.Resetar(email, senha);
+        var up = _usuarioRepository?.Resetar(reset);
         return Ok(up);
     }
 
@@ -166,6 +150,12 @@ public class UsuarioController : ControllerBase
         return Ok(log);
     }
 
-}
+    [HttpPost("/Logs")]
+    public IActionResult Salvar([FromBody] Log log)
+    {
+        _usuarioRepository.SalvarLogs(log);
+        return Ok(log);
+    }
 
+}
 

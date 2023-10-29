@@ -88,78 +88,81 @@ public class UsuarioRepository : IUsuarioRepository
         _context.SaveChanges();
     }
 
+    public bool Logar(Login login)
+    {
 
-    // public Usuario Resetar(string email, ResetarSenhaInput senha)
-    // {
-    //     var testeEmail = _context.Usuarios.FirstOrDefault(x => x.Email.Equals(email));
-    //     _context.Usuarios?.Remove(testeEmail);
-    //     testeEmail.Senha = senha.Senha;
-    //     _context.Usuarios?.Update(testeEmail);
-    //     SalvarLogs("Resetar Senha", idUsuario);
-    //     _context.SaveChanges();
-    //     return testeEmail;
-    // }
+        var usuario = _context.Usuarios.FirstOrDefault(x => x.Email.Equals(login.Email));
 
+        if (usuario != null)
+        {
+            if (login.Senha == usuario.Senha)
+            {
+                _context.Logins.Add(login);
+                _context.SaveChanges();
+            }
+            return true;
+        }
+        else
+            return false;
+    }
 
-    // public void Atualizar(int id, UsuarioCompleto users)
-    // {
-    //     var usuario = _context.UsuarioCompleto.Where(w => w.Id == id).FirstOrDefault();
-    //     _context.UsuarioCompleto?.Remove(usuario);
-    //     users.Id = id;
-    //     _context.UsuarioCompleto?.Update(users);
-    //     _context.SaveChanges();
-    // }
-
-
-
-    // public void Excluir(int id)
-    // {
-    //     var user = ObterPorId(id);
-    //     if (user != null)
-    //     {
-    //         _context?.Usuarios?.Remove(user);
-    //         SalvarLogs("Excluir usuário por id", user.Id);
-    //         _context?.SaveChanges();
-    //     }
-    // }
-
-    // public bool Logar(Login login)
-    // {
-
-    // Verificando o e-mail
-    // var usuario = _context.Usuarios.FirstOrDefault(x => x.Email.Equals(login.Email));
-
-    // if (usuario != null)
-    // {
-    //     // Verificando a senha caso o e-mail seja encontrado
-    //     if (login.Senha == usuario.Senha)
-    //     {
-    //         // Autenticação sucedida.
-    //         SalvarLogs("Logar", usuario.Id);
-    //         return true;
-    //     }
-    //     else
-    //     {
-    //         return false;
-    //     }
-    // }
-    // else
-    // {
-    //     return false;
-    // }
-
-    // var testeEmail = _context.UsuarioCompleto.FirstOrDefault(x => x.Email.Equals(login.Email));
-    // var testeSenha = _context.UsuarioCompleto.FirstOrDefault(x => x.Senha.Equals(login.Senha));
-
-    // if (testeEmail != null && testeSenha != null)
-    // {
-    //     _context.Logins.Add(login);
-    //     _context.SaveChanges();
-    //     SalvarLogs("Logar", testeEmail.Id);
-    //     return true;
-    // }
+    public List<Usuario>? Listar()
+    {
+        return _context.Usuarios.ToList();
+    }
 
 }
+
+
+
+// public Usuario Resetar(string email, ResetarSenhaInput senha)
+// {
+//     var testeEmail = _context.Usuarios.FirstOrDefault(x => x.Email.Equals(email));
+//     _context.Usuarios?.Remove(testeEmail);
+//     testeEmail.Senha = senha.Senha;
+//     _context.Usuarios?.Update(testeEmail);
+//     SalvarLogs("Resetar Senha", idUsuario);
+//     _context.SaveChanges();
+//     return testeEmail;
+// }
+
+
+// public void Atualizar(int id, UsuarioCompleto users)
+// {
+//     var usuario = _context.UsuarioCompleto.Where(w => w.Id == id).FirstOrDefault();
+//     _context.UsuarioCompleto?.Remove(usuario);
+//     users.Id = id;
+//     _context.UsuarioCompleto?.Update(users);
+//     _context.SaveChanges();
+// }
+
+
+
+// public void Excluir(int id)
+// {
+//     var user = ObterPorId(id);
+//     if (user != null)
+//     {
+//         _context?.Usuarios?.Remove(user);
+//         SalvarLogs("Excluir usuário por id", user.Id);
+//         _context?.SaveChanges();
+//     }
+// }
+
+
+// var testeEmail = _context.UsuarioCompleto.FirstOrDefault(x => x.Email.Equals(login.Email));
+// var testeSenha = _context.UsuarioCompleto.FirstOrDefault(x => x.Senha.Equals(login.Senha));
+
+// if (testeEmail != null && testeSenha != null)
+// {
+//     _context.Logins.Add(login);
+//     _context.SaveChanges();
+//     SalvarLogs("Logar", testeEmail.Id);
+//     return true;
+// }
+
+
+
 
 
 

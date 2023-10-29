@@ -17,17 +17,17 @@ namespace Backend.Models
         public string Descricao { get; set; }
 
         [Required]
-        public int Aluno_Id { get; set; }
+        public int id_Aluno { get; set; }
 
         [Required]
-        public int Pedagogo_Id { get; set; }
+        public int id_Pedagogo { get; set; }
 
          // Relacionamentos
-        [ForeignKey("Aluno_Id")]
+        [ForeignKey("id_Aluno")]
         public virtual Usuario Aluno { get; set; }
 
         // Define another foreign key property explicitly
-        [ForeignKey("Pedagogo_Id")]
+        [ForeignKey("id_Pedagogo")]
         public virtual Usuario Pedagogo { get; set; }
     }
 }

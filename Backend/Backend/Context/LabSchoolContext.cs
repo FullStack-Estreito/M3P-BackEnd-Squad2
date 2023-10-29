@@ -6,10 +6,8 @@ namespace Backend.Context
 {
     public class LabSchoolContext : DbContext
     {
-        public LabSchoolContext(DbContextOptions options) : base(options)
-        {
-        }
-
+        public LabSchoolContext(DbContextOptions options) : base(options) { }
+      
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Atendimento> Atendimentos { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
@@ -84,14 +82,14 @@ namespace Backend.Context
             modelBuilder.Entity<Atendimento>()
                 .HasOne(x => x.Aluno)
                 .WithMany(y => y.Atendimentos_Alunos)
-                .HasForeignKey(x => x.Aluno_Id)
+                .HasForeignKey(x => x.id_Aluno)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.Entity<Atendimento>()
                 .HasOne(x => x.Pedagogo)
                 .WithMany(y => y.Atendimentos_Pedagogos)
-                .HasForeignKey(x => x.Pedagogo_Id)
+                .HasForeignKey(x => x.id_Pedagogo)
                 .Metadata
                 .DeleteBehavior = DeleteBehavior.Restrict;
 

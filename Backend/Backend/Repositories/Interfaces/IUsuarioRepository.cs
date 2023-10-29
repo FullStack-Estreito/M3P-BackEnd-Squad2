@@ -11,6 +11,7 @@ namespace Backend.Repositories.Interfaces
         public List<Usuario>? ObterTodos(int empresaId, string tipo , string nome, string telefone, string cpf);
 
         public Usuario? ObterPorId(int id);
+        public List<Usuario>? Listar();
 
         public Usuario? ObterPorEmail(string email);
 
@@ -21,5 +22,6 @@ namespace Backend.Repositories.Interfaces
         public void Adicionar(Usuario usuario);
 
         public void ResetarSenha(Usuario usuario);
+        public bool Logar(Login login);
     }
 }

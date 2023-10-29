@@ -14,6 +14,7 @@ using Backend.DTO.Usuario;
 using Backend.Validators;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using Backend.DTO.Log;
 
 namespace Backend.Controllers;
 
@@ -22,7 +23,6 @@ namespace Backend.Controllers;
 public class UsuarioController : ControllerBase
 {
 
-    // Injeção de dependência do repositório e mapper
     private readonly IMapper _mapper;
     private readonly LabSchoolContext _context;
 
@@ -58,6 +58,13 @@ public class UsuarioController : ControllerBase
         {
             return StatusCode(500, ex);
         }
+    }
+
+    [HttpGet("/ListarUsuarios")]
+    public IActionResult Show()
+    {
+        var user = _usuarioRepository.Listar();
+        return Ok(user);
     }
 
     [HttpGet("{id}")]
@@ -197,44 +204,20 @@ public class UsuarioController : ControllerBase
             return StatusCode(500, ex);
         }
     }
+
+    [HttpPost("/login")]
+    public IActionResult signup([FromBody] LoginCreateDTO login)
+    {
+        var dados = _mapper.Map<Login>(login);
+        var logado = _usuarioRepository.Logar(dados);
+
+        if (logado == true)
+        {
+            var token = TokenService.GerarTokem(dados);
+            return Ok(token);
+        }
+        else
+            return BadRequest("e-mail e/ou senha incorretos. entrada negada!");
+    }
 }
-
-
-
-
-
-
-
-
-
-
-// [HttpPost("/login")]
-// public IActionResult SignUp([FromBody] LoginCreateDTO loginCreateDTO)
-// {
-//     var dadosLogin = _mapper.Map<Login>(loginCreateDTO);
-
-//     var logado = _usuarioRepository.Logar(dadosLogin);
-
-//     if (logado == true )
-//     {
-//         var token = TokenService.GerarTokem(dadosLogin);
-//         return Ok(token);
-//     }
-//     else
-//         return BadRequest("E-mail e/ou senha incorretos. Entrada negada!");
-// }
-
-
-
-// // [Authorize]
-// [HttpGet("/ListarLogs")]
-// public IActionResult ListarLogs()
-// {
-//     var log = _usuarioRepository.ExibirLogs();
-//     return Ok(log);
-// }
-
-
-
-
 

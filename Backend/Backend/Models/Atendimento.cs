@@ -10,10 +10,10 @@ namespace Backend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(10)]
         public string Data { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(40)]
         public string Descricao { get; set; }
 
         [Required]

@@ -13,16 +13,16 @@ namespace Backend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, StringLength(8, MinimumLength = 64)]
-        public string Nome { get; set; }
+        [Column(TypeName = "VARCHAR"), Required, StringLength(64, MinimumLength = 8)]
+        public string Titulo { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, StringLength(15, MinimumLength = 255)]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(255, MinimumLength = 15)]
         public string Descricao { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(30)]
         public string Materia { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(10)]
         public string Data { get; set; }
 
         [Required]
@@ -31,10 +31,18 @@ namespace Backend.Models
         [Required]
         public double Nota { get; set; }
 
-        [Required, ForeignKey("Professor")]
+        [Required]
         public int Professor_Id { get; set; }
 
-        // Relacionamento com UsuarioModel
+        [Required]
+        public int Aluno_Id { get; set; }
+
+
+        // Relacionamentos
+        [ForeignKey("Aluno_Id")]
+        public virtual Usuario Aluno { get; set; }
+
+        [ForeignKey("Professor_Id")]
         public virtual Usuario Professor { get; set; }
 
 

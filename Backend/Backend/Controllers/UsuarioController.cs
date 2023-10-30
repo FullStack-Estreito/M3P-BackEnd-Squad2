@@ -1,105 +1,58 @@
 using System;
 using Backend.Context;
 using Backend.Models;
-using Backend.DtoEntrada;
 using Backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Backend.Mapper;
 using AutoMapper;
-using Backend.DtoSaida;
-using Backend.Output;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Service;
+using Backend.DTO.Login;
+using Backend.Repositories.Interfaces;
+using Backend.DTO.Usuario;
+using Backend.Validators;
+using System.Net;
+using System.ComponentModel.DataAnnotations;
+using Backend.DTO.Log;
 
 namespace Backend.Controllers;
 
 [ApiController]
-[Route("UsuarioController")]
+[Route("api/usuarios")]
 public class UsuarioController : ControllerBase
 {
 
     private readonly IMapper _mapper;
     private readonly LabSchoolContext _context;
 
-    private readonly UsuarioRepository _usuarioRepository;
-    public UsuarioController(UsuarioRepository usuarioRepository, IMapper mapper, LabSchoolContext context)
+    private readonly IUsuarioRepository _usuarioRepository;
+
+    public UsuarioController(IUsuarioRepository usuarioRepository, IMapper mapper)
     {
         _mapper = mapper;
         _usuarioRepository = usuarioRepository;
-        _context = context;
     }
 
 
-    [Authorize]
-    [HttpGet("/Listar")]
-    public IActionResult Listar()
-    {
-        var user = _usuarioRepository.ObterAdmins();
-        return Ok(user);
-    }
-
-    [HttpGet("/ObterUsuarioPorId/{id}")]
-    public IActionResult Obter(int id)
-    {
-        var user = _usuarioRepository.ObterPorId(id);
-        if (user != null)
-            return Ok(user);
-        else
-            return NotFound("Nada Consta");
-    }
-
-    [HttpGet("/ListarEmpresas")]
-    public IActionResult ListarEmpresa()
-    {
-        var empresa = _usuarioRepository.ObterEmpresas();
-        return Ok(empresa);
-    }
-
-    [HttpGet("/ListarEnd")]
-    public IActionResult ListarEnd()
-    {
-        var end = _usuarioRepository.ObterEnd();
-        return Ok(end);
-    }
-
-
-
-    [HttpPost]
-    [Route("/CriarUsuário")]
-    public IActionResult Cadastrar([FromBody] UsuarioInput user)
-    {
-        var usuario = _mapper.Map<Usuario>(user);
-        _usuarioRepository.Criar(usuario);
-        var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
-        _usuarioRepository.SalvarLogs("salvar", usuario.Id);
-        return CreatedAtAction(
-            nameof(UsuarioController.Listar),
-            new { id = usuarioSaida.Id },
-            usuarioSaida
-        );
-    }
-
-    [HttpPut("/Update/{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public ActionResult<UsuarioOutput> Put(int id, [FromBody] UsuarioInput user)
+    // Endpoints
+    [HttpGet]
+    public ActionResult<IEnumerable<UsuarioReadDTO>> GetAll([Required] int empresaId, string? tipo, string? nome, string? telefone, string? cpf)
     {
         try
         {
-            var usuario = _context.Usuarios.Where(w => w.Id == id).FirstOrDefault();
+            List<Usuario> retorno;
 
-            if (usuario == null)
+            retorno = _usuarioRepository.ObterTodos(empresaId, tipo, nome, telefone, cpf);
+
+            if (retorno.Count() == 0)
             {
-                return NotFound(new { erro = "Registro não encontrado" });
+                return NotFound("Nenhum registro encontrado no banco de dados.");
             }
 
-            usuario = _mapper.Map(user, usuario);
-            var usuarioSaida = _mapper.Map<UsuarioOutput>(usuario);
-            _usuarioRepository.Atualizar(usuario);
-            return Ok(usuarioSaida);
+            var retornoDTO = _mapper.Map<List<UsuarioReadDTO>>(retorno);
+
+            return Ok(retornoDTO);
         }
         catch (Exception ex)
         {
@@ -107,82 +60,164 @@ public class UsuarioController : ControllerBase
         }
     }
 
-
-    [HttpPost]
-    [Route("/CriarEndereco")]
-    public IActionResult CadastrarEnd([FromBody] EnderecoInput end)
+    [HttpGet("/ListarUsuarios")]
+    public IActionResult Show()
     {
-        var endereco = _mapper.Map<Endereco>(end);
-        _usuarioRepository.CriarEndereco(endereco);
-        var enderecoOutPut = _mapper.Map<EnderecoOutPut>(endereco);
-
-        return CreatedAtAction(
-            nameof(UsuarioController.ListarEnd),
-            new { id = enderecoOutPut.Id },
-            enderecoOutPut
-        );
+        var user = _usuarioRepository.Listar();
+        return Ok(user);
     }
 
-
-    [HttpPost]
-    [Route("/CriarEmpresa")]
-    public IActionResult CadastrarEmpresa([FromBody] EmpresaInput enter)
+    [HttpGet("{id}")]
+    public ActionResult<UsuarioReadDTO> GetById(int id)
     {
-
-        var empresa = _mapper.Map<Empresa>(enter);
-        _usuarioRepository.CriarEmpresa(empresa);
-        var enterSaida = _mapper.Map<EmpresaOutPut>(empresa);
-
-        return CreatedAtAction(
-            nameof(UsuarioController.ListarEmpresa),
-            new { id = empresa.Id },
-            empresa
-        );
-    }
-    // [Authorize]
-    [HttpDelete("/DeletarUsuario/{id}")]
-    public IActionResult Delete(int id)
-    {
-        var user = _usuarioRepository.ObterPorId(id);
-        if (user == null)
+        try
         {
-            return NotFound("Not Found");
+            var retorno = _usuarioRepository.ObterPorId(id);
+
+            if (retorno == null)
+            {
+                return NotFound("Nenhum registro encontrado no banco de dados.");
+            }
+
+            var retornoDTO = _mapper.Map<UsuarioReadDTO>(retorno);
+
+            return Ok(retornoDTO);
         }
-        _usuarioRepository.Excluir(id);
-        return NoContent();
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex);
+        }
     }
 
-    [HttpPost("/Login")]
-    public IActionResult SignUp([FromBody] Login login)
+    [HttpPost]
+    public ActionResult<UsuarioReadDTO> Post([FromBody] UsuarioCreateDTO usuarioCreateDTO)
     {
-
-        var logado = _usuarioRepository.Logar(login);
-        if (logado)
+        try
         {
-            var token = TokenService.GerarTokem(login);
+            // Mapeando para a model
+            var novoUsuario = _mapper.Map<Usuario>(usuarioCreateDTO);
+
+            // Validando os dados informados
+            var usuarioValidator = new UsuarioValidator();
+            var validatorResult = usuarioValidator.Validate(novoUsuario);
+
+            if (validatorResult.IsValid == false)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, validatorResult.Errors);
+            }
+
+            _usuarioRepository.Adicionar(novoUsuario);
+
+            // Mapeando o retorno para o ReadDTO
+            var novoUsuarioRead = _mapper.Map<UsuarioReadDTO>(novoUsuario);
+
+            return Created("Usuario criado com sucesso!", novoUsuarioRead);
+
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex);
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult Delete(int id)
+    {
+        try
+        {
+            var usuario = _usuarioRepository.ObterPorId(id);
+
+            if (usuario == null)
+            {
+                return NotFound("Nenhum registro encontrado no banco de dados.");
+            }
+
+            _usuarioRepository.Delete(id);
+            return StatusCode(204);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex);
+        }
+    }
+
+    [HttpPut("{id}")]
+    public ActionResult<UsuarioReadDTO> Put(int id, [FromBody] UsuarioUpdateDTO usuarioUpdateDTO)
+    {
+        try
+        {
+            var usuario = _usuarioRepository.ObterPorId(id);
+
+            if (usuario == null)
+            {
+                return NotFound("Nenhum registro encontrado no banco de dados.");
+            }
+
+            // Mapeando para a model
+            usuario = _mapper.Map(usuarioUpdateDTO, usuario);
+
+            // Validando os dados informados
+            var usuarioValidator = new UsuarioValidator();
+            var validatorResult = usuarioValidator.Validate(usuario);
+
+            if (validatorResult.IsValid == false)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, validatorResult.Errors);
+            }
+
+            _usuarioRepository.Atualizar(usuario);
+
+            // Mapeando o retorno para o ReadDTO
+            var usuarioAtualizadoRead = _mapper.Map<UsuarioReadDTO>(usuario);
+            return Ok(new
+            {
+                Mensagem = "Usuario atualizado com sucesso",
+                Usuario = usuarioAtualizadoRead
+            });
+
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex);
+        }
+    }
+
+    [HttpPut("/resetar")]
+    public ActionResult PutSenha([FromBody] ResetarSenhaDTO email)
+    {
+        try
+        {
+            var usuario = _usuarioRepository.ObterPorEmail(email.Email);
+
+            if (usuario == null)
+            {
+                return Unauthorized("Nenhum registro encontrado no banco de dados.");
+            }
+
+            _usuarioRepository.ResetarSenha(usuario);
+
+            return Ok("Senha resetada!");
+
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex);
+        }
+    }
+
+    [HttpPost("/login")]
+    public IActionResult signup([FromBody] LoginCreateDTO login)
+    {
+        var dados = _mapper.Map<Login>(login);
+        var logado = _usuarioRepository.Logar(dados);
+
+        if (logado == true)
+        {
+            var token = TokenService.GerarTokem(dados);
             return Ok(token);
         }
         else
-            return BadRequest("Login Incorreto");
+            return BadRequest("e-mail e/ou senha incorretos. entrada negada!");
     }
-
-
-    [HttpPatch("/resetar")]
-    public IActionResult MudarSenha(string email, ResetarSenhaInput senha)
-    {
-
-        var up = _usuarioRepository?.Resetar(email, senha);
-        return Ok(up);
-    }
-
-    // [Authorize]
-    [HttpGet("/ListarLogs")]
-    public IActionResult ListarLogs()
-    {
-        var log = _usuarioRepository.ExibirLogs();
-        return Ok(log);
-    }
-
 }
-
 

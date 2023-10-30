@@ -14,6 +14,8 @@ namespace Backend.Repositories.Interfaces
         public void Atualizar(Exercicio exercicio);
 
         public void Adicionar(Exercicio exercicio);
+
+        public List<Exercicio>? ObterExerciciosPorAluno(int alunoId);
     }
 }
 

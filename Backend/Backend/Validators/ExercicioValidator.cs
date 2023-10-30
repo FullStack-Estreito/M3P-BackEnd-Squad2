@@ -10,7 +10,7 @@ namespace Backend.Validators
         public ExercicioValidator()
         {
 
-            RuleFor(x => x.Nome).NotEmpty()
+            RuleFor(x => x.Titulo).NotEmpty()
                 .NotNull()
                 .WithMessage("O campo NOME possui preenchimento obrigatório.")
                 .Length(8, 64).WithMessage("O campo NOME deve possuir no mínimo 8 e no máximo 64 caracteres.");

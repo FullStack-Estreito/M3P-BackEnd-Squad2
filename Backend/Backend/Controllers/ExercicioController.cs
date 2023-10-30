@@ -13,7 +13,7 @@ namespace Backend.Controllers
 {
 
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/exercicios")]
     public class ExercicioController : ControllerBase
 	{
 
@@ -75,6 +75,32 @@ namespace Backend.Controllers
             }
         }
 
+        [HttpGet("aluno/{id}/historico")]
+        public ActionResult<ExercicioReadDTO> GetExerciciosById(int id)
+        {
+            try
+            {
+                var retorno = _exercicioRepository.ObterExerciciosPorAluno(id);
+
+                if (retorno == null)
+                {
+                    return NotFound("Nenhum registro encontrado no banco de dados.");
+                }
+                else if (!retorno.Any()){
+                    return NotFound("O aluno nao possui nenhum registro.");
+
+                }
+
+                var retornoDTO = _mapper.Map<List<ExercicioReadDTO>>(retorno);
+
+                return Ok(retornoDTO);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
         [HttpPost]
         public ActionResult<ExercicioReadDTO> Post([FromBody] ExercicioCreateDTO exercicioCreateDTO)
         {
@@ -97,7 +123,7 @@ namespace Backend.Controllers
                 // Mapeando o retorno para o ReadDTO
                 var novoExercicioRead = _mapper.Map<ExercicioReadDTO>(novoExercicio);
 
-                return StatusCode(HttpStatusCode.Created.GetHashCode(), novoExercicioRead);
+                return Created("Exercicio criado com sucesso!", novoExercicioRead);
 
             }
             catch (Exception ex)
@@ -134,7 +160,11 @@ namespace Backend.Controllers
 
                 // Mapeando o retorno para o ReadDTO
                 var exercicioAtualizadoRead = _mapper.Map<ExercicioReadDTO>(exercicio);
-                return Ok(exercicioAtualizadoRead);
+                return Ok(new
+            {
+                Mensagem = "Exercicio atualizado com sucesso",
+                Exercicio = exercicioAtualizadoRead
+            });
 
             }
             catch (Exception ex)

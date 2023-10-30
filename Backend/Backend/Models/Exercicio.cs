@@ -11,16 +11,16 @@ namespace Backend.Models
         public int Id { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required, StringLength(64, MinimumLength = 8)]
-        public string Nome { get; set; }
+        public string Titulo { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required, StringLength(255, MinimumLength = 15)]
         public string Descricao { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, StringLength(30)]
         public string Materia { get; set; }
 
         [Required]
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "VARCHAR"), StringLength(10)]
         public string Data_Conclusao { get; set; }
 
         [Required]
@@ -30,10 +30,9 @@ namespace Backend.Models
         public int Aluno_Id { get; set; }
 
         // Relacionamentos
-          [ForeignKey("Aluno_Id")]
+        [ForeignKey("Aluno_Id")]
         public virtual Usuario Aluno { get; set; }
 
-        // Define another foreign key property explicitly
         [ForeignKey("Professor_Id")]
         public virtual Usuario Professor { get; set; }
     }
